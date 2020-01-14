@@ -1,0 +1,66 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    border: 4px solid #34cc23;
+    background-color: #e0daca;
+}
+
+.left-side {
+    display: flex;
+}
+
+.right-side ul,
+.left-side ul {
+    display: flex;
+    flex-grow: 1;
+    list-style: none;
+}
+
+.right-side ul li,
+.left-side ul li {
+    display: inline-block;
+    margin: 10px;
+}
+
+.right-side ul li:hover,
+.left-side ul li:hover {
+    color: brown;
+    font-size: 28px;
+}
+
+.right-side ul a,
+.left-side ul a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.right-side {
+    margin-right: 55px;
+}
+
+.profile-photo {
+    background-color: inherit;
+    width: 80px;
+    height: 70px;
+    margin: 0 auto;
+}
+
+
+.img-div .imgs {
+    width: 60px;
+    height: 60px;
+    background-color: inherit;
+    
+}
+
+.imgs {
+    margin-top: 50px
+}
+
+#group-img {
+    height: 80px;
+    width: 130px;
+    margin-bottom: 20px;
+}
