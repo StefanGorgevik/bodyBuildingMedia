@@ -1,0 +1,10 @@
+.user-data {
+    border:45px solid blue;
+    border-radius: 35px;
+    width: 50%;
+}
+
+.cover-image {
+    width: 800px;
+    height: 400px;
+}

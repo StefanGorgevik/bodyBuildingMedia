@@ -1,7 +1,12 @@
 .users {
     display: flex; 
-    width: 40%;
-    min-height: 100%;
-    border: 2px solid red;
+    flex-direction: column;
+    width: 15%;
+    height: 100%;
+    border: 35px solid red;
      margin: 0 auto; 
+     padding: 10px;
+     border-radius: 55px;
+     
+    overflow-y: scroll;
 }

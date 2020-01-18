@@ -1,4 +1,18 @@
 .user-photo {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 20px;
+    padding: 2px;
+}
+
+.user{
+    border: 2px solid blue;
+    width: 80%;
+    height: 20%;
+}
+
+.photo-username {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
 }
