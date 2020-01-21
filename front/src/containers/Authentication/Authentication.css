@@ -1,0 +1,60 @@
+/* html, body {
+    height: 100%;
+} */
+
+.welcome-cover {
+    background-image: url('../../assets/images/jumbotron.jpg');
+    height: 100vh;  
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    display: flex;
+}
+
+.auth-btns {
+    display: flex;
+    justify-content: space-between;
+    margin: 650px auto;
+    height: 60px;
+}
+
+.active-auth-btns { 
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 0 0 0;    
+
+    height: 60px;
+}
+
+
+.auth-btn {
+    background-color: transparent;
+    width: 250px;
+    text-transform: uppercase;
+    font-size: 32px;
+    color: white;
+    border-radius: 14px;
+    margin-left: 60px;
+}
+.active {
+    color: #384b42;
+    font-size: 38px;
+    font-weight: bold;
+    border: 5px solid #384b42;
+}
+
+.auth-btn:hover {
+    color: #1df086;
+    border: 5px solid #1df086;
+    font-size: 38px;
+    font-weight: bold;
+    width: 275px;
+    height: 70px;
+}
+
+.welcome-cover h1 {
+    color: white;
+    margin: auto;
+    height: 40px;
+    font-size: 50px;
+}

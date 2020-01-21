@@ -19,7 +19,7 @@ class Users extends Component {
         })
         return ( 
         <div className='users'>
-            <h3>Users</h3>
+            <h3 className="users-h3">Users</h3>
             <div className="user-scroll">
                 {user}
             </div>

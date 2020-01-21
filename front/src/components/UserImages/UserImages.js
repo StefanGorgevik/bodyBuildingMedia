@@ -1,8 +1,8 @@
 import React from 'react'
-import './UserData.css'
+import './UserImages.css'
 import Cover from '../../assets/images/cover.jpg'
 
-class UserData extends React.Component {
+class UserImages extends React.Component {
     render(){
         return (
             <div className="user-data">
@@ -13,4 +13,4 @@ class UserData extends React.Component {
     }
 }
 
-export default UserData;
+export default UserImages;

@@ -12,9 +12,7 @@ class User extends Component {
     }
 
     hoverHandler = () => {
-    
-
-            this.setState({ hovered: true })
+        this.setState({ hovered: true })
         
     }
 
@@ -24,7 +22,7 @@ class User extends Component {
 
     render() {
         return (
-            <div className="user"  onMouseEnter={this.hoverHandler} onMouseLeave={this.hoverLeaveHandler}>
+            <div className="user" onMouseEnter={this.hoverHandler} onMouseLeave={this.hoverLeaveHandler}>
                 <div className="photo-username">
                     <img className="user-photo" src={Builder} alt="builder" />
                     <p>Username:{this.props.username}</p>

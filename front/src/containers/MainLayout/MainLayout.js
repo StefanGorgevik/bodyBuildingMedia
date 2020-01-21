@@ -2,7 +2,7 @@ import React from 'react'
 
 import UserPage from '../../components/UserPage/UserPage'
 import Users from '../../components/Users/Users'
-import UserData from '../../components/UserData/UserData'
+import UserImages from '../../components/UserImages/UserImages'
 import Header from '../../components/Navigation/Header'
 
 import './MainLayout.css'
@@ -14,7 +14,7 @@ const mainLayout = (props) => {
         <div className="main-layout">
             <Users/>
             <UserPage/>
-            <UserData/>
+            <UserImages/>
         </div>
         </div>
     )

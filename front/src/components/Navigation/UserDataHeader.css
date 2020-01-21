@@ -1,8 +1,8 @@
 .user-data-navigation {
     display: flex;
-    border: 4px solid #34cc23;
+    border: 1px solid #34cc23;
     background-color: #e0daca;
-    height: 12%;
+    height: 34px;
     width: 100%;
     text-align: center;
 }
@@ -23,13 +23,12 @@
     font-size: 24px;
     font-weight: bold;
     width: 100%;
-    padding-top: 10px;
 }
 
 
 .user-data-navigation ul li:hover {
     color: brown;
-    font-size: 28px;
+    font-size: 26px;
     border: 2px solid brown;
 }
 
