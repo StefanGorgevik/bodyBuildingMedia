@@ -5,7 +5,7 @@ import './WorkoutPlan.css'
 class WorkoutPlan extends React.Component {
     render() {
         return (
-            <div className="workout-plan">
+            <div className="workout-plan register-tap">
                 <h1>Workout Plan</h1>
                 <p>
                     <label htmlFor="first-name" className="login-label">First Name</label>

@@ -5,7 +5,7 @@ import './Diet.css'
 class Diet extends React.Component {
     render() {
         return (
-            <div className="diet">
+            <div className="diet register-tap">
                 <h1>Diet</h1>
                 <p>
                     <label htmlFor="first-name" className="login-label">First Name</label>

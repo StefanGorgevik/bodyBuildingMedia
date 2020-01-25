@@ -3,9 +3,22 @@ import React from 'react'
 import './PersonalInfo.css'
 
 class Personalinfo extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            first_name: '',
+            last_name: '',
+            birthday: '',
+            level: '',
+            location: '',
+            email: '',
+            password: ''
+        }
+    }
+    
     render() {
         return (
-            <div className="personal-info">
+            <div className="personal-info register-tap">
                 <h1>Personal Info</h1>
                 <p>
                     <label htmlFor="first-name" className="login-label">First Name</label>
