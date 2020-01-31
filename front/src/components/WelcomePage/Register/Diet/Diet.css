@@ -3,3 +3,39 @@
     margin-top:240px;
     margin-left: 550px;
 }
+
+.select-meals-number {
+    display: flex;
+    flex-direction: row;
+}
+.select-meals-number p {
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+    text-align: center;
+}
+
+.select-meals-number p input {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.select-meals-number input {
+    width: 150px;
+}
+
+.breakfast-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.breakfast-p {
+    color: white;
+    margin: 0;
+}
+
+.input-button-diet {
+    display: flex;
+    flex-direction: row;
+}

@@ -24,3 +24,17 @@
     border: none;
     cursor: pointer;
 }
+
+.days p {
+    display: flex;
+    flex-direction: row;
+}
+
+.days h2 {
+    color: white;
+}
+
+.rest-day-p {
+    color: white;
+    font-size: 24px;
+}
