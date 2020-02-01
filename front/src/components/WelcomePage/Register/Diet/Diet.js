@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './Diet.css'
+import MealInput from './Inputs/MealInput'
 
 class Diet extends React.Component {
     constructor(props) {
@@ -10,25 +11,37 @@ class Diet extends React.Component {
             dietGoals: '',
             mealsPerDay: '',
             snacksPerDay: '',
-            breakfast: '',
-            breakfasts: []
+            meals: []
         }
     }
 
     saveInputValue = (event) => {
         this.setState({ [event.target.id]: event.target.value })
+        console.log(this.state)
     }
 
-    addBreakfastHandler = () => {
+    addMealHandler = () => {
         this.setState(previousState => ({
-            breakfasts: [...previousState.breakfasts, this.state.breakfast]
+            meals: [...previousState.meals, this.state.breakfast]
         }));
     }
 
     render() {
-        const breaks = this.state.breakfasts.map((breakfast, i) => {            
-            return (<p className="breakfast-p" key={breakfast + i} >{breakfast}</p>)
-        })
+        if(this.state.mealsPerDay) {
+            var mealInputs = [];
+            for(let i = 1; i <= this.state.mealsPerDay; i ++) {
+                mealInputs.push(<MealInput key={i} saveInputValue={this.saveInputValue} 
+                htmlFor={'meal' + i}
+                inputId={'meal' + i} 
+                labelName={'Meal' + i} 
+                addMeal={this.addMealHandler}
+                meals={this.state.mealsPerDay}
+                />)
+            }
+        }
+        // const breaks = this.state.breakfasts.map((breakfast, i) => {            
+        //     return (<p className="breakfast-p" key={breakfast + i} >{breakfast}</p>)
+        // })
         return (
             <div className="diet register-tap">
                 <h1>Diet</h1>
@@ -38,7 +51,7 @@ class Diet extends React.Component {
                 </p>
                 <p>
                     <label htmlFor="dietGoals" className="login-label">Diet Goals</label>
-                    <input type="number" id="dietGoals" className="login-input" onChange={this.saveInputValue} />
+                    <input type="text" id="dietGoals" className="login-input" onChange={this.saveInputValue} />
                 </p>
 
                 <div className='select-meals-number'>
@@ -51,15 +64,8 @@ class Diet extends React.Component {
                         <input type="number" id="snacksPerDay" className="login-input" onChange={this.saveInputValue} />
                     </p>
                 </div>
-
-                <div>
-                    <label htmlFor="breakfast" className="login-label">Breakfast</label>
-                    <div className="input-button-diet">
-                        <input type="location" id="breakfast" className="login-input" onChange={this.saveInputValue} />
-                        <button onClick={this.addBreakfastHandler}>Add meal</button>
-                    </div>
-                    {this.state.breakfast !== '' ? <div className="breakfast-div">{breaks}</div> : null}
-                </div>
+                {mealInputs}
+               
               
             </div>
         )

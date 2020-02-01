@@ -17,11 +17,9 @@ class Register extends React.Component {
 
     nextClicked = () => {
         this.setState({ count: this.state.count + 1 })
-        console.log(this.state.count)
     }
 
     backClicked = () => {
-        console.log(this.state.count)
         if (this.state.count > 1) {
             this.setState({ count: this.state.count - 1 })
         }
