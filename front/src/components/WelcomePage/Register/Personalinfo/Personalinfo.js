@@ -1,53 +1,97 @@
 import React from 'react'
 
 import './PersonalInfo.css'
+import {savePersonalInfo} from '../../../../redux/actions/userActions'
+import store from '../../../../redux/store'
 
 class Personalinfo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            first_name: '',
-            last_name: '',
+            firstName: '',
+            lastName: '',
             birthday: '',
             level: '',
             location: '',
             email: '',
-            password: ''
+            password: '',
+            saveClicked: false
         }
     }
-    
+
+    saveInputValue = (event) => {
+        this.setState({ [event.target.id]: event.target.value})
+        
+    }
+
+    saveDataHandler = () => {
+        this.setState({ saveClicked: true})
+        const newUser = {
+            firstName: this.state.firstName, 
+            lastName: this.state.lastName, 
+            birthday: this.state.birthday, 
+            level: this.state.level, 
+            location: this.state.location, 
+            email: this.state.email, 
+            password: this.state.firstName
+        }
+        store.dispatch(savePersonalInfo(newUser))
+    }
+    editDataHandler = () => {
+        this.setState({ saveClicked: false})
+    }
+
     render() {
         return (
-            <div className="personal-info register-tap">
+            <div className="personal-info ">
                 <h1>Personal Info</h1>
-                <p>
-                    <label htmlFor="first-name" className="login-label">First Name</label>
-                    <input type="text" id="first-name" className="login-input" onChange={this.saveInputValue} />
-                </p>
-                <p>
-                    <label htmlFor="last-name" className="login-label">Last Name</label>
-                    <input type="text" id="last-name" className="login-input" onChange={this.saveInputValue} />
-                </p>
-                <p>
+                <div className='inputs-div'>
+                    <label htmlFor="firstName" className="login-label">First Name</label>
+                    {!this.state.saveClicked ? 
+                        <input type="text" id="firstName" className="register-inputs" onChange={this.saveInputValue} defaultValue={this.state.firstName} />
+                        : <p className="data-p">{this.state.firstName}</p>}
+                </div>
+                <div className='inputs-div'>
+                    <label htmlFor="lastName" className="login-label">Last Name</label>
+                    {!this.state.saveClicked ? 
+                    <input type="text" id="lastName" className="register-inputs" onChange={this.saveInputValue} defaultValue={this.state.lastName} />
+                    : <p className="data-p">{this.state.lastName}</p>}
+                </div>
+                <div className='inputs-div'>
                     <label htmlFor="birthday" className="login-label">Birthday</label>
-                    <input type="date" id="birthday" className="login-input" onChange={this.saveInputValue} />
-                </p>
-                <p>
+                    {!this.state.saveClicked ? 
+                    <input type="date" id="birthday" className="register-inputs" onChange={this.saveInputValue} defaultValue={this.state.birthday} />
+                    : <p className="data-p">{this.state.birthday}</p>}
+                </div>
+                <div className='inputs-div'>
                     <label htmlFor="level" className="login-label">Level</label>
-                    <input type="text" id="level" className="login-input" onChange={this.saveInputValue} />
-                </p>
-                <p>
+                    {!this.state.saveClicked ? 
+                    <input type="text" id="level" className="register-inputs" onChange={this.saveInputValue} defaultValue={this.state.level} />
+                    : <p className="data-p">{this.state.level}</p>}
+                </div>
+                <div className='inputs-div'>
                     <label htmlFor="location" className="login-label">Location</label>
-                    <input type="location" id="location" className="login-input" onChange={this.saveInputValue} />
-                </p>
-                <p>
+                    {!this.state.saveClicked ? 
+                    <input type="location" id="location" className="register-inputs" onChange={this.saveInputValue} defaultValue={this.state.location} />
+                    : <p className="data-p">{this.state.location}</p>}
+                </div>
+                <div className='inputs-div'>
                     <label htmlFor="email" className="login-label">Email</label>
-                    <input type="email" id="email" className="login-input" onChange={this.saveInputValue} />
-                </p>
-                <p>
+                    {!this.state.saveClicked ? 
+                    <input type="email" id="email" className="register-inputs" onChange={this.saveInputValue} defaultValue={this.state.email} />
+                    : <p className="data-p">{this.state.email}</p>}
+                </div>
+                <div className='inputs-div'>
                     <label htmlFor="password" className="login-label">Password</label>
-                    <input type="password" id="password" className="login-input" onChange={this.saveInputValue} />
-                </p>
+                    {!this.state.saveClicked ? 
+                    <input type="password" id="password" className="register-inputs" onChange={this.saveInputValue} defaultValue={this.state.password} />
+                    : <p className="data-p-password">Password saved!</p>}
+                </div>
+                <div className="save-btn-div">
+                    {!this.state.saveClicked ? 
+                    <button className="save-btn" onClick={this.saveDataHandler}>Save</button> : 
+                    <button className="save-btn" onClick={this.editDataHandler}>Edit</button> }
+                </div>
             </div>
         )
     }

@@ -3,7 +3,7 @@
 } */
 
 .welcome-cover {
-    background-image: url('../../assets/images/jumbotron.jpg');
+    background-image: url('../../assets/images/jumbotron3.jpg');
     height: 100vh;  
     background-position: center;
     background-repeat: repeat;
@@ -11,16 +11,23 @@
     display: flex;
 }
 
-.auth-btns {
+.auth-btns-main {
     display: flex;
     justify-content: space-between;
-    margin: 650px auto;
+    flex-direction: column;
+    margin-top:625px;
+    margin-left: 100px ;
     height: 60px;
+}
+
+.auth-btns {
+    margin-top: 40px;
 }
 
 .active-auth-btns { 
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     margin: 100px 0 0 0;    
     height: 60px;
 }

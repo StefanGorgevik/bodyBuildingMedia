@@ -1,7 +1,8 @@
 .diet {
-    border: 2px solid maroon;
-    margin-top:240px;
-    margin-left: 550px;
+    border: 2px solid yellow;
+    padding: 10px;
+    min-height: 750px;
+
 }
 
 .generate-meals {

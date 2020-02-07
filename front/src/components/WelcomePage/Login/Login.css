@@ -2,30 +2,31 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: auto;
-    width: 420px;
+    border: 2px solid yellow;
+    width: 620px;
     border-radius: 6px;
     background-color: transparent;
-    height: 480px;
-    margin-top:240px;
-    margin-right: 550px;
+    margin-top:340px;
+    margin-right: 600px;
+    height: 400px;
 }
 .login form{
     display: inline-block;
     margin: auto;
 }
-
 .login-input {
     background: #fff;
     border: 1.5px solid #c6c6c6;
     height: 34px;
     border-radius: 5px;
+    width: 500px;
 }
 
-.login-input,
 .login-btn {
-    width: 330px;
+    width: 500px;
 }
+
+
 
 .login-btn {
     font-size: 15px; 

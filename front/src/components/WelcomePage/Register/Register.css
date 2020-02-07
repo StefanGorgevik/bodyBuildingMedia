@@ -1,10 +1,20 @@
 .register {
+    margin: 10px;
+}
+
+/* ovoj e main i za register */
+.register-inputs{
+    background: #fff;
+    border: 1.5px solid #c6c6c6;
+    height: 34px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.register-components {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0;
-    margin-bottom: 50px;
-    margin-right: 100px;
+    margin-top: 200px;
+    max-height: 750px;   
 }
 
 .register-btn {
@@ -15,15 +25,34 @@
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.17);
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
-    font-weight: 600;
-    margin-top: 10px;
     border: none;
     text-transform: uppercase;
     cursor: pointer;
     width: 330px;
-    margin-left: 550px;
 }
 
-.register-tap {
-    width: 500px;
+.save-btn {
+    width: 100px;
+    font-size: 24px;
+    border: 3px solid salmon;
+    background-color: #0e2022;
+    color: white;
+    border-radius: 14px;
+    padding: 4px 10px;
+
+}
+
+.save-btn-div{ 
+    display: flex;
+    justify-content: center;
+}
+
+.register-btn-div {
+    display:flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.inputs-div {
+    margin: 12px;
 }

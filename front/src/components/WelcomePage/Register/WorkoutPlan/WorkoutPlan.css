@@ -1,7 +1,8 @@
 .workout-plan {
     border: 2px solid darkblue;
-    margin-top:240px;
-    margin-left: 550px;
+    max-height: 100%;
+    padding: 10px;
+    min-height: 750px;
 }
 
 .workout-days {
