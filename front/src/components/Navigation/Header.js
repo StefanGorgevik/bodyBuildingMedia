@@ -29,7 +29,7 @@ class Header extends React.Component {
                     <ul>
                         <li><img className="profile-photo" src={Profile} alt='profile' /></li>
                         <li>Username</li>
-                        <Link> <li>Edit Info</li></Link>
+                        <Link to="/edit-info"> <li>Edit Info</li></Link>
                         <Link to="/welcome"> <li>Sign Out</li></Link>
                     </ul>
                 </div>

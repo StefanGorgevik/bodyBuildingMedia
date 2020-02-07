@@ -1,59 +1,51 @@
 import React from 'react'
 import '../Diet.css'
 
+//import {connect} from 'react-redux'
 class MealInput extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
+    
         }
-        this.meals = []
-        this.mealItem = []
     }
 
 
     saveInputValue = (event) => {
-        this.setState({ ...this.state, [event.target.id]: event.target.value })
-        console.log(this.state)
+        this.setState({...this.state, [event.target.id] : event.target.value})
     }
 
-    addMealHandler = () => {
-        console.log(this.state)
-        this.meals.push(this.addMeal());
-        if (this.meals) {
-            console.log("vleze")
-                this.mealItem.push(this.meals.map((meal, i) => {
-                    console.log("Vleze i tuka ama wtf")
-                    return (
-                        <p className="breakfast-p" key={meal + i} >{meal}</p>
-                    )
-                })
-                )
-            
-        }
-        console.log(this.mealItem)
-
-    }
-
-    addMeal = () => {
-        return (
-            Object.values(this.state)
-        )
-    }
+    
 
     render() {
-
         return (
-            <div>
-                <label htmlFor={this.props.htmlFor} className="login-label">{this.props.labelName}</label>
-                <div className="input-button-diet">
-                    <input type="location" id={this.props.inputId} className="login-input" onChange={this.saveInputValue} />
-                    <button onClick={this.addMealHandler}>Add meal</button>
+            <div className="meals">
+                {/* <div>
+                    <label htmlFor={this.props.htmlFor} className="login-label">{this.props.labelName}</label>
+                    <div className="input-button-diet">
+                        <input type="location" id={this.props.inputId} className="login-input" onChange={this.saveInputValue} />
+                    </div>
                 </div>
-                {this.mealItem !== '' ? <div className="breakfast-div">{this.mealItem}</div> : null}
+                <div>
+                    <label htmlFor={this.props.alternativeHtmlFor} className="login-label">{this.props.alternativeLabelName}</label>
+                    <div className="input-button-diet">
+                        <input type="location" id={this.props.alternativeInputId} className="login-input" onChange={this.saveInputValue} />
+                    </div>
+                   
+                </div> */}
+                 <label htmlFor={this.props.htmlFor} className="login-label">{this.props.labelName}</label>
+                <textarea onChange={this.saveInputValue} id={this.props.inputId}></textarea>
+               <button onClick={() => {this.props.addMeal(this.state)}}>Add meal</button>
             </div>
         )
     }
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         clicked: state.dietReducer.clicked
+//     }
+// }
+
 export default MealInput;
+// export default connect(mapStateToProps)(MealInput);

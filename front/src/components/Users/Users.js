@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 
 class Users extends Component {
     render() {
-        console.log(new Date().getFullYear())
+        // console.log(new Date().getFullYear())
         const user = this.props.users.map(user => {
             return <User key={user.id} 
                 username={user.username}

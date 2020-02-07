@@ -4,15 +4,21 @@
     margin-left: 550px;
 }
 
-.select-meals-number {
-    display: flex;
-    flex-direction: row;
-}
-.select-meals-number p {
+.generate-meals {
     display: flex;
     flex-direction: column;
+}
+
+
+.select-meals-number {
+    display: flex;
+    flex-direction: column;
+}
+
+.select-meals-number p {
+    display: flex;
+    flex-direction: row;
     margin-right: 25px;
-    text-align: center;
 }
 
 .select-meals-number p input {
@@ -38,4 +44,18 @@
 .input-button-diet {
     display: flex;
     flex-direction: row;
+}
+
+.gen-btn {
+    width: 250px;
+    height: 40px;
+}
+
+.meals {
+    display: flex;
+    flex-direction: row;
+}
+
+.meals input {
+    width: 200px;
 }
