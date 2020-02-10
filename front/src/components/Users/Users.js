@@ -7,14 +7,19 @@ import User from '../User/User'
 import {connect} from 'react-redux'
 
 class Users extends Component {
+    userClicked = ()=> {
+        console.log('user')
+    }
+
     render() {
-        // console.log(new Date().getFullYear())
+        console.log(Date.now())
+        console.log(new Date(this.props.users[0].personalInfo.birthday).getTime())
+        console.log(new Date(Date.now() - new Date(this.props.users[0].personalInfo.birthday).getTime()))
         const user = this.props.users.map(user => {
-            return <User key={user.id} 
-                username={user.username}
-                fullname={user.first_name + ' ' + user.last_name}
-                age={user.age}
-                level={user.level}
+            return <User onClick={this.userClicked} key={user.personalInfo.id} 
+                fullname={user.personalInfo.firstName + ' ' + user.personalInfo.lastName}
+                age={user.personalInfo.birthday}
+                level={user.personalInfo.level}
             />
         })
         return ( 
@@ -29,7 +34,7 @@ class Users extends Component {
 
 function mapStateToProps (state) {
     return {
-        users:state.userReducer.users
+        users:state.users
     }
 }
 

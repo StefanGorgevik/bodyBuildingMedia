@@ -21,7 +21,30 @@ export const saveWorkoutPlan = (plan) => {
 
 export const saveDietPlan = (diet) => {
     return {
-        type: "SAVE_WORKOUT_PLAN",
+        type: "SAVE_DIET_PLAN",
         payload: diet
+    }
+}
+
+export const saveUser = (user) => {
+    return {
+        type: "SAVE_USER",
+        payload: user
+    }
+}
+
+export const saveClicked = () => {
+    return {
+        type: "SAVE_CLICKED"
+    }
+}
+export const editClicked = () => {
+    return {
+        type: "EDIT_CLICKED"
+    }
+}
+export const registerClicked = () => {
+    return {
+        type: "REGISTER_CLICKED"
     }
 }

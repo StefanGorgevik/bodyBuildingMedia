@@ -29,7 +29,7 @@ class Authentication extends React.Component {
             <div className="welcome-cover">
             {/* {!this.state.buttonClicked ? <h1> Body Building Media </h1> : null } */}
                 <div className={this.state.buttonClicked ? "active-auth-btns" : "auth-btns-main"}>
-                    <h1> Body Building Media </h1>
+                    <h1 className="welcome-cover-h1"> Body Building Media </h1>
                     <div className="auth-btns">
                     <button className={this.state.active ? "active auth-btn" : "auth-btn"} onClick={this.loginClickedHandler}>Login</button>
                     <button className={!this.state.active && this.state.registerClicked ? "active auth-btn" : "auth-btn"}  onClick={this.registerClickedHandler}>Register</button>

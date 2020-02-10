@@ -6,7 +6,7 @@
 
 .user{
     border: 2px solid blue;
-    max-height: 30%;
+    /* max-height: 30%; */
 }
 
 .photo-username {

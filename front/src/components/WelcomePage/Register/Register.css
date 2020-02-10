@@ -5,27 +5,29 @@
 /* ovoj e main i za register */
 .register-inputs{
     background: #fff;
-    border: 1.5px solid #c6c6c6;
+    /* border: 1.5px solid #c6c6c6; */
     height: 34px;
     border-radius: 5px;
     width: 300px;
+    font-size: 20px;
 }
 
 .register-components {
     display: flex;
-    margin-top: 200px;
+    margin-top: 50px;
     max-height: 750px;   
 }
 
-.register-btn {
-    font-size: 15px; 
+.form-submit-btn {
+    font-size: 25px; 
+    font-weight: bold;
     color: #fff;
-    background: #1DD1A1; 
-    height: 45px;
+    background: transparent; 
+    height: 70px;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.17);
-    border-radius: 5px;
+    border: 2px solid white;
+    border-radius: 15px;
     font-family: 'Roboto', sans-serif;
-    border: none;
     text-transform: uppercase;
     cursor: pointer;
     width: 330px;
@@ -39,20 +41,43 @@
     color: white;
     border-radius: 14px;
     padding: 4px 10px;
-
 }
 
 .save-btn-div{ 
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .register-btn-div {
     display:flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 220px;
+}
+.register-btn-div {
+    height: 40px;
 }
 
 .inputs-div {
     margin: 12px;
+    margin-top: 20px;
+}
+
+.title-h1 {
+    text-align: center;
+    color: white;
+    margin: auto;
+    height: 60px;
+    font-size: 50px;
+    margin-bottom: 15px;
+    border-bottom: 3px solid white;
+}
+
+.data-p {
+    color: white;
+    font-size: 32px;
+    border: 3px solid whitesmoke;
+    border-radius: 15px;
+    margin: 0;
+    text-align: center;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './PersonalInfo.css'
-import {savePersonalInfo} from '../../../../redux/actions/userActions'
+import {savePersonalInfo, saveClicked, editClicked} from '../../../../redux/actions/userActions'
 import store from '../../../../redux/store'
 
 class Personalinfo extends React.Component {
@@ -36,15 +36,17 @@ class Personalinfo extends React.Component {
             password: this.state.firstName
         }
         store.dispatch(savePersonalInfo(newUser))
+        store.dispatch(saveClicked())
     }
     editDataHandler = () => {
         this.setState({ saveClicked: false})
+        store.dispatch(editClicked())
     }
 
     render() {
         return (
             <div className="personal-info ">
-                <h1>Personal Info</h1>
+                <h1 className="title-h1">Personal Info</h1>
                 <div className='inputs-div'>
                     <label htmlFor="firstName" className="login-label">First Name</label>
                     {!this.state.saveClicked ? 

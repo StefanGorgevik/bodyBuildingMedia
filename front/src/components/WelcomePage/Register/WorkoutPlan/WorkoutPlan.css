@@ -1,8 +1,8 @@
 .workout-plan {
-    border: 2px solid darkblue;
     max-height: 100%;
     padding: 10px;
-    min-height: 750px;
+    min-height: 950px;
+    width: 500px;
 }
 
 .workout-days {
@@ -26,16 +26,18 @@
     cursor: pointer;
 }
 
-.days p {
+.days div {
     display: flex;
     flex-direction: row;
-}
-
-.days h2 {
-    color: white;
 }
 
 .rest-day-p {
     color: white;
     font-size: 24px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.day-p {
+    width: 400px;
 }

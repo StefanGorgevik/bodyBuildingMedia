@@ -1,8 +1,8 @@
 .diet {
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
     padding: 10px;
-    min-height: 750px;
-
+    min-height: 950px;
+    width: 330px;
 }
 
 .generate-meals {
@@ -14,15 +14,18 @@
 .select-meals-number {
     display: flex;
     flex-direction: column;
+    margin: 10px;
 }
 
-.select-meals-number p {
+.select-meals-number div {
     display: flex;
     flex-direction: row;
-    margin-right: 25px;
+    justify-content: space-evenly;
+    margin: 5px 25px 5px 0px;
+
 }
 
-.select-meals-number p input {
+.select-meals-number div input {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
@@ -54,9 +57,17 @@
 
 .meals {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .meals input {
     width: 200px;
+}
+
+.meals-snacks-textarea {
+    background: #fff;
+    height: 45px;
+    border-radius: 5px;
+    width: 300px;
+    font-size: 18px;
 }
