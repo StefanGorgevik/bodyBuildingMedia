@@ -6,6 +6,7 @@
 
 .user{
     border: 2px solid blue;
+    cursor: pointer;
     /* max-height: 30%; */
 }
 
@@ -14,4 +15,6 @@
     flex-direction: row;
     font-size: 20px;
 }
+
+
 

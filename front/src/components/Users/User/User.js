@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Builder from '../../assets/images/builder.jpg'
+import Builder from '../../../assets/images/builder.jpg'
 import './User.css'
 
 
@@ -21,7 +21,7 @@ class User extends Component {
 
     render() {
         return (
-            <div className="user" onMouseEnter={this.hoverHandler} onMouseLeave={this.hoverLeaveHandler}>
+            <div className="user" onClick={this.props.click} onMouseEnter={this.hoverHandler} onMouseLeave={this.hoverLeaveHandler}>
                 <div className="photo-username">
                     <img className="user-photo" src={Builder} alt="builder" />
                     <p>{this.props.fullname}</p>

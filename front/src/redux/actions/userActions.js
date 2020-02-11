@@ -48,3 +48,16 @@ export const registerClicked = () => {
         type: "REGISTER_CLICKED"
     }
 }
+
+export const userSelected = (user) => {
+    return {
+        type: "USER_SELECTED", 
+        payload: user
+    }
+}
+export const userClicked = ( clicked) => {
+    return {
+        type: "USER_CLICKED", 
+        payload: clicked
+    }
+}

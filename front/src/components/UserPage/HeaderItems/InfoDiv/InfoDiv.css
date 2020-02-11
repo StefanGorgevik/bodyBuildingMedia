@@ -1,0 +1,20 @@
+.infoDiv {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.infoDiv p {
+    font-size: 30px;
+    font-weight: 600;
+    border: 1px solid black;
+    width: 100%;
+    margin: 10px;
+    
+}
+.infoDiv label {
+    font-size: 24px;
+    font-weight: 300;
+    width: 100%;
+}

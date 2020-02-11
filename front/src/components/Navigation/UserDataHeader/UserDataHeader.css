@@ -16,19 +16,19 @@
 }
 
 
-.user-data-navigation ul li {
+.user-data-li {
     display: inline-block;
     border: 1px solid white;
     color: gray;
-    font-size: 24px;
     font-weight: bold;
+    font-size: 22px;
     width: 100%;
+    cursor: pointer;
 }
 
 
-.user-data-navigation ul li:hover {
+.user-data-li:hover {
     color: brown;
-    font-size: 26px;
     border: 2px solid brown;
 }
 
@@ -39,3 +39,8 @@
     padding: 0;
 }
 
+.active-li {
+    color: black;
+    border: 2px solid black;
+    font-size: 24px;
+ }

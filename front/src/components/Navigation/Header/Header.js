@@ -1,10 +1,10 @@
 import React from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
-import Profile from '../../assets/images/profile.png'
-import Dumbell from '../../assets/images/dumbell.png'
-import Food from '../../assets/images/food.png'
-import Group from '../../assets/images/group.jpg'
+import Profile from '../../../assets/images/profile.png'
+import Dumbell from '../../../assets/images/dumbell.png'
+import Food from '../../../assets/images/food.png'
+import Group from '../../../assets/images/group.jpg'
 
 class Header extends React.Component {
     constructor(props) {

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import UserPage from '../../components/UserPage/UserPage'
+import UserPage from '../../components/UserPage/UserPage/UserPage'
 import Users from '../../components/Users/Users'
 import UserImages from '../../components/UserImages/UserImages'
-import Header from '../../components/Navigation/Header'
+import Header from '../../components/Navigation/Header/Header'
 
 import './MainLayout.css'
 

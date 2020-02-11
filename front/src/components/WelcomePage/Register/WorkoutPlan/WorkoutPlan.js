@@ -32,13 +32,14 @@ class WorkoutPlan extends React.Component {
             type: this.state.type,
             goal: this.state.goal,
             intensity: this.state.intensity,
-            day1: this.state.day1,
-            day2: this.state.day2,
-            day3: this.state.day3,
-            day4: this.state.day4,
-            day5: this.state.day5,
-            day6: this.state.day6,
-            day7: this.state.day7
+            days: [{ day1: this.state.day1,
+                day2: this.state.day2,
+                day3: this.state.day3,
+                day4: this.state.day4,
+                day5: this.state.day5,
+                day6: this.state.day6,
+                day7: this.state.day7}]
+           
         }
 
         store.dispatch(saveWorkoutPlan(newWorkoutPlan))
