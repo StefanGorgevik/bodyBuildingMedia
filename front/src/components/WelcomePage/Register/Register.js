@@ -29,6 +29,7 @@ class Register extends React.Component {
         }
         store.dispatch(saveUser(newUser))
         store.dispatch(registerClicked())
+        localStorage.setItem("name", this.props.personalInfo.firstName + ' ' + this.props.personalInfo.lastName)
     }
 
     render() {

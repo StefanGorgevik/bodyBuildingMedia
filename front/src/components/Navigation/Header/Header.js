@@ -28,7 +28,7 @@ class Header extends React.Component {
                 <div className="right-side">
                     <ul>
                         <li><img className="profile-photo" src={Profile} alt='profile' /></li>
-                        <li>Username</li>
+                        <li>{localStorage.getItem("name")}</li>
                         <Link to="/edit-info"> <li>Edit Info</li></Link>
                         <Link to="/welcome"> <li>Sign Out</li></Link>
                     </ul>
