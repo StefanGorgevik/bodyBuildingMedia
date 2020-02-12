@@ -6,15 +6,22 @@
 
 .user{
     border: 2px solid blue;
+    border-radius: 12px;
     cursor: pointer;
     /* max-height: 30%; */
 }
 
-.photo-username {
+.photo-name {
     display: flex;
     flex-direction: row;
     font-size: 20px;
 }
 
+.photo-name p {
+    margin: auto;
+}
 
-
+.photo-name .details {
+    display: flex;
+    flex-direction: column;
+}

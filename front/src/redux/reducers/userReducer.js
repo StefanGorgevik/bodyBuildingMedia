@@ -92,12 +92,12 @@ export function userReducer(state = initState, action) {
         }
         case "USER_SELECTED": {
             return {
-                ...state, userSelected: action.payload, userClicked: action.clicked
+                ...state, userSelected: action.payload
             }
         }
         case "USER_CLICKED": {
             return {
-                ...state,  userClicked: action.payload
+                ...state, userClicked: action.payload
             }
         }
         default:
@@ -105,3 +105,1005 @@ export function userReducer(state = initState, action) {
 
     }
 }
+
+// //,
+// {
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// },{
+//     personalInfo: {
+//         firstName: "dada",
+//         birthday: "2000-01-01",
+//         lastName: "dadad",
+//         level: "dadada",
+//         location: "dada",
+//         email: "dada",
+//         password: "dada",
+//         id: 581
+//     },
+//     workoutPlan: {
+//         type: "dada",
+//         goal: "dadad",
+//         intensity: "dada",
+//         days: [{
+//             day1: "dadad",
+//             day2: "dadad",
+//             day3: "dadad",
+//             day4: "true",
+//             day5: "daa",
+//             day6: "dada",
+//             day7: "dadad"
+//         }]
+//     },
+//     diet: {
+//         dietGoals: "dadad",
+//         dietIntensity: "dadad",
+//         meals: {
+//             meal1: "dadada",
+//             meal2: "dadada"
+//         },
+//         snacks: {
+//             snack1: "dadada",
+//             snack2: "dadada"
+//         }
+//     }
+// }

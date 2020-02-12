@@ -36,17 +36,19 @@ class Users extends Component {
     render() {
         //var userAge = new Date().getFullYear() - new Date(this.props.users[0].personalInfo.birthday).getFullYear()
         const user = this.props.users.map(user => {
-            return <User click={ () => this.userClicked(user.personalInfo.id)} key={user.personalInfo.id} 
+            return (
+            <User key={user.personalInfo.id} click={ () => this.userClicked(user.personalInfo.id)} 
                 fullname={user.personalInfo.firstName + ' ' + user.personalInfo.lastName}
                 age={new Date().getFullYear() - new Date(user.personalInfo.birthday).getFullYear()}
                 level={user.personalInfo.level}
-            />
+                userClicked={this.props.userClicked}
+            />)
         })
 
         return ( 
-        <div className='users'>
-            <h3 className="users-h3">Users</h3>
-            <div className="user-scroll">
+        <div className='users' >
+            <h1>Users</h1>
+            <div className="users-scroll">
                 {user}
             </div>
         </div>)
@@ -55,7 +57,8 @@ class Users extends Component {
 
 function mapStateToProps (state) {
     return {
-        users:state.users
+        users:state.users,
+        userClicked: state.userclicked
     }
 }
 

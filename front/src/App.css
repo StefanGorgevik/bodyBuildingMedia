@@ -1,7 +1,16 @@
-html, body {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100%; 
-    overflow: hidden;
+    -moz-box-sizing: padding-box;
+    -webkit-box-sizing: padding-box;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100vh; 
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
