@@ -1,14 +1,15 @@
 .user-photo {
     width: 70px;
-    max-height: 55px;
+    max-height: 75px;
     padding: 2px;
 }
 
 .user{
+    display: flex;
+    flex-direction: row;
     border: 2px solid blue;
     border-radius: 12px;
     cursor: pointer;
-    /* max-height: 30%; */
 }
 
 .photo-name {
