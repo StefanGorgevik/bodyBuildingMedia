@@ -2,7 +2,7 @@ import React from 'react'
 
 import Login from '../../components/WelcomePage/Login/Login'
 import Register from '../../components/WelcomePage/Register/Register'
-
+import Button from '../../components/WelcomePage/Button/Button'
 import './Authentication.css'
 
 class Authentication extends React.Component {
@@ -10,35 +10,45 @@ class Authentication extends React.Component {
         super(props);
         this.state = {
             loginClicked: false,
-            buttonClicked: false,
             registerClicked: false,
             active: null
         }
     }
 
     loginClickedHandler = () => {
-        this.setState({loginClicked: true, registerClicked: false, buttonClicked: true, active: true})
+        this.setState({ loginClicked: true, registerClicked: false, active: true })
     }
 
     registerClickedHandler = () => {
-        this.setState({loginClicked: false, buttonClicked: true,  registerClicked: true, active: false,})
+        this.setState({ loginClicked: false, registerClicked: true, active: false, })
+    }
+
+    closePopUp = () => {
+        this.setState({ loginClicked: false, registerClicked: false, active: false })
     }
 
     render() {
         return (
             <div className="welcome-cover">
-            {/* {!this.state.buttonClicked ? <h1> Body Building Media </h1> : null } */}
-                <div className={this.state.buttonClicked ? "active-auth-btns" : "auth-btns-main"}>
+                <div className="auth-content">
                     <h1 className="welcome-cover-h1"> Body Building Media </h1>
                     <div className="auth-btns">
-                    <button className={this.state.active ? "active auth-btn" : "auth-btn"} onClick={this.loginClickedHandler}>Login</button>
-                    <button className={!this.state.active && this.state.registerClicked ? "active auth-btn" : "auth-btn"}  onClick={this.registerClickedHandler}>Register</button>
+                        <Button click={this.loginClickedHandler}
+                            active={this.state.active}
+                            label="login"
+                            className="welcome-btn"
+                        />
+                        <Button click={this.registerClickedHandler}
+                            active={this.state.active}
+                            label="register"
+                            className="welcome-btn"
+                        />
                     </div>
                 </div>
-                
-                
-                {this.state.loginClicked ? <Login/> : null}
-                {this.state.registerClicked ? <Register/> : null}
+
+
+                {this.state.loginClicked ? <Login closePopUp={this.closePopUp} /> : null}
+                {this.state.registerClicked ? <Register closePopUp={this.closePopUp}/> : null}
             </div>
 
         )

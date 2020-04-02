@@ -1,13 +1,13 @@
 const initState = {
     users: [{
         personalInfo: {
-            firstName: "dada",
+            firstName: "Stefan",
             birthday: "2000-01-01",
-            lastName: "dadad",
-            level: "dadada",
-            location: "dada",
-            email: "dada",
-            password: "dada",
+            lastName: "Gorgevik",
+            level: "Intermediate",
+            location: "Skopje",
+            email: "stefangg@hotmail.com",
+            password: "2222",
             id: 581
         },
         workoutPlan: {
@@ -41,7 +41,6 @@ const initState = {
     personalInfo: {},
     workoutPlan: {},
     diet: {},
-    saveClicked: 0,
     userSelected: {},
     userClicked: false
 }
@@ -75,21 +74,7 @@ export function userReducer(state = initState, action) {
                 ...state, users: [...state.users, action.payload]
             }
         }
-        case "SAVE_CLICKED": {
-            return {
-                ...state, saveClicked: state.saveClicked + 1
-            }
-        }
-        case "EDIT_CLICKED": {
-            return {
-                ...state, saveClicked: state.saveClicked - 1
-            }
-        }
-        case "REGISTER_CLICKED": {
-            return {
-                ...state, saveClicked: 0
-            }
-        }
+
         case "USER_SELECTED": {
             return {
                 ...state, userSelected: action.payload

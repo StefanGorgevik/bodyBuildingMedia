@@ -33,7 +33,7 @@ class UserPage extends Component {
             workoutPlanClicked: true,
             dietClicked: false
         })
-        store.dispatch(userClicked(false))
+        store.dispatch(userClicked(true))
     }
     dietClickedHandler = () => {
         this.setState({
@@ -41,7 +41,7 @@ class UserPage extends Component {
             dietClicked: true,
             workoutPlanClicked: false
         })
-        store.dispatch(userClicked(false))
+        store.dispatch(userClicked(true))
     }
 
     render() {
@@ -55,11 +55,14 @@ class UserPage extends Component {
                     workoutPlanClicked={this.state.workoutPlanClicked}
                     dietClicked={this.state.dietClicked}
                     userClicked={this.props.userClicked}
-                /> 
+                />
                 <div>
-                    {this.state.personalInfoClicked || this.props.userClicked ? <PersonalInfo /> : null}
-                    {this.state.workoutPlanClicked && !this.props.userClicked ? <WorkoutPlan /> : null}
-                    {this.state.dietClicked && !this.props.userClicked ? <Diet /> : null}
+                    {this.props.userClicked ?
+                        <>
+                            {this.state.personalInfoClicked && this.props.userClicked ? <PersonalInfo /> : null}
+                            {this.state.workoutPlanClicked && this.props.userClicked ? <WorkoutPlan /> : null}
+                            {this.state.dietClicked && this.props.userClicked ? <Diet /> : null}
+                        </> : <h1 className="choose-user-h1">Choose a user!</h1>}
                 </div>
             </div>)
     }

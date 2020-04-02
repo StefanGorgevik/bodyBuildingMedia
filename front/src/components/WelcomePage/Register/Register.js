@@ -3,6 +3,7 @@ import React from 'react'
 import Personalinfo from './Personalinfo/Personalinfo'
 import WorkoutPlan from './WorkoutPlan/WorkoutPlan'
 import Diet from './Diet/Diet'
+import Button from '../Button/Button'
 import './Register.css'
 
 import { Link } from 'react-router-dom'
@@ -17,9 +18,7 @@ class Register extends React.Component {
 
         }
     }
-    // id: this.props.personalInfos.id,
-    // fullname: this.props.personalInfos.firstName + ' ' + this.props.personalInfo.lastName,
-    // birthday: this.props.personalInfos.birthday,
+
     registerUser = () => {
         console.log(this.props)
         const newUser = {
@@ -34,17 +33,28 @@ class Register extends React.Component {
 
     render() {
         return (
-            <div className="register">
-                <div className="register-components">
-                    <Personalinfo />
-                    <WorkoutPlan />
-                    <Diet />
-                </div>
-                {this.props.saveClicked === 3?
-                    <div className="register-btn-div">
-                        <Link to="/"><button onClick={this.registerUser} className="form-submit-btn ">Register</button></Link>
+            <div className="main-register">
+                <div className="register">
+                    <div className="register-components">
+                        <Personalinfo />
+                        <WorkoutPlan />
+                        <Diet />
                     </div>
-                    : null}
+                    <div className="reg-btns-div">
+                        <Button click={this.props.closePopUp}
+                            active={this.state.active}
+                            label="close"
+                            className="close-btn"
+                        />
+                        <Link to="/">
+                            <Button click={this.registerUser}
+                                active={this.state.active}
+                                label="register"
+                                className="login-btn"
+                            />
+                        </Link>
+                    </div>
+                </div>
             </div>
         )
     }

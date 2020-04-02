@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Builder from '../../../assets/images/builder.jpg'
 import './User.css'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 class User extends Component {
     constructor(props) {
@@ -15,8 +15,8 @@ class User extends Component {
         this.setState({ hovered: true })
     }
 
-    hoverLeaveHandler =() => {
-        this.setState({hovered: false})
+    hoverLeaveHandler = () => {
+        this.setState({ hovered: false })
     }
 
     render() {
@@ -24,22 +24,22 @@ class User extends Component {
             <div className='user' onClick={this.props.click} onMouseEnter={this.hoverHandler} onMouseLeave={this.hoverLeaveHandler}>
                 <div className="photo-name">
                     <img className="user-photo" src={Builder} alt="builder" />
-                    <p>{this.props.fullname}</p>
-                    {this.state.hovered ?
-                    <div className="details">
-                            <p>Age:{this.props.age}</p>
-                            <p>Level:{this.props.level}</p>
-                    </div> : null}
                 </div>
-                
+                <div className="details">
+                    <p>{this.props.fullname}</p>
+                        {this.state.hovered ?
+                        <> <p>Age: <span>{this.props.age}</span></p>
+                            <p>Level: <span>{this.props.level}</span></p> </> : null}
+                </div>
+
             </div>
         )
     }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
-        users:state.users,
+        users: state.users,
         userClicked: state.userClicked
     }
 }

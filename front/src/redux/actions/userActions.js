@@ -32,17 +32,6 @@ export const saveUser = (user) => {
         payload: user
     }
 }
-
-export const saveClicked = () => {
-    return {
-        type: "SAVE_CLICKED"
-    }
-}
-export const editClicked = () => {
-    return {
-        type: "EDIT_CLICKED"
-    }
-}
 export const registerClicked = () => {
     return {
         type: "REGISTER_CLICKED"

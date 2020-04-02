@@ -1,67 +1,67 @@
 .navigation {
     display: flex;
-    justify-content: space-between;
-    border: 4px solid #34cc23;
-    background-color: #e0daca;
-    height: 100px;
+    align-items: center;
+    height: 10%;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    background-color: #212222e5;
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre-v2.png");
+    align-items: flex-end;
+
 }
 
-.left-side {
-    display: flex;
+.right-side {
+    width: 70%;
 }
 
 .right-side ul{
     display: flex;
-    flex-grow: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
     list-style: none;
+    width: 100%;
 }
 
 .right-side ul li {
     display: inline-block;
     margin: 25px;
-    color: gray;
+    color: rgb(182, 174, 174);
     font-size: 24px;
     font-weight: bold;
+    min-width: 10%;
 }
 
-.right-side ul li:hover {
-    color: brown;
-    font-size: 28px;
+.right-side ul a li {
+    cursor: pointer;
+
+}
+
+.right-side ul a li:hover {
+    color: white;
+    font-size: 26px;
+    border-bottom: 1px solid white;
 }
 
 .right-side ul a {
     text-decoration: none;
     color: white;
     font-size: 24px;
+    min-width: 10%;
 }
 
 .right-side {
-    margin-right: 55px;
+    margin-right: 25px;
 }
 
-.profile-photo {
-    background-color: inherit;
-    width: 60px;
-    height: 50px;
-}
-
-.img-div {
-    border: 1px solid white;
-    margin-left: 20px;
-}
-
-.img-div .imgs {
-    width: 60px;
-    height: 50px;
-    background-color: inherit;
-}
-
-
-#group-img {
-    height: 100%;
-    width: 140px;
-}
-
-.title-h3 {
-    margin: 20px 20px;
+.title-h2 {
+    margin: 10px 40px;
+    font-size: 26px;
+    color: rgb(180, 174, 174);
+    border: 1px dashed #858a8ae5;
+    border-radius: 10px;
+    padding: 5px;
+    width: 31%;
+    text-align: center;
+    font-family: 'Diplomata SC', cursive;
 }

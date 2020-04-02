@@ -17,7 +17,6 @@ const PersonalInfo = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         userSelected: state.userSelected.personalInfo
     }

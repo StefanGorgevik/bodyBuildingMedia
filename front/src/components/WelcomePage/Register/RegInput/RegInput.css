@@ -1,0 +1,30 @@
+.input-div {
+    margin: 5px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+ }
+
+ .register-inputs,
+ .birthday-input{
+    font-family: 'Work Sans', sans-serif;
+    letter-spacing: 1px;
+    height: 35px;
+    border-radius: 5px;
+    border:none;
+    width: 300px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: rgba(243, 243, 237, 0.877);
+    text-align: center;
+}
+
+.input-div label{
+    text-transform: capitalize;
+    font-size: 24px;
+    margin: 5px;
+    letter-spacing: 0.1px;
+}
+
+

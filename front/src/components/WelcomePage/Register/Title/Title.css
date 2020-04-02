@@ -1,0 +1,15 @@
+.title-div {
+    height: 10%;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.title-h1 {
+    text-align: center;
+    color: white;
+    margin: auto;
+    font-size: 40px;
+    border-bottom: 1px solid white;
+    border-radius: 10px;
+    text-transform: capitalize;
+}

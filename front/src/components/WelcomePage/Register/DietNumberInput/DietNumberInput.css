@@ -1,0 +1,31 @@
+
+.number-inputs-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px 25px 5px 0px;
+    width: 100%;
+}   
+
+.number-inputs-div input {
+    text-align: center;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    min-width: 40%;
+    font-family: 'Work Sans', sans-serif;
+    background-color: rgba(255, 255, 255, 0.918);
+}
+.number-inputs-div label {
+    text-transform: capitalize;
+    font-size: 24px;
+    margin: 5px;
+    letter-spacing: 0.1px;
+    font-family: 'Work Sans', sans-serif;
+    text-align: end;
+}
+
+.number-inputs-div input {
+    width: 150px;
+}

@@ -9,7 +9,7 @@ import './MainLayout.css'
 
 const mainLayout = (props) => {
     return (
-        <div>
+        <div className="main">
         <Header />
         <div className="main-layout">
             <Users/>

@@ -26,18 +26,17 @@ class Users extends Component {
                 workoutPlan: user[0].workoutPlan,
                 diet: user[0].diet 
         })
-        
-        store.dispatch(userSelected(user[0]))
-        store.dispatch(userClicked( true))
-    }
 
+        store.dispatch(userSelected(user[0]))
+        store.dispatch(userClicked(true))
+    }
 
 
     render() {
         //var userAge = new Date().getFullYear() - new Date(this.props.users[0].personalInfo.birthday).getFullYear()
         const user = this.props.users.map(user => {
             return (
-            <User key={user.personalInfo.id} click={ () => this.userClicked(user.personalInfo.id)} 
+            <User key={user.personalInfo.id} click={() => this.userClicked(user.personalInfo.id)} 
                 fullname={user.personalInfo.firstName + ' ' + user.personalInfo.lastName}
                 age={new Date().getFullYear() - new Date(user.personalInfo.birthday).getFullYear()}
                 level={user.personalInfo.level}

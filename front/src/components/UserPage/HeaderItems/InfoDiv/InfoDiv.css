@@ -1,20 +1,35 @@
-.infoDiv {
+.info-div {
     display: flex;
-    width: 100%;
-    flex-direction: column;
+    width: 80%;
+    height: 20%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    margin: 0 auto;
 }
 
-.infoDiv p {
+.info-div p {
     font-size: 30px;
     font-weight: 600;
-    border: 1px solid black;
+    border: 3px solid whitesmoke;
+    border-radius: 5px;
     width: 100%;
-    margin: 10px;
-    
+    margin: 5px;
 }
-.infoDiv label {
+.info-div span {
     font-size: 24px;
-    font-weight: 300;
-    width: 100%;
+    height: 40px;
+}
+
+.info-div div {
+    text-align: justify;
+    font-size: 24px;
+    width:50%;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    height: 40px;
+    padding: 5px auto;
+    margin: 7px;
+
 }

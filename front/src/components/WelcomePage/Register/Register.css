@@ -1,83 +1,44 @@
-.register {
-    margin: 10px;
+.main-register{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: auto;
+    background-color: rgb(156, 148, 148);
+    color: white;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.59);
 }
-
-/* ovoj e main i za register */
-.register-inputs{
-    background: #fff;
-    /* border: 1.5px solid #c6c6c6; */
-    height: 34px;
-    border-radius: 5px;
-    width: 300px;
-    font-size: 20px;
+.register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 65%;
+    min-height: 95%;
+    background-color:rgba(0, 0, 0, 0.897);
+    border-radius: 55px;
+    border: 2px solid white;
+    box-sizing: border-box; 
 }
 
 .register-components {
-    display: flex;
-    margin-top: 50px;
-    max-height: 750px;   
-}
-
-.form-submit-btn {
-    font-size: 25px; 
-    font-weight: bold;
-    color: #fff;
-    background: transparent; 
-    height: 70px;
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.17);
-    border: 2px solid white;
-    border-radius: 15px;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: 330px;
-}
-
-.save-btn {
-    width: 100px;
-    font-size: 24px;
-    border: 3px solid salmon;
-    background-color: #0e2022;
-    color: white;
-    border-radius: 14px;
-    padding: 4px 10px;
-}
-
-.save-btn-div{ 
+    padding-top: 2px;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    height: 100%;
+    border-bottom: 2px solid white;
+    border-radius: 20px;
+    width: 95%;
 }
 
-.register-btn-div {
-    display:flex;
-    justify-content: center;
-    margin-top: 220px;
-}
-.register-btn-div {
-    height: 40px;
-}
 
-.inputs-div {
-    margin: 12px;
-    margin-top: 20px;
-}
-
-.title-h1 {
-    text-align: center;
-    color: white;
-    margin: auto;
-    height: 60px;
-    font-size: 50px;
-    margin-bottom: 15px;
-    border-bottom: 3px solid white;
-}
-
-.data-p {
-    color: white;
-    font-size: 32px;
-    border: 3px solid whitesmoke;
-    border-radius: 15px;
-    margin: 0;
-    text-align: center;
+.reg-btns-div {
+    display: flex;
+    margin: 0 auto;
+    width: 50%;
+    justify-content: space-around;
 }

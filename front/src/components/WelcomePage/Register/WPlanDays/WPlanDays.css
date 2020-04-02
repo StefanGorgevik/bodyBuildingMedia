@@ -1,0 +1,42 @@
+.days-input-main {
+    margin-top: 20px;
+}
+
+.days-inputs-div {
+    display: flex;
+    justify-content: center;
+    height:45px;
+    margin-top: 5px;
+}
+
+.days-inputs-div label {
+    font-size: 20px;
+    margin-right: 2px;
+}
+
+.rest-btn {    
+    font-family: 'Work Sans', sans-serif;
+    height: 35px;
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    border-radius: 5px;
+    margin-left: 2px;
+    background-color: rgba(243, 243, 237, 0.877);
+    border:none;
+    width: 60px;
+    padding: 0;
+    cursor: pointer;
+}
+.undo-btn {
+    font-family: 'Work Sans', sans-serif;
+    height: 35px;
+    font-size: 12px;
+    border-radius: 5px;
+    margin: 1px;
+    background-color: rgba(243, 243, 237, 0.877);
+    border:none;
+    width: 100px;
+    cursor: pointer;
+    color: black;
+}
