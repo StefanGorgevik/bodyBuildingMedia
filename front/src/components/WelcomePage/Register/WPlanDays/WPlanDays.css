@@ -12,10 +12,11 @@
 .days-inputs-div label {
     font-size: 20px;
     margin-right: 2px;
+    font-family: 'Roboto Slab', serif;
 }
-
-.rest-btn {    
-    font-family: 'Work Sans', sans-serif;
+.undo-btn,
+.rest-btn {  
+    font-family: 'Roboto Slab', serif;
     height: 35px;
     font-size: 22px;
     font-weight: bold;
@@ -29,14 +30,18 @@
     cursor: pointer;
 }
 .undo-btn {
-    font-family: 'Work Sans', sans-serif;
-    height: 35px;
-    font-size: 12px;
-    border-radius: 5px;
-    margin: 1px;
-    background-color: rgba(243, 243, 237, 0.877);
-    border:none;
-    width: 100px;
-    cursor: pointer;
-    color: black;
+   width: 100px; 
+}
+
+.rest-day-p {
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.rest-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
 }

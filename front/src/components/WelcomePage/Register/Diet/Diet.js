@@ -13,8 +13,8 @@ class Diet extends React.Component {
         this.state = {
             dietGoals: '',
             dietIntensity: '',
-            mealsPerDay: '',
-            snacksPerDay: '',
+            mealsPerDay: 0,
+            snacksPerDay: 0,
             meals: {},
             snacks: {},
             mealsGenerated: false,
@@ -23,7 +23,8 @@ class Diet extends React.Component {
     }
 
     saveInputValue = (event) => {
-        this.setState({ [event.target.id]: event.target.value, 
+        this.setState({
+            [event.target.id]: event.target.value,
             meals: { ...this.state.meals, [event.target.id]: event.target.value },
             snacks: { ...this.state.snacks, [event.target.id]: event.target.value }
         })
@@ -50,6 +51,7 @@ class Diet extends React.Component {
             for (let i = 1; i <= this.state.mealsPerDay; i++) {
                 mealInputs.push(
                     <DietInput
+                        key={this.state.mealsPerDay[i] + i}
                         type="meal"
                         i={i}
                         saveMealsValue={this.saveInputValue}
@@ -65,11 +67,12 @@ class Diet extends React.Component {
             for (let i = 1; i <= this.state.snacksPerDay; i++) {
                 snackInputs.push(
                     <DietInput
+                        key={this.state.snacksPerDay[i] + i}
                         type="snack"
                         i={i}
                         saveMealsValue={this.saveInputValue}
                         id={'snack' + i}
-                        value={this.state.meals['snack' + i]}
+                        value={this.state.snacks['snack' + i]}
                     />
                 )
             }
@@ -77,7 +80,8 @@ class Diet extends React.Component {
         var ids = ['diet-goals', 'diet-intensity']
         var inputs = ids.map((id, i) => {
             return (
-                <Input id={id}
+                <Input key={id + i}
+                    id={id}
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
                 />
@@ -87,9 +91,10 @@ class Diet extends React.Component {
         var mealsSnacks = ["mealsPerDay", 'snacksPerDay']
         var numberInputs = mealsSnacks.map((id, i) => {
             return (
-                <NumberInput id={id}
+                <NumberInput key={id+i} id={id}
                     type="number"
                     saveInputValue={this.saveInputValue}
+                    value={this.state[mealsSnacks[i]]}
                 />
             )
         })
@@ -98,13 +103,13 @@ class Diet extends React.Component {
             <div className="diet">
                 <Title title="diet" />
                 {inputs}
-                {!this.state.mealsGenerated ? 
-                <div className='generate-meals'>
-                    <div className='select-meals-number'>
-                        {numberInputs}
-                    </div>
-                    {!this.state.mealsGenerated ? <button onClick={this.generateMeals} className="gen-btn">Generate Meals</button> : null}
-                </div> : null}
+                {!this.state.mealsGenerated ?
+                    <div className='generate-meals'>
+                        <div className='select-meals-number'>
+                            {numberInputs}
+                        </div>
+                        {!this.state.mealsGenerated ? <button onClick={this.generateMeals} className="gen-btn">Generate Meals</button> : null}
+                    </div> : null}
                 {this.state.mealsGenerated ? mealInputs : null}
                 {this.state.mealsGenerated ? snackInputs : null}
 

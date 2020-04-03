@@ -2,9 +2,11 @@
 .number-inputs-div {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
     margin: 5px 25px 5px 0px;
     width: 100%;
+    text-align:center;
 }   
 
 .number-inputs-div input {
@@ -13,17 +15,18 @@
     border-radius: 5px;
     font-size: 24px;
     font-weight: bold;
-    min-width: 40%;
-    font-family: 'Work Sans', sans-serif;
+    min-width: 20%;
+    font-family: 'Roboto Slab', serif;
     background-color: rgba(255, 255, 255, 0.918);
 }
 .number-inputs-div label {
     text-transform: capitalize;
-    font-size: 24px;
+    font-size: 20px;
     margin: 5px;
     letter-spacing: 0.1px;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto Slab', serif;
     text-align: end;
+    width: 45%;
 }
 
 .number-inputs-div input {

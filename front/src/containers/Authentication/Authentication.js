@@ -15,16 +15,16 @@ class Authentication extends React.Component {
         }
     }
 
-    loginClickedHandler = () => {
-        this.setState({ loginClicked: true, registerClicked: false, active: true })
+    loginClicked = () => {
+        this.setState({ loginClicked: true, registerClicked: false })
     }
 
     registerClickedHandler = () => {
-        this.setState({ loginClicked: false, registerClicked: true, active: false, })
+        this.setState({ loginClicked: false, registerClicked: true })
     }
 
     closePopUp = () => {
-        this.setState({ loginClicked: false, registerClicked: false, active: false })
+        this.setState({ loginClicked: false, registerClicked: false })
     }
 
     render() {
@@ -33,7 +33,7 @@ class Authentication extends React.Component {
                 <div className="auth-content">
                     <h1 className="welcome-cover-h1"> Body Building Media </h1>
                     <div className="auth-btns">
-                        <Button click={this.loginClickedHandler}
+                        <Button click={this.loginClicked}
                             active={this.state.active}
                             label="login"
                             className="welcome-btn"

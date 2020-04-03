@@ -10,7 +10,11 @@ function DietNumberInput(props) {
             <label htmlFor={props.id.replace(/-/g, ' ')}>{capitalized.replace(/-/g, ' ')}</label>
             <input type="number" id={props.id.replace(/-/g, ' ')}
                 className="number-inputs"
-                onChange={props.saveInputValue} />
+                onChange={props.saveInputValue} 
+                min="0"
+                max="5"
+                defaultValue={props.value}
+                />
         </div>
     )
 }

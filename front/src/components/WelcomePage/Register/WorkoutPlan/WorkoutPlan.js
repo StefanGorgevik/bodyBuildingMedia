@@ -12,19 +12,29 @@ class WorkoutPlan extends React.Component {
             type: '',
             goal: '',
             intensity: '',
-            days: ["day1", "day2", "day3", "day4", "day5", "day6", "day7"]
+
+            days: [
+                { day1: '' },
+                { day2: '' },
+                { day3: '' },
+                { day4: '' },
+                { day5: '' },
+                { day6: '' },
+                { day7: '' }
+            ]
         }
     }
 
     saveInputValue = (event) => {
-        this.setState({ [event.target.id]: event.target.value })
+        this.setState({ ...this.state, days: {...this.state.days, [event.target.id]: event.target.value} })
+        console.log(this.state.days)
     }
 
     restButtonHandler = (event) => {
-        this.setState({ [event.target.id]: "true" })
+        this.setState({ ...this.state, days: { ...this.state.days, [event.target.id]: "true" } })
     }
     undoButtonHandler = (event) => {
-        this.setState({ [event.target.id]: "" })
+        this.setState({ ...this.state, days: { ...this.state.days, [event.target.id]: "" } })
     }
 
     saveDataHandler = () => {
@@ -51,7 +61,8 @@ class WorkoutPlan extends React.Component {
         var ids = ['type', 'intensity', 'goal']
         var inputs = ids.map((id, i) => {
             return (
-                <Input id={id}
+                <Input key={id + i}
+                    id={id}
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
                 />
@@ -65,7 +76,8 @@ class WorkoutPlan extends React.Component {
                     {inputs}
                     <DaysInput saveInputValue={this.saveInputValue}
                         days={this.state.days}
-                        saveClicked={this.state.saveClicked}
+                        restButtonHandler={this.restButtonHandler}
+                        undoButtonHandler={this.undoButtonHandler}
                     />
                 </div>
             </div>

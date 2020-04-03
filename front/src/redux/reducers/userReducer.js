@@ -42,7 +42,11 @@ const initState = {
     workoutPlan: {},
     diet: {},
     userSelected: {},
-    userClicked: false
+    userClicked: false,
+    userLoggedIn: false,
+    loggedUser: {},
+    userRegistered: false,
+    registeredUser: {}
 }
 
 export function userReducer(state = initState, action) {
@@ -50,6 +54,28 @@ export function userReducer(state = initState, action) {
         case "GET_USERS": {
             return {
                 ...state, users: action.payload
+            }
+        }
+        case "IS_USER_LOGGED": {
+            return {
+                ...state, userLoggedIn: action.payload
+            }
+        }
+        case "IS_USER_REGISTERED": {
+            return {
+                ...state, userRegistered: action.payload
+            }
+        }
+        case "LOGGED_USER": {
+            console.log(action.payload)
+            return {
+                ...state, loggedUser: action.payload
+            }
+        }
+        case "REGISTERED_USER": {
+            console.log(action.payload)
+            return {
+                ...state, userRegistered: action.payload
             }
         }
         case "SAVE_PERSONAL_INFO": {
@@ -74,7 +100,6 @@ export function userReducer(state = initState, action) {
                 ...state, users: [...state.users, action.payload]
             }
         }
-
         case "USER_SELECTED": {
             return {
                 ...state, userSelected: action.payload

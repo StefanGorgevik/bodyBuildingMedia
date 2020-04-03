@@ -8,35 +8,6 @@
     padding: 0 10px;
 }
 
-.workout-days {
-    display: flex;
-    flex-direction: row;
-    border: 2px solid green;
-}
-
-.days {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-}
-
-
-.days div {
-    display: flex;
-    flex-direction: row;
-}
-
-.rest-day-p {
-    color: white;
-    font-size: 24px;
-    padding: 10px;
-    margin: 5px;
-}
-
-.day-p {
-    width: 400px;
-}
-
 .wp-inputs-div {
     display: flex;
     flex-direction: column;

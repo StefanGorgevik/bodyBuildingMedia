@@ -1,58 +1,79 @@
 import React from 'react'
 
-import Personalinfo from './Personalinfo/Personalinfo'
+import PersonalInfo from './PersonalInfo/PersonalInfo'
 import WorkoutPlan from './WorkoutPlan/WorkoutPlan'
 import Diet from './Diet/Diet'
 import Button from '../Button/Button'
 import './Register.css'
 
-import { Link } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import store from '../../../redux/store'
-import { saveUser, registerClicked } from '../../../redux/actions/userActions'
+import { registeredUser, isUserRegistered, savePersonalInfo } from '../../../redux/actions/userActions'
 
 class Register extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = {
-
-        }
+        super(props) 
+            this.state = {
+                info: {}
+            }
     }
-
     registerUser = () => {
-        console.log(this.props)
-        const newUser = {
-            personalInfo: this.props.personalInfo,
-            workoutPlan: this.props.workoutPlan,
-            diet: this.props.diet
-        }
-        store.dispatch(saveUser(newUser))
-        store.dispatch(registerClicked())
-        localStorage.setItem("name", this.props.personalInfo.firstName + ' ' + this.props.personalInfo.lastName)
+        // const newUser = {
+        //     personalInfo: this.props.personalInfo,
+        //     workoutPlan: this.props.workoutPlan,
+        //     diet: this.props.diet
+        // }
+        this.props.isUserRegistered(true)
     }
+
+   
+
+    // savePersonalInfoHandler = () => {
+    //     this.props.savePersonalInfo(newUser)
+    // }
+
+    saveInfo = (state) => {
+        const newUser = {
+            firstName: state.firstName, 
+            lastName: state.lastName, 
+            birthday: state.birthday, 
+            level: state.level, 
+            location: state.location, 
+            email: state.email, 
+            password: state.password
+        }
+        this.props.savePersonalInfo(newUser)
+    //    this.setState({
+    //        info: newUser
+    //    })
+    //    console.log(this.state.info)
+    }
+
+    // redirectToMain = () => {
+    //     if (this.props.userRegistered) {
+    //         return <Redirect to='/' />
+    //     }
+    // }
 
     render() {
         return (
             <div className="main-register">
+            {/* {this.redirectToMain()} */}
                 <div className="register">
                     <div className="register-components">
-                        <Personalinfo />
+                        <PersonalInfo saveInfo={this.saveInfo} />
                         <WorkoutPlan />
                         <Diet />
                     </div>
                     <div className="reg-btns-div">
                         <Button click={this.props.closePopUp}
-                            active={this.state.active}
                             label="close"
                             className="close-btn"
                         />
-                        <Link to="/">
                             <Button click={this.registerUser}
-                                active={this.state.active}
                                 label="register"
                                 className="login-btn"
                             />
-                        </Link>
                     </div>
                 </div>
             </div>
@@ -60,13 +81,21 @@ class Register extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        isUserRegistered: (bool) => dispatch(isUserRegistered(bool)),
+        registeredUser: (user) => dispatch(registeredUser(user)),
+        savePersonalInfo: (info) => dispatch(savePersonalInfo(info))
+    }
+}
 const mapStateToProps = (state) => {
     return {
         personalInfo: state.personalInfo,
         workoutPlan: state.workoutPlan,
         diet: state.diet,
-        saveClicked: state.saveClicked
+        saveClicked: state.saveClicked,
+        userRegistered: state.userRegistered
     }
 }
 
-export default connect(mapStateToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -10,6 +10,7 @@
     height: 100%;
     align-items: center;
     background: rgba(0, 0, 0, 0.59);
+    font-family: 'Roboto Slab', serif;
 }
 .register{
     display: flex;

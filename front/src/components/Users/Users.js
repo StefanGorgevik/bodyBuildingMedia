@@ -20,7 +20,6 @@ class Users extends Component {
         var user = this.props.users.filter((user) => {
             return user.personalInfo.id === id
         })
-        console.log(user[0])
         this.setState({
                 personalInfo: user[0].personalInfo,
                 workoutPlan: user[0].workoutPlan,

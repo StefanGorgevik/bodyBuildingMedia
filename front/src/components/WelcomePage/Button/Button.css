@@ -1,6 +1,6 @@
 .login-btn,
 .welcome-btn {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto Slab', serif;
     background-color: transparent;
     border-radius: 15px;
     cursor: pointer;
@@ -20,10 +20,9 @@
     text-transform: uppercase;
     margin: 10px auto;
     margin-top: 20px;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto Slab', serif;
     letter-spacing: 2px;
     cursor: pointer;
-
 }
 
 .login-btn {
@@ -52,7 +51,7 @@
     text-transform: uppercase;
     font-size: 32px;
     margin-left: 60px;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto Slab', serif;
 }
 
 .welcome-btn:hover {

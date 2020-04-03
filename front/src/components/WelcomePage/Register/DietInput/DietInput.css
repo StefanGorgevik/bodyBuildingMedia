@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     height: 12%;
+    font-family: 'Roboto Slab', serif;
 }
 
 .meals-div label {
