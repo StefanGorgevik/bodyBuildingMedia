@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    width: 65%;
+    width: 75%;
     min-height: 95%;
     background-color:rgba(0, 0, 0, 0.897);
     border-radius: 55px;
@@ -31,7 +31,6 @@
     display: flex;
     justify-content: center;
     height: 100%;
-    border-bottom: 2px solid white;
     border-radius: 20px;
     width: 95%;
 }

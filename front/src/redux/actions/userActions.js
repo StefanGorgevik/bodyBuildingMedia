@@ -5,6 +5,17 @@ export const getAllUsers = (users) => {
     }
 }
 
+export const getUsers = () => {
+    return async(dispatch) => {
+        fetch('http://localhost:8080/app/v1/users')
+        .then(res => res.json())
+        .then(data => {
+            dispatch(getAllUsers(data))
+        })
+        .catch(err => console.log(err))
+    }
+}
+
 export const isUserLogged = (bool) => {
     return {
         type: "IS_USER_LOGGED",
@@ -33,7 +44,6 @@ export const registeredUser = (user) => {
 }
 
 export const savePersonalInfo = (info) => {
-    console.log(info)
     return {
         type: "SAVE_PERSONAL_INFO",
         payload: info

@@ -1,0 +1,11 @@
+{
+    "db": {
+        "host": "cluster0-ptuut.mongodb.net",
+        "dbname": "bodybuildingmedia",
+        "username": "stefan_gg",
+        "password": "furious7"
+    },
+    "jwt": {
+        "key": "kluch"
+    }
+}

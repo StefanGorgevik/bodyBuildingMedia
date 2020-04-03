@@ -1,12 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 import './Users.css'
 import User from './User/User'
-
-//import store from '../../redux/store'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import store from '../../redux/store'
-import {userSelected, userClicked} from '../../redux/actions/userActions'
+import { getUsers, userSelected, userClicked } from '../../redux/actions/userActions'
 class Users extends Component {
     constructor(props) {
         super(props)
@@ -16,16 +14,16 @@ class Users extends Component {
             diet: ''
         }
     }
-    userClicked = (id)=> {
-        var user = this.props.users.filter((user) => {
-            return user.personalInfo.id === id
-        })
-        this.setState({
-                personalInfo: user[0].personalInfo,
-                workoutPlan: user[0].workoutPlan,
-                diet: user[0].diet 
-        })
 
+    componentDidMount() {
+        this.props.getUsers()
+        console.log(this.props.users)
+    }
+
+    userClicked = (id) => {
+        var user = this.props.users.filter((user) => {
+            return user._id === id
+        })
         store.dispatch(userSelected(user[0]))
         store.dispatch(userClicked(true))
     }
@@ -33,31 +31,39 @@ class Users extends Component {
 
     render() {
         //var userAge = new Date().getFullYear() - new Date(this.props.users[0].personalInfo.birthday).getFullYear()
-        const user = this.props.users.map(user => {
-            return (
-            <User key={user.personalInfo.id} click={() => this.userClicked(user.personalInfo.id)} 
-                fullname={user.personalInfo.firstName + ' ' + user.personalInfo.lastName}
-                age={new Date().getFullYear() - new Date(user.personalInfo.birthday).getFullYear()}
-                level={user.personalInfo.level}
-                userClicked={this.props.userClicked}
-            />)
-        })
+        console.log(this.props)
+        if (this.props.users) {
+            var user = this.props.users.map(user => {
+                return (
+                    <User key={user._id} click={() => this.userClicked(user._id)}
+                        fullname={user.first_name + ' ' + user.last_name}
+                        age={new Date().getFullYear() - new Date(user.birthday).getFullYear()}
+                        level={user.level}
+                        userClicked={this.props.userClicked}
+                    />)
+            })
+        }
 
-        return ( 
-        <div className='users' >
-            <h1>Users</h1>
-            <div className="users-scroll">
-                {user}
-            </div>
-        </div>)
+        return (
+            <div className='users' >
+                <h1>Users</h1>
+                <div className="users-scroll">
+                    {user}
+                </div>
+            </div>)
     }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
-        users:state.users,
+        users: state.users,
         userClicked: state.userclicked
     }
 }
+function mapDispatchToProps(dispatch) {
+    return {
+        getUsers: () => dispatch(getUsers())
+    }
+}
 
-export default connect(mapStateToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

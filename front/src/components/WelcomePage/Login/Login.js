@@ -11,7 +11,8 @@ class Login extends React.Component {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            error: false
         }
     }
 
@@ -22,7 +23,7 @@ class Login extends React.Component {
     loginClickedHandler = (e) => {
         e.preventDefault()
         if(this.state.email === '' || this.state.password === '') {
-            alert("Please fill up the fields correctly!")
+            this.setState({error: true})
             this.props.isUserLogged(false)
         } else {
             var user = {
@@ -31,6 +32,7 @@ class Login extends React.Component {
             }
             this.props.loggedUser(user)
             this.props.isUserLogged(true)
+            this.setState({error: false})
         }
     }
     redirectToMain = () => {
@@ -55,6 +57,7 @@ class Login extends React.Component {
             <div className='login'>
             {this.redirectToMain()}
                 <form onSubmit={this.loginClickedHandler}>
+                {this.state.error ? <p>Please fill up every field to login!</p> : null}
                     {inputs}
                    <Button click={this.loginClickedHandler}
                         active={this.state.active}

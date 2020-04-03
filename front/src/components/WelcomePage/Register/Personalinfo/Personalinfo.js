@@ -1,8 +1,7 @@
 import React from 'react'
 
 import './PersonalInfo.css'
-// import {savePersonalInfo} from '../../../../redux/actions/userActions'
-// import store from '../../../../redux/store'
+import {savePersonalInfo} from '../../../../redux/actions/userActions'
 import Title from '../Title/Title'
 import Input from '../RegInput/RegInput'
 import { connect } from 'react-redux'
@@ -21,20 +20,35 @@ class PersonalInfo extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+        if(this.props.userRegistered) {
+            const newUser = {
+                first_name: this.state.firstName, 
+                last_name: this.state.lastName, 
+                birthday: this.state.birthday, 
+                level: this.state.level, 
+                location: this.state.location, 
+                email: this.state.email, 
+                password: this.state.password
+            }
+            this.props.savePersonalInfo(newUser)
+        }
+    }
+
     saveInputValue = (event) => {
         this.setState({ [event.target.id]: event.target.value })
     }
 
-    sendInfo = () => {
-        if(this.state.firstName !== '' || this.state.lastName !== '' || this.state.birthday !== '' || this.state.level !== '' ||
-        this.state.location !== '' || this.state.email !== '' ||this.state.password !== '') {
-            var newInfo = this.state
-            this.props.saveInfo(newInfo)
-        } else {
-            alert("It is important to fill every field!")
-        }
-     
-    }
+    // sendInfo = () => {
+    //     if(this.state.firstName !== '' || this.state.lastName !== '' || this.state.birthday !== '' || this.state.level !== '' ||
+    //     this.state.location !== '' || this.state.email !== '' ||this.state.password !== '') {
+    //         var newInfo = this.state
+    //         console.log(newInfo)
+    //         this.props.saveInfo(newInfo)
+    //     } else {
+    //         alert("It is important to fill every field!")
+    //     }
+    // }
 
 
 
@@ -49,8 +63,6 @@ class PersonalInfo extends React.Component {
         })
         return (
             <div className="personal-info ">
-                {this.props.userRegistered ?
-                    this.sendInfo() : null}
                 <Title title="personal info" />
                 <div>
                     {inputs}
@@ -66,4 +78,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(PersonalInfo)
+function mapDispatchToProps(dispatch) {
+    return {
+        savePersonalInfo: (data) => dispatch(savePersonalInfo(data))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PersonalInfo)

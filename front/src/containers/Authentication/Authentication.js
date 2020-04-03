@@ -46,7 +46,6 @@ class Authentication extends React.Component {
                     </div>
                 </div>
 
-
                 {this.state.loginClicked ? <Login closePopUp={this.closePopUp} /> : null}
                 {this.state.registerClicked ? <Register closePopUp={this.closePopUp}/> : null}
             </div>
