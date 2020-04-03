@@ -59,6 +59,7 @@ class PersonalInfo extends React.Component {
                 <Input key={id + i} id={id}
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
+                    class="register-inputs"
                 />)
         })
         return (

@@ -18,8 +18,8 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    width: 75%;
-    min-height: 95%;
+    min-width: 30%;
+    min-height: 100%;
     background-color:rgba(0, 0, 0, 0.897);
     border-radius: 55px;
     border: 2px solid white;
@@ -39,6 +39,7 @@
 .reg-btns-div {
     display: flex;
     margin: 0 auto;
-    width: 50%;
+    width: 100%;
+    margin-bottom:10px;
     justify-content: space-around;
 }

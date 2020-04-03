@@ -12,10 +12,9 @@ const getUsers = (req, res) => {
 
 const registerUser = (req, res) => {
     var data = req.body
-    console.log(data)
     usersModel.register(data)
     .then(() => {
-        res.status(201).send("User registered")
+        res.status(201).send("User registered!")
     })
     .catch((err) => {
         res.status(500).send(err)

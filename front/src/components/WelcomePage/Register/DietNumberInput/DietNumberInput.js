@@ -2,12 +2,10 @@ import React from 'react'
 import './DietNumberInput.css'
 
 function DietNumberInput(props) {
-    var capitalized = props.id.replace(/(^|[\s-])\S/g, function (match) {
-        return match.toUpperCase();
-    });
+    var id = props.id.replace(/([A-Z]+)/g, " $1").replace(/^/, "")
     return (
         <div className="number-inputs-div">
-            <label htmlFor={props.id.replace(/-/g, ' ')}>{capitalized.replace(/-/g, ' ')}</label>
+            <label htmlFor={props.id.replace(/-/g, ' ')}>{id}</label>
             <input type="number" id={props.id.replace(/-/g, ' ')}
                 className="number-inputs"
                 onChange={props.saveInputValue} 

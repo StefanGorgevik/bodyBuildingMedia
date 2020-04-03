@@ -4,6 +4,7 @@ import PersonalInfo from './PersonalInfo/PersonalInfo'
 import WorkoutPlan from './WorkoutPlan/WorkoutPlan'
 import Diet from './Diet/Diet'
 import Button from '../Button/Button'
+import Dots from './Dots/Dots'
 import './Register.css'
 
 // import { Redirect } from 'react-router-dom'
@@ -16,7 +17,8 @@ class Register extends React.Component {
         super(props)
         this.state = {
             info: {},
-            error: false
+            error: false,
+            count: 1
         }
     }
     registerUser = () => {
@@ -29,13 +31,20 @@ class Register extends React.Component {
                         this.props.isUserRegistered(true)
                         this.setState({ error: false })
                     })
-                    .catch(err => 
+                    .catch(err =>
                         this.setState({ error: true }))
             } else {
                 this.setState({ error: true })
                 this.props.isUserRegistered(true)
             }
         }
+    }
+
+    nextClicked = (i) => {
+        console.log(i)
+        this.setState({
+            count: i
+        })
     }
 
     // redirectToMain = () => {
@@ -49,12 +58,12 @@ class Register extends React.Component {
             <div className="main-register">
                 {/* {this.redirectToMain()} */}
                 <div className="register">
-                {this.state.error ? <p>Please fill every field!</p> : null}
-                    <div className="register-components">
-                        <PersonalInfo />
-                        <WorkoutPlan />
-                        <Diet />
-                    </div>
+                    {this.state.error ? <p>Please fill every field!</p> : null}
+                    {this.state.count === 1 ? <PersonalInfo /> : null}
+                    {this.state.count === 2 ? <WorkoutPlan /> : null}
+                    {this.state.count === 3 ? <Diet /> : null}
+
+                    <Dots nextClicked={this.nextClicked} count={this.state.count} />
                     <div className="reg-btns-div">
                         <Button click={this.props.closePopUp}
                             label="close"
@@ -62,7 +71,7 @@ class Register extends React.Component {
                         />
                         <Button click={this.registerUser}
                             label="register"
-                            className="login-btn"
+                            className={this.state.count === 3 ? "login-btn" : "login-btn btn-disabled"}
                         />
                     </div>
                 </div>

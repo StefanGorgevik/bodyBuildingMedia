@@ -12,7 +12,7 @@ class Diet extends React.Component {
         super(props)
         this.state = {
             dietGoals: '',
-            dietIntensity: '',
+            dietDuration: '',
             mealsPerDay: 0,
             snacksPerDay: 0,
             meals: {},
@@ -37,7 +37,7 @@ class Diet extends React.Component {
     saveDataHandler = () => {
         const newDietPlan = {
             dietGoals: this.state.dietGoals,
-            dietIntensity: this.state.dietIntensity,
+            dietIntensity: this.state.dietDuration,
             meals: this.state.meals,
             snacks: this.state.snacks
         }
@@ -77,13 +77,14 @@ class Diet extends React.Component {
                 )
             }
         }
-        var ids = ['diet-goals', 'diet-intensity']
+        var ids = ['diet-goals', 'diet-duration']
         var inputs = ids.map((id, i) => {
             return (
                 <Input key={id + i}
                     id={id}
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
+                    class='register-inputs'
                 />
             )
         })

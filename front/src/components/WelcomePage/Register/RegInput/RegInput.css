@@ -6,14 +6,15 @@
     font-family: 'Roboto Slab', serif;
  }
 
+ .login-inputs,
  .register-inputs,
- .birthday-input{
+ #birthday{
     font-family: 'Roboto Slab', serif;
     letter-spacing: 1px;
     height: 35px;
     border-radius: 5px;
     border:none;
-    width: 300px;
+    width: 350px;
     font-size: 24px;
     font-weight: 600;
     background-color: rgba(243, 243, 237, 0.877);

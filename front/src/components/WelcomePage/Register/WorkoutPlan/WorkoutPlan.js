@@ -65,6 +65,7 @@ class WorkoutPlan extends React.Component {
                     id={id}
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
+                    class="register-inputs"
                 />
             )
         })

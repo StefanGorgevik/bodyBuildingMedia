@@ -11,6 +11,7 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
 const usersHandler = require('../handlers/usersHandler')
+const workoutPlanHandler = require('../handlers/workoutPlanHandler')
 
 const cors = require('cors')
 app.use(cors())
@@ -19,6 +20,8 @@ app.get('/', (req,res) => {
     res.send("Hi there!")
 })
 app.post('/app/v1/register', usersHandler.registerUser)
+app.post('/app/v1/register/workoutplans', workoutPlanHandler.saveWorkoutPlan)
+app.post('/app/v1/register/diets', workoutPlanHandler.saveDiet)
 
 app.get('/app/v1/users', usersHandler.getUsers)
 

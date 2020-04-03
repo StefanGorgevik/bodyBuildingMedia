@@ -22,11 +22,12 @@
 .number-inputs-div label {
     text-transform: capitalize;
     font-size: 20px;
-    margin: 5px;
+    margin: 10px auto;
     letter-spacing: 0.1px;
     font-family: 'Roboto Slab', serif;
     text-align: end;
-    width: 45%;
+    width: 55%;
+    margin-right: 25px;
 }
 
 .number-inputs-div input {

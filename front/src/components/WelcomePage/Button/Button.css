@@ -64,5 +64,6 @@
     transition: 1.5s;
 }
 
-
-
+.btn-disabled {
+    cursor: not-allowed;
+}

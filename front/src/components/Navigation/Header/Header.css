@@ -7,7 +7,6 @@
     background-color: #212222e5;
     background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre-v2.png");
     align-items: flex-end;
-
 }
 
 .right-side {
@@ -56,12 +55,9 @@
 
 .title-h2 {
     margin: 10px 40px;
-    font-size: 26px;
     color: rgb(180, 174, 174);
     border: 1px dashed #858a8ae5;
     border-radius: 10px;
     padding: 5px;
-    width: 31%;
     text-align: center;
-    font-family: 'Diplomata SC', cursive;
 }

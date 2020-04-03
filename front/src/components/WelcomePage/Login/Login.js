@@ -49,7 +49,7 @@ class Login extends React.Component {
                     id={id}
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
-                    className="l"
+                    class='login-inputs'
                 />
             )
         })
