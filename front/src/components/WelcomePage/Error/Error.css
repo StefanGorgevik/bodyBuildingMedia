@@ -1,4 +1,4 @@
-.main-register{
+.error-main {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -12,34 +12,23 @@
     background: rgba(0, 0, 0, 0.59);
     font-family: 'Roboto Slab', serif;
 }
-.register{
+
+.error-div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: auto;
-    width: 40%;
-    min-height: 100%;
-    background-color:rgba(0, 0, 0, 0.897);
+    width: 25%;
+    min-height: 30%;
+    background-color:rgba(0, 0, 0, 0.959);
     border-radius: 55px;
     border: 2px solid white;
     box-sizing: border-box; 
 }
 
-.register-components {
-    padding-top: 2px;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    border-radius: 20px;
-    width: 95%;
-}
-
-
-.reg-btns-div {
-    display: flex;
-    margin: 0 auto;
-    width: 70%;
-    margin-bottom:10px;
-    justify-content: space-around;
+.error-div p {
+    text-align: center;
+    width: 50%;
+    margin: 10px auto;
 }

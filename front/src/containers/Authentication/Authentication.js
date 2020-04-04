@@ -2,7 +2,7 @@ import React from 'react'
 
 import Login from '../../components/WelcomePage/Login/Login'
 import Register from '../../components/WelcomePage/Register/Register'
-import Button from '../../components/WelcomePage/Button/Button'
+import Button from '../../components/Button/Button'
 import './Authentication.css'
 
 class Authentication extends React.Component {
@@ -10,8 +10,7 @@ class Authentication extends React.Component {
         super(props);
         this.state = {
             loginClicked: false,
-            registerClicked: false,
-            active: null
+            registerClicked: false
         }
     }
 
@@ -27,6 +26,11 @@ class Authentication extends React.Component {
         this.setState({ loginClicked: false, registerClicked: false })
     }
 
+    componentWillUnmount() {
+        this.setState({ loginClicked: false, registerClicked: false })
+
+    }
+
     render() {
         return (
             <div className="welcome-cover">
@@ -34,15 +38,11 @@ class Authentication extends React.Component {
                     <h1 className="welcome-cover-h1"> Body Building Media </h1>
                     <div className="auth-btns">
                         <Button click={this.loginClicked}
-                            active={this.state.active}
                             label="login"
-                            className="welcome-btn"
-                        />
+                            className="welcome-btn" />
                         <Button click={this.registerClickedHandler}
-                            active={this.state.active}
                             label="register"
-                            className="welcome-btn"
-                        />
+                            className="welcome-btn" />
                     </div>
                 </div>
 

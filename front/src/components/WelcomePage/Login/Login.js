@@ -1,11 +1,12 @@
 import React from 'react'
 import './Login.css'
-import Input from '../Register/RegInput/RegInput'
-import Button from '../Button/Button'
-import {connect} from 'react-redux'
-import {isUserLogged, loggedUser} from '../../../redux/actions/userActions'
+import Input from '../../RegInput/RegInput'
+import Button from '../../Button/Button'
+import Error from '../Error/Error'
+import { connect } from 'react-redux'
+import { isUserLogged } from '../../../redux/actions/userActions'
 import { Redirect } from 'react-router-dom'
-
+import axios from 'axios'
 class Login extends React.Component {
     constructor(props) {
         super(props)
@@ -22,23 +23,36 @@ class Login extends React.Component {
 
     loginClickedHandler = (e) => {
         e.preventDefault()
-        if(this.state.email === '' || this.state.password === '') {
-            this.setState({error: true})
+        if (this.state.email === '' || this.state.password === '') {
+            this.setState({ error: true })
             this.props.isUserLogged(false)
         } else {
-            var user = {
+            axios.post('http://localhost:8080/app/v1/login', {
                 email: this.state.email,
                 password: this.state.password
-            }
-            this.props.loggedUser(user)
-            this.props.isUserLogged(true)
-            this.setState({error: false})
+            })
+                .then(res => {
+                    localStorage.setItem('jwt', res.data.jwt)
+                    localStorage.setItem('name', res.data.full_name)
+                    this.setState({ error: false })
+                    this.props.isUserLogged(true)
+                })
+                .catch(err => {
+                    this.props.isUserLogged(false)
+                    this.setState({ error: true })
+                })
         }
     }
     redirectToMain = () => {
         if (this.props.userLoggedIn) {
             return <Redirect to='/' />
         }
+    }
+
+    closeErrorAlert = () => {
+        this.setState({
+            error: false
+        })
     }
 
     render() {
@@ -55,11 +69,12 @@ class Login extends React.Component {
         })
         return (
             <div className='login'>
-            {this.redirectToMain()}
+                    {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}/> : null}
+
+                {this.redirectToMain()}
                 <form onSubmit={this.loginClickedHandler}>
-                {this.state.error ? <p>Please fill up every field to login!</p> : null}
                     {inputs}
-                   <Button click={this.loginClickedHandler}
+                    <Button click={this.loginClickedHandler}
                         active={this.state.active}
                         label="login"
                         className="login-btn"
@@ -83,7 +98,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        loggedUser: (user) => dispatch(loggedUser(user)),
         isUserLogged: (bool) => dispatch(isUserLogged(bool))
     }
 }

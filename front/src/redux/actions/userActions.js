@@ -5,17 +5,6 @@ export const getAllUsers = (users) => {
     }
 }
 
-export const getUsers = () => {
-    return async(dispatch) => {
-        fetch('http://localhost:8080/app/v1/users')
-        .then(res => res.json())
-        .then(data => {
-            dispatch(getAllUsers(data))
-        })
-        .catch(err => console.log(err))
-    }
-}
-
 export const isUserLogged = (bool) => {
     return {
         type: "IS_USER_LOGGED",
@@ -23,12 +12,6 @@ export const isUserLogged = (bool) => {
     }
 }
 
-export const loggedUser = (user) => {
-    return {
-        type: "LOGGED_USER",
-        payload: user
-    }
-}
 export const isUserRegistered = (bool) => {
     return {
         type: "IS_USER_REGISTERED",
@@ -50,16 +33,15 @@ export const savePersonalInfo = (info) => {
     }
 }
 
-export const saveWorkoutPlan = (plan) => {
+export const selectedWorkoutPlan = (plan) => {
     return {
-        type: "SAVE_WORKOUT_PLAN",
+        type: "SELECTED_WORKOUT_PLAN",
         payload: plan
     }
 }
-
-export const saveDietPlan = (diet) => {
+export const selectedDiet = (diet) => {
     return {
-        type: "SAVE_DIET_PLAN",
+        type: "SELECTED_DIET",
         payload: diet
     }
 }
@@ -75,5 +57,40 @@ export const userClicked = ( clicked) => {
     return {
         type: "USER_CLICKED", 
         payload: clicked
+    }
+}
+
+//to open header option and write a plan
+export const openWorkoutPlan = ( plan) => {
+    return {
+        type: "OPEN_WORKOUT_PLAN", 
+        payload: plan
+    }
+}
+export const openDietPlan = ( bool) => {
+    return {
+        type: "OPEN_DIET_PLAN", 
+        payload: bool
+    }
+}
+
+//userpage header
+
+export const personalInfoClick = ( bool) => {
+    return {
+        type: "PERSONAL_INFO_CLICK", 
+        payload: bool
+    }
+}
+export const workoutPlanClick = ( bool) => {
+    return {
+        type: "WORKOUT_PLAN_CLICK", 
+        payload: bool
+    }
+}
+export const dietClick = ( bool) => {
+    return {
+        type: "DIET_CLICK", 
+        payload: bool
     }
 }

@@ -10,13 +10,17 @@ const initState = {
         birthday: ''
     },
     workoutPlan: {},
-    diet: {},
+    selectedDiet: {},
     userSelected: {},
     userClicked: false,
     userLoggedIn: false,
-    loggedUser: {},
     userRegistered: false,
-    registeredUser: {}
+    registeredUser: {},
+    workoutPlanOpened: false,
+    dietPlanOpened: false,
+    personalInfoClicked: false,
+    workoutPlanClicked: false,
+    dietClicked: false
 }
 
 export function userReducer(state = initState, action) {
@@ -36,12 +40,6 @@ export function userReducer(state = initState, action) {
                 ...state, userRegistered: action.payload
             }
         }
-        case "LOGGED_USER": {
-            console.log(action.payload)
-            return {
-                ...state, loggedUser: action.payload
-            }
-        }
         case "REGISTERED_USER": {
             return {
                 ...state, userRegistered: action.payload
@@ -52,9 +50,14 @@ export function userReducer(state = initState, action) {
                 ...state, personalInfo: action.payload
             }
         }
-        case "SAVE_WORKOUT_PLAN": {
+        case "SELECTED_WORKOUT_PLAN": {
             return {
                 ...state, workoutPlan: action.payload
+            }
+        }
+        case "SELECTED_DIET": {
+            return {
+                ...state, selectedDiet: action.payload
             }
         }
         case "SAVE_DIET_PLAN": {
@@ -77,47 +80,34 @@ export function userReducer(state = initState, action) {
                 ...state, userClicked: action.payload
             }
         }
+        case "OPEN_WORKOUT_PLAN": {
+            return {
+                ...state, workoutPlanOpened: action.payload
+            }
+        }
+        case "OPEN_DIET_PLAN": {
+            return {
+                ...state, dietPlanOpened: action.payload
+            }
+        }
+        case "PERSONAL_INFO_CLICK": {
+            return {
+                ...state, personalInfoClicked: action.payload
+            }
+        }
+        case "WORKOUT_PLAN_CLICK": {
+            return {
+                ...state, workoutPlanClicked: action.payload
+            }
+        }
+        case "DIET_CLICK": {
+            return {
+                ...state, dietClicked: action.payload
+            }
+        }
+        
         default:
             return state;
 
     }
 }
-
-// {
-//     personalInfo: {
-//         firstName: "Stefan",
-//         birthday: "2000-01-01",
-//         lastName: "Gorgevik",
-//         level: "Intermediate",
-//         location: "Skopje",
-//         email: "stefangg@hotmail.com",
-//         password: "2222",
-//         id: 581
-//     },
-//     workoutPlan: {
-//         type: "dada",
-//         goal: "dadad",
-//         intensity: "dada",
-//         days: [{
-//             day1: "dadad",
-//             day2: "dadad",
-//             day3: "dadad",
-//             day4: "true",
-//             day5: "daa",
-//             day6: "dada",
-//             day7: "dadad"
-//         }]
-//     },
-//     diet: {
-//         dietGoals: "dadad",
-//         dietIntensity: "dadad",
-//         meals: {
-//             meal1: "dadada",
-//             meal2: "dadada"
-//         },
-//         snacks: {
-//             snack1: "dadada",
-//             snack2: "dadada"
-//         }
-//     }
-// }

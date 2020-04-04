@@ -16,12 +16,22 @@ const workoutPlanHandler = require('../handlers/workoutPlanHandler')
 const cors = require('cors')
 app.use(cors())
 
+var jwt = require('express-jwt')
+app.use(jwt({secret: config.getConfig('jwt').key})
+    .unless(
+        {path: ['/app/v1/register', '/app/v1/login']}
+    )
+)
+
 app.get('/', (req,res) => {
     res.send("Hi there!")
 })
 app.post('/app/v1/register', usersHandler.registerUser)
+app.post('/app/v1/login', usersHandler.loginUser)
 app.post('/app/v1/register/workoutplans', workoutPlanHandler.saveWorkoutPlan)
+app.get('/app/v1/register/workoutplans/:id', workoutPlanHandler.getWorkoutPlan)
 app.post('/app/v1/register/diets', workoutPlanHandler.saveDiet)
+app.get('/app/v1/register/diets/:id', workoutPlanHandler.getDiet)
 
 app.get('/app/v1/users', usersHandler.getUsers)
 

@@ -8,8 +8,11 @@ class UserImages extends React.Component {
     render(){
         return (
             <div className="user-images">
+                {this.props.userClicked ? 
+                <> 
                 <img className="cover-image" src={!this.props.userClicked ? Cover : User} alt='cover' />
                 <p>Image Description: I AM A STRONG DUDE !</p>
+                </> : null}
             </div>
         )
     }

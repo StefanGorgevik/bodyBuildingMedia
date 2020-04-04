@@ -4,31 +4,25 @@ import './Diet.css'
 import InfoDiv from '../InfoDiv/InfoDiv'
 
 const Diet = (props) => {
-    const m = props.userSelected.meals;
-    const s = props.userSelected.snacks;
+    if (props.selectedDiet) {
+        const m = Object.keys(props.selectedDiet.meals)
 
-    const meals = Object.keys(m).map((meal, i) => {
-        return ( <InfoDiv key={meal + (i + 1)} labelNameId={"meal" + (i+1)} labelText={"Meal " + (i + 1)} info={m[meal]} />)
-    })
-
-    const snacks = Object.keys(s).map((snack, i) => {
-        return ( <InfoDiv key={snack + (i + 1)} labelNameId={"snack" + (i+1)} labelText={"Snack " + (i + 1)} info={s[snack]} />)
-    })
+        var meals = m.map((meal, i) => {
+            return (<InfoDiv key={meal + (i + 1)} labelNameId={"meal" + (i + 1)} labelText={"Meal " + (i + 1)} info={props.selectedDiet.meals[meal]} />)
+        })
+    }
     return (
         <div className="diet-user">
-             <InfoDiv labelNameId="diet-goals" labelText="First Name" info={props.userSelected.dietGoals} />
-            <InfoDiv labelNameId="last-name-p" labelText="Intensity" info={props.userSelected.dietIntensity} />
+            <InfoDiv labelNameId="diet-goals" labelText="Diet Goals" info={props.selectedDiet.dietGoals} />
+            <InfoDiv labelNameId="diet-duration" labelText="Diet Duration" info={props.selectedDiet.dietDuration} />
             {meals}
-            {snacks}
-            
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
-        userSelected: state.userSelected.diet
+        selectedDiet: state.selectedDiet
     }
 }
 

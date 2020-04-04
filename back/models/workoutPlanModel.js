@@ -15,10 +15,8 @@ const Diet = mongoose.model(
         dietGoals: String,
         dietDuration: String,
         mealsPerDay: Number,
-        snacksPerDay: Number,
         userID:String,
         meals: Object,
-        snacks: Object
     },{collection: 'diets'}) 
 )
 
@@ -34,7 +32,6 @@ const saveWorkoutPlan = (data) => {
             }
         })
     })
-
 }
 
 const saveDiet = (data) => {
@@ -50,7 +47,31 @@ const saveDiet = (data) => {
     })
 }
 
+const getWorkoutPlan = (userID) => {
+    return new Promise((success, fail) => {
+        WorkoutPlan.find({userID: userID}, (err, data) => {
+            if(err) {
+                return fail(err)
+            } else {
+                return success(data[0])
+            }
+        })
+    })
+}
+
+const getDiet = (userID) => {
+    return new Promise((success, fail) => {
+        Diet.find({userID: userID}, (err, data) =>{
+            if(err) {
+                return fail(err)
+            } return success(data[0])
+        })
+    })
+}
+
 module.exports = {
     saveWorkoutPlan,
-    saveDiet
+    saveDiet,
+    getWorkoutPlan,
+    getDiet
 }

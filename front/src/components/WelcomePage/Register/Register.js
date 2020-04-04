@@ -1,69 +1,96 @@
 import React from 'react'
 
 import PersonalInfo from './PersonalInfo/PersonalInfo'
-import WorkoutPlan from './WorkoutPlan/WorkoutPlan'
-import Diet from './Diet/Diet'
-import Button from '../Button/Button'
-import Dots from './Dots/Dots'
+import Button from '../../Button/Button'
+import Error from '../Error/Error'
 import './Register.css'
 
-// import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { registeredUser, isUserRegistered, savePersonalInfo } from '../../../redux/actions/userActions'
+import { registeredUser, isUserRegistered, savePersonalInfo, isUserLogged } from '../../../redux/actions/userActions'
 import axios from 'axios'
 
 class Register extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            info: {},
             error: false,
-            count: 1
-        }
-    }
-    registerUser = () => {
-        var info = this.props.personalInfo
-        if (info) {
-            if (info.first_name !== '' && info.last_name !== '' && info.email !== '' && info.password !== '' &&
-                info.level !== '' && info.location !== '' && info.birthday !== '') {
-                axios.post('http://localhost:8080/app/v1/register', this.props.personalInfo)
-                    .then(res => {
-                        this.props.isUserRegistered(true)
-                        this.setState({ error: false })
-                    })
-                    .catch(err =>
-                        this.setState({ error: true }))
-            } else {
-                this.setState({ error: true })
-                this.props.isUserRegistered(true)
+            user: {
+                firstName: '',
+                lastName: '',
+                birthday: '',
+                level: '',
+                location: '',
+                email: '',
+                password: ''
             }
         }
     }
 
-    nextClicked = (i) => {
-        console.log(i)
+    saveInputValue = (event) => {
+        this.setState({ ...this.state, user: { ...this.state.user, [event.target.id]: event.target.value } })
+        console.log(this.state)
+    }
+
+    registerUser = () => {
+        var info = this.state.user
+            if (info.firstName === '' && info.lastName === '' && info.email === '' && info.password === '' &&
+                info.level === '' && info.location === '' && info.birthday === '') {
+                this.setState({ error: true })
+                this.props.isUserRegistered(false)
+            } else {
+                axios.post('http://localhost:8080/app/v1/register', {
+                    first_name: info.firstName,
+                    last_name: info.lastName,
+                    birthday: info.birthday,
+                    level: info.level,
+                    location: info.location,
+                    email: info.email,
+                    password: info.password
+                })
+                    .then(res => {
+                        this.props.isUserRegistered(true)
+                        this.setState({ error: false })
+                        axios.post('http://localhost:8080/app/v1/login', {
+                            email: info.email,
+                            password: info.password
+                        })
+                            .then(res => {
+                                localStorage.setItem('jwt', res.data.jwt)
+                                localStorage.setItem('name', res.data.full_name)
+                                this.setState({ error: false })
+                                this.props.isUserLogged(true)
+                            })
+                            .catch(err => {
+                                this.props.isUserLogged(false)
+                                this.setState({ error: true })
+                            })
+                    })
+                    .catch(err =>
+                        this.setState({ error: true }))
+            }
+    }
+
+    closeErrorAlert = () => {
         this.setState({
-            count: i
+            error: false
         })
     }
 
-    // redirectToMain = () => {
-    //     if (this.props.userRegistered) {
-    //         return <Redirect to='/' />
-    //     }
-    // }
+    redirectToMain = () => {
+        if (this.props.userRegistered && this.props.userLoggedIn) {
+            return <Redirect to='/' />
+        }
+    }
 
     render() {
         return (
             <div className="main-register">
-                {/* {this.redirectToMain()} */}
+                {this.redirectToMain()}
                 <div className="register">
-                    {this.state.error ? <p>Please fill every field!</p> : null}
-                    {this.state.count === 1 ? <PersonalInfo /> : null}
-                    {this.state.count === 2 ? <WorkoutPlan /> : null}
-                    {this.state.count === 3 ? <Diet /> : null}
-
-                    <Dots nextClicked={this.nextClicked} count={this.state.count} />
+                    {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert} /> : null}
+                    <PersonalInfo saveInputValue={this.saveInputValue}
+                        user={this.state.user} />
                     <div className="reg-btns-div">
                         <Button click={this.props.closePopUp}
                             label="close"
@@ -71,7 +98,7 @@ class Register extends React.Component {
                         />
                         <Button click={this.registerUser}
                             label="register"
-                            className={this.state.count === 3 ? "login-btn" : "login-btn btn-disabled"}
+                            className="login-btn"
                         />
                     </div>
                 </div>
@@ -84,7 +111,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         isUserRegistered: (bool) => dispatch(isUserRegistered(bool)),
         registeredUser: (user) => dispatch(registeredUser(user)),
-        savePersonalInfo: (info) => dispatch(savePersonalInfo(info))
+        savePersonalInfo: (info) => dispatch(savePersonalInfo(info)),
+        isUserLogged: (bool) => dispatch(isUserLogged(bool))
     }
 }
 const mapStateToProps = (state) => {
@@ -93,7 +121,8 @@ const mapStateToProps = (state) => {
         workoutPlan: state.workoutPlan,
         diet: state.diet,
         saveClicked: state.saveClicked,
-        userRegistered: state.userRegistered
+        userRegistered: state.userRegistered,
+        userLoggedIn: state.userLoggedIn
     }
 }
 

@@ -25,21 +25,18 @@
 .right-side ul li {
     display: inline-block;
     margin: 25px;
-    color: rgb(182, 174, 174);
+    color: rgb(165, 153, 153);
     font-size: 24px;
     font-weight: bold;
     min-width: 10%;
 }
 
-.right-side ul a li {
+.clickable-lis:hover {
+    color: white;
+    font-size: 25px;
+    border-bottom: 1px solid white;
     cursor: pointer;
 
-}
-
-.right-side ul a li:hover {
-    color: white;
-    font-size: 26px;
-    border-bottom: 1px solid white;
 }
 
 .right-side ul a {

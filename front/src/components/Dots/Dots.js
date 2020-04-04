@@ -1,6 +1,6 @@
 import React from 'react'
 import './Dots.css'
-import Button from '../../Button/Button'
+// import Button from '../../Button/Button'
 
 function DotsDiv(props) {
     var divs= [1, 2, 3]

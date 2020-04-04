@@ -3,37 +3,73 @@ import React, { Component } from 'react'
 import './Users.css'
 import User from './User/User'
 import { connect } from 'react-redux'
-import store from '../../redux/store'
-import { getUsers, userSelected, userClicked } from '../../redux/actions/userActions'
+import { userSelected, userClicked, getAllUsers, selectedWorkoutPlan, personalInfoClick, workoutPlanClick, dietClick, selectedDiet } from '../../redux/actions/userActions'
+import axios from 'axios'
 class Users extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            personalInfo: '',
-            workoutPlan: '',
-            diet: ''
+            users: []
         }
     }
 
     componentDidMount() {
-        this.props.getUsers()
-        console.log(this.props.users)
+            axios.get('http://localhost:8080/app/v1/users', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            }).then((res) => {
+                this.props.getAllUsers(res.data)
+                this.setState({users: res.data})
+            })
+            .catch(err => console.log(err))
+        }
+    
+
+    getWorkoutPlan = (id) => {
+        axios.get(`http://localhost:8080/app/v1/register/workoutplans/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+        .then(res => {
+            this.props.selectedWorkoutPlan(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
+
+    getDiet = (id) => {
+        axios.get(`http://localhost:8080/app/v1/register/diets/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+        .then(res => {
+            this.props.selectedDiet(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
 
     userClicked = (id) => {
-        var user = this.props.users.filter((user) => {
+        var user = this.state.users.filter((user) => {
             return user._id === id
         })
-        store.dispatch(userSelected(user[0]))
-        store.dispatch(userClicked(true))
+        this.getWorkoutPlan(user[0]._id)
+        this.getDiet(user[0]._id)
+        this.props.userSelected(user[0])
+        this.props.personalInfoClick(true)
+        this.props.workoutPlanClick(false)
+        this.props.dietClick(false)
+        this.props.userClicked(true)
     }
 
-
     render() {
-        //var userAge = new Date().getFullYear() - new Date(this.props.users[0].personalInfo.birthday).getFullYear()
-        console.log(this.props)
-        if (this.props.users) {
-            var user = this.props.users.map(user => {
+            var user = this.state.users.map((user,i) => {
                 return (
                     <User key={user._id} click={() => this.userClicked(user._id)}
                         fullname={user.first_name + ' ' + user.last_name}
@@ -42,7 +78,6 @@ class Users extends Component {
                         userClicked={this.props.userClicked}
                     />)
             })
-        }
 
         return (
             <div className='users' >
@@ -57,12 +92,20 @@ class Users extends Component {
 function mapStateToProps(state) {
     return {
         users: state.users,
-        userClicked: state.userclicked
+        userClicked: state.userClicked,
+        isUserLogged: state.userLoggedIn
     }
 }
 function mapDispatchToProps(dispatch) {
     return {
-        getUsers: () => dispatch(getUsers())
+        getAllUsers: (data) => dispatch(getAllUsers(data)),
+        userSelected: (data) => dispatch(userSelected(data)),
+        selectedWorkoutPlan: (data) => dispatch(selectedWorkoutPlan(data)),
+        selectedDiet: (data) => dispatch(selectedDiet(data)),
+        personalInfoClick: (bool) => dispatch(personalInfoClick(bool)),
+        workoutPlanClick: (bool) => dispatch(workoutPlanClick(bool)),
+        dietClick: (bool) => dispatch(dietClick(bool)),
+        userClicked: (bool) => dispatch(userClicked(bool))
     }
 }
 
