@@ -26,6 +26,9 @@
     border: 2px solid white;
     box-sizing: border-box;
 }
+.diet div {
+    height: 30%;
+}
 
 .generate-meals {
     display: flex;

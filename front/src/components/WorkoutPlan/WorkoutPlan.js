@@ -43,7 +43,7 @@ class WorkoutPlan extends React.Component {
 
     saveDataHandler = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/app/v1/register/workoutplans', {
+        axios.post('http://localhost:8081/app/v1/plans/workoutplans', {
             type: this.state.type,
             goal: this.state.goal,
             intensity: this.state.intensity,

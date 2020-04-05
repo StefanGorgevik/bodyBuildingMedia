@@ -30,7 +30,7 @@ const registerUser = (req, res) => {
                     if(err) {
                         throw new Error(err);
                         return;
-                    } return usersModel.register({...newUser, password: hash})
+                    } return usersModel.register({...newUser, password: hash, isWorkoutPlanCreated: false, isDietCreated: false})
                 })
             })
         } else {
@@ -60,7 +60,11 @@ const loginUser = (req, res) => {
                     email: data.email
                 }
                 var token = jwt.sign(tokenData, config.getConfig('jwt').key)
-                return res.status(200).send({jwt: token, full_name:tokenData.full_name, email: data.email, userid: data._id})
+                return res.status(200).send({jwt: token, id: data._id, full_name:tokenData.full_name, email: data.email, 
+                    userid: data._id,
+                    isWorkoutPlanCreated: data.isWorkoutPlanCreated,
+                    isDietCreated: data.isDietCreated
+                })
             }
             return res.status(400).send('Not found!')
         })

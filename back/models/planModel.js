@@ -25,7 +25,6 @@ const saveWorkoutPlan = (data) => {
         var plan = new WorkoutPlan(data)
         plan.save(data, err => {
             if(err) {
-                console.log(err)
                 return fail;
             } else {
                 return success(data)
@@ -64,7 +63,21 @@ const getDiet = (userID) => {
         Diet.find({userID: userID}, (err, data) =>{
             if(err) {
                 return fail(err)
-            } return success(data[0])
+            } 
+            console.log(data)
+            return success(data)
+        })
+    })
+}
+
+const updateDiet = (dietID) => {
+    return new Promise((success, fail) => {
+        Diet.updateOne({_id: dietID}, (err, data) =>{
+            if(err) {
+                return fail(err)
+            } 
+            console.log(data)
+            return success(data)
         })
     })
 }
@@ -73,5 +86,6 @@ module.exports = {
     saveWorkoutPlan,
     saveDiet,
     getWorkoutPlan,
-    getDiet
+    getDiet,
+    updateDiet
 }

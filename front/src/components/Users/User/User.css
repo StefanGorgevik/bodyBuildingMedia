@@ -4,11 +4,13 @@
     border: 2px solid wheat;
     border-radius: 12px;
     cursor: pointer;
+    transition: 0.5s;
 }
 
 .user:hover {
     background-color: rgba(113, 121, 121, 0.883);
     color: black;
+    transition: 0.5s;
 }
 
 .user-photo {

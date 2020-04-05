@@ -1,3 +1,4 @@
+//to get users on comp did mount in Users.js
 export const getAllUsers = (users) => {
     return {
         type: "GET_USERS",
@@ -5,10 +6,18 @@ export const getAllUsers = (users) => {
     }
 }
 
+
+//authentication booleans
 export const isUserLogged = (bool) => {
     return {
         type: "IS_USER_LOGGED",
         payload: bool
+    }
+}
+export const loggedUser = (user) => {
+    return {
+        type: "LOGGED_USER",
+        payload: user
     }
 }
 
@@ -19,20 +28,9 @@ export const isUserRegistered = (bool) => {
     }
 }
 
-export const registeredUser = (user) => {
-    return {
-        type: "REGISTERED_USER",
-        payload: user
-    }
-}
 
-export const savePersonalInfo = (info) => {
-    return {
-        type: "SAVE_PERSONAL_INFO",
-        payload: info
-    }
-}
 
+//actions for every click on user(it will make a request only to the clicked users)
 export const selectedWorkoutPlan = (plan) => {
     return {
         type: "SELECTED_WORKOUT_PLAN",
@@ -46,51 +44,51 @@ export const selectedDiet = (diet) => {
     }
 }
 
-
+//user clicked on users scroll and get personal info
 export const userSelected = (user) => {
     return {
-        type: "USER_SELECTED", 
+        type: "USER_SELECTED",
         payload: user
     }
 }
-export const userClicked = ( clicked) => {
+export const userClicked = (clicked) => {
     return {
-        type: "USER_CLICKED", 
+        type: "USER_CLICKED",
         payload: clicked
     }
 }
 
-//to open header option and write a plan
-export const openWorkoutPlan = ( plan) => {
+//to open the option selected by user on header and write a plan
+export const openWorkoutPlan = (plan) => {
     return {
-        type: "OPEN_WORKOUT_PLAN", 
+        type: "OPEN_WORKOUT_PLAN",
         payload: plan
     }
 }
-export const openDietPlan = ( bool) => {
+export const openDietPlan = (bool) => {
     return {
-        type: "OPEN_DIET_PLAN", 
+        type: "OPEN_DIET_PLAN",
         payload: bool
     }
 }
 
-//userpage header
+//userpage header for active class on header
 
-export const personalInfoClick = ( bool) => {
+export const personalInfoClick = (bool) => {
     return {
-        type: "PERSONAL_INFO_CLICK", 
+        type: "PERSONAL_INFO_CLICK",
         payload: bool
     }
 }
-export const workoutPlanClick = ( bool) => {
+export const workoutPlanClick = (bool) => {
     return {
-        type: "WORKOUT_PLAN_CLICK", 
+        type: "WORKOUT_PLAN_CLICK",
         payload: bool
     }
 }
-export const dietClick = ( bool) => {
+export const dietClick = (bool) => {
     return {
-        type: "DIET_CLICK", 
+        type: "DIET_CLICK",
         payload: bool
     }
 }

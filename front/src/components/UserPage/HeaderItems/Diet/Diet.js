@@ -4,11 +4,12 @@ import './Diet.css'
 import InfoDiv from '../InfoDiv/InfoDiv'
 
 const Diet = (props) => {
-    if (props.selectedDiet) {
-        const m = Object.keys(props.selectedDiet.meals)
-
+    if (props.selectedDiet[0]) {
+        console.log(props.selectedDiet)
+        const m = Object.keys(props.selectedDiet[0].meals)
         var meals = m.map((meal, i) => {
-            return (<InfoDiv key={meal + (i + 1)} labelNameId={"meal" + (i + 1)} labelText={"Meal " + (i + 1)} info={props.selectedDiet.meals[meal]} />)
+            return (<InfoDiv key={meal + (i + 1)} labelNameId={"meal" + (i + 1)} labelText={"Meal " + (i + 1)}
+            info={props.selectedDiet[0].meals[meal]} />)
         })
     }
     return (
@@ -21,6 +22,7 @@ const Diet = (props) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.selectedDiet)
     return {
         selectedDiet: state.selectedDiet
     }

@@ -6,7 +6,7 @@ const InfoDiv = (props) => {
         <div className="info-div">
                 <div htmlFor={props.labelNameId}>{props.labelText} </div>
                 <span>:</span>
-                <p id={props.labelNameId}> {props.info}</p>
+                <p id="info-div-p" className="info-div-p"> {props.info}</p>
             </div>
     )
 }

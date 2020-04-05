@@ -2,9 +2,7 @@ import React from 'react'
 import './RegInput.css'
 
 function RegInput(props) {
-    console.log(props.id)
     var id = props.id.replace(/([A-Z]+)/g, " $1").replace(/^/, "")
-    console.log(id.replace(/-/g, ' '))
     return (
         <div>
             <div className='input-div'>
@@ -13,6 +11,7 @@ function RegInput(props) {
                     id={props.id}
                     className={props.class}
                     onChange={props.saveInputValue} 
+                    defaultValue={props.value}
                     />
             </div>
         </div>

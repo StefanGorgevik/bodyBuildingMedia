@@ -1,7 +1,6 @@
 import React from 'react'
 
 import './PersonalInfo.css'
-import {savePersonalInfo} from '../../../../redux/actions/userActions'
 import Title from '../../../Title/Title'
 import Input from '../../../RegInput/RegInput'
 import { connect } from 'react-redux'
@@ -32,10 +31,4 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        savePersonalInfo: (data) => dispatch(savePersonalInfo(data))
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(PersonalInfo)
+export default connect(mapStateToProps)(PersonalInfo)

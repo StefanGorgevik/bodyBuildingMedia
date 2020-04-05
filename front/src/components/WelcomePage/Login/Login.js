@@ -4,7 +4,7 @@ import Input from '../../RegInput/RegInput'
 import Button from '../../Button/Button'
 import Error from '../Error/Error'
 import { connect } from 'react-redux'
-import { isUserLogged } from '../../../redux/actions/userActions'
+import { isUserLogged, loggedUser } from '../../../redux/actions/userActions'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 class Login extends React.Component {
@@ -27,15 +27,19 @@ class Login extends React.Component {
             this.setState({ error: true })
             this.props.isUserLogged(false)
         } else {
-            axios.post('http://localhost:8080/app/v1/login', {
+            axios.post('http://localhost:8080/app/v1/auth/login', {
                 email: this.state.email,
                 password: this.state.password
             })
                 .then(res => {
                     localStorage.setItem('jwt', res.data.jwt)
                     localStorage.setItem('name', res.data.full_name)
+                    localStorage.setItem('user-id', res.data.id)
+                    localStorage.setItem('isWPCreated', res.data.isWorkoutPlanCreated)
+                    localStorage.setItem('isDietCreated', res.data.isDietCreated)
                     this.setState({ error: false })
                     this.props.isUserLogged(true)
+                    this.props.loggedUser(res.data)
                 })
                 .catch(err => {
                     this.props.isUserLogged(false)
@@ -45,7 +49,7 @@ class Login extends React.Component {
     }
     redirectToMain = () => {
         if (this.props.userLoggedIn) {
-            return <Redirect to='/' />
+            return <Redirect to='/main' />
         }
     }
 
@@ -98,7 +102,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        isUserLogged: (bool) => dispatch(isUserLogged(bool))
+        isUserLogged: (bool) => dispatch(isUserLogged(bool)),
+        loggedUser: (data) => dispatch(loggedUser(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

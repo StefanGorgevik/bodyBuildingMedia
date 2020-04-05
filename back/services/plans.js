@@ -10,30 +10,29 @@ DBConnection.initialize(c);
 var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
-const usersHandler = require('../handlers/usersHandler')
+const planHandler = require('../handlers/planHandler')
 
 const cors = require('cors')
 app.use(cors())
 
 var jwt = require('express-jwt');
-app.use(                                                       //sekoj req ke pomine niz ova i ke vrati req.user
+app.use(                                                     
     jwt(
         { secret: config.getConfig('jwt').key }
     )
-        .unless(
-            { path: ['/app/v1/auth/register', '/app/v1/auth/login'] }
-        )
 );
 
-app.post('/app/v1/auth/register', usersHandler.registerUser)
-app.post('/app/v1/auth/login', usersHandler.loginUser)
+app.post('/app/v1/plans/workoutplans', planHandler.saveWorkoutPlan)
+app.get('/app/v1/plans/workoutplans/:id', planHandler.getWorkoutPlan)
+app.post('/app/v1/plans/diets', planHandler.saveDiet)
+app.get('/app/v1/plans/diets/:id', planHandler.getDiet)
+app.put('/app/v1/plans/diets/:id', planHandler.updateDiet)
 
-
-app.listen(8080, (err) => {
+app.listen(8081, (err) => {
     if(err) {
         console.log(err)
         console.log("Error")
         return;
     }
-    return console.log("Server has started successfully on port 8080")
+    return console.log("Server has started successfully on port 8081")
 })

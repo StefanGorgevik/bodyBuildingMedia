@@ -15,25 +15,20 @@ const usersHandler = require('../handlers/usersHandler')
 const cors = require('cors')
 app.use(cors())
 
-var jwt = require('express-jwt');
-app.use(                                                       //sekoj req ke pomine niz ova i ke vrati req.user
+var jwt = require('express-jwt')
+app.use(
     jwt(
         { secret: config.getConfig('jwt').key }
     )
-        .unless(
-            { path: ['/app/v1/auth/register', '/app/v1/auth/login'] }
-        )
-);
+)
 
-app.post('/app/v1/auth/register', usersHandler.registerUser)
-app.post('/app/v1/auth/login', usersHandler.loginUser)
+app.get('/app/v1/users/', usersHandler.getUsers)
 
-
-app.listen(8080, (err) => {
-    if(err) {
+app.listen(8082, (err) => {
+    if (err) {
         console.log(err)
         console.log("Error")
         return;
     }
-    return console.log("Server has started successfully on port 8080")
+    return console.log("Server has started successfully on port 8082")
 })

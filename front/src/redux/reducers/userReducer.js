@@ -1,21 +1,12 @@
 const initState = {
-    users: [],
-    personalInfo: {
-        first_name: '',
-        last_name:'',
-        email: '',
-        password: '',
-        level: '',
-        location: '',
-        birthday: ''
-    },
+    users:[],
     workoutPlan: {},
     selectedDiet: {},
     userSelected: {},
     userClicked: false,
     userLoggedIn: false,
     userRegistered: false,
-    registeredUser: {},
+    loggedUser: {},
     workoutPlanOpened: false,
     dietPlanOpened: false,
     personalInfoClicked: false,
@@ -25,11 +16,14 @@ const initState = {
 
 export function userReducer(state = initState, action) {
     switch (action.type) {
+        //to get users on comp did mount in Users.js
         case "GET_USERS": {
             return {
                 ...state, users: action.payload
             }
         }
+
+        //authentication booleans
         case "IS_USER_LOGGED": {
             return {
                 ...state, userLoggedIn: action.payload
@@ -40,14 +34,9 @@ export function userReducer(state = initState, action) {
                 ...state, userRegistered: action.payload
             }
         }
-        case "REGISTERED_USER": {
+        case "LOGGED_USER": {
             return {
-                ...state, userRegistered: action.payload
-            }
-        }
-        case "SAVE_PERSONAL_INFO": {
-            return {
-                ...state, personalInfo: action.payload
+                ...state, loggedUser: action.payload
             }
         }
         case "SELECTED_WORKOUT_PLAN": {
@@ -56,20 +45,13 @@ export function userReducer(state = initState, action) {
             }
         }
         case "SELECTED_DIET": {
+            console.log(action.payload)
             return {
                 ...state, selectedDiet: action.payload
             }
         }
-        case "SAVE_DIET_PLAN": {
-            return {
-                ...state, diet: action.payload
-            }
-        }
-        case "SAVE_USER": {
-            return {
-                ...state, users: [...state.users, action.payload]
-            }
-        }
+
+        //user clicked on users scroll and get personal info
         case "USER_SELECTED": {
             return {
                 ...state, userSelected: action.payload
@@ -80,6 +62,9 @@ export function userReducer(state = initState, action) {
                 ...state, userClicked: action.payload
             }
         }
+
+
+        //to open the option selected by user on header and write a plan
         case "OPEN_WORKOUT_PLAN": {
             return {
                 ...state, workoutPlanOpened: action.payload
@@ -90,6 +75,8 @@ export function userReducer(state = initState, action) {
                 ...state, dietPlanOpened: action.payload
             }
         }
+
+        //userpage header for active class on header
         case "PERSONAL_INFO_CLICK": {
             return {
                 ...state, personalInfoClicked: action.payload
@@ -105,7 +92,7 @@ export function userReducer(state = initState, action) {
                 ...state, dietClicked: action.payload
             }
         }
-        
+
         default:
             return state;
 

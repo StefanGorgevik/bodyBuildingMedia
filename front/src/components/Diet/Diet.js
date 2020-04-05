@@ -16,10 +16,8 @@ class Diet extends React.Component {
         this.state = {
             dietGoals: '',
             dietDuration: '',
-            mealsPerDay: 0,
-            snacksPerDay: 0,
+            mealsPerDay: localStorage.getItem('isDietCreated') === 'true' ? this.props.selectedDiet.mealsPerDay : 0,
             meals: {},
-            mealsGenerated: false,
             mealAdded: false
         }
     }
@@ -35,16 +33,12 @@ class Diet extends React.Component {
         })
     }
 
-    generateMeals = () => {
-        this.setState({ mealsGenerated: true })
-    }
-
     closeDiet = () => {
         this.props.openDietPlan(false)
     }
 
     saveDataHandler = () => {
-        axios.post('http://localhost:8080/app/v1/register/diets', {
+        axios.post('http://localhost:8081/app/v1/plans/diets', {
             dietGoals: this.state.dietGoals,
             dietDuration: this.state.dietDuration,
             mealsPerDay: this.state.mealsPerDay,
@@ -55,6 +49,7 @@ class Diet extends React.Component {
             }
         })
             .then(res => {
+                window.location.reload();
                 this.props.openDietPlan(false)
             })
             .catch(err => {
@@ -62,23 +57,35 @@ class Diet extends React.Component {
             })
     }
 
+    editDietHandler = () => {
+        console.log(this.props.loggedUser)
+    }
+
     render() {
-        if (this.state.mealsPerDay) {
+        if (this.state.mealsPerDay || this.props.selectedDiet) {
             var mealInputs = [];
+            var mealsPerDay = {};
+            // if (localStorage.getItem('isDietCreated') === 'true' ) {
+            //     mealsPerDay = this.props.selectedDiet.mealsPerDay
+            // } else {
+            //     mealsPerDay = this.state.mealsPerDay
+            // }
+            // console.log(mealsPerDay)
             for (let i = 1; i <= this.state.mealsPerDay; i++) {
                 mealInputs.push(
                     <DietInput
-                        key={'meal' + this.state.mealsPerDay[i] + i}
+                        key={'meal' + mealsPerDay[i] + i}
                         type="meal"
                         i={i}
                         saveMealsValue={this.saveMealsValue}
                         id={'meal' + i}
-                        value={this.state.meals['meal' + i]}
+                        value={localStorage.getItem('isDietCreated') === 'true'  ? this.props.selectedDiet.meals['meal' + i] : this.state.meals['meal' + i]}
                     />
                 )
             }
-        }
+        }  
 
+        console.log(this.props.selectedDiet)
         var ids = ['dietGoals', 'dietDuration']
         var inputs = ids.map((id, i) => {
             return (
@@ -87,37 +94,36 @@ class Diet extends React.Component {
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
                     class='register-inputs'
+                    value={!localStorage.getItem('isDietCreated') ? '' : this.props.selectedDiet[id]}
                 />
             )
         })
 
-
+        var isDietCreated = localStorage.getItem('isDietCreated')
+        console.log(isDietCreated)
         return (
             <main className="diet-main">
                 <div className="diet">
                     <Title title="diet" />
-                    <div>
                         {inputs}
-                        {!this.state.mealsGenerated ?
+                        {localStorage.getItem('isDietCreated') !== 'true' ?
                             <div className='generate-meals'>
                                 <div className='select-meals-number'>
                                     <NumberInput id='mealsPerDay'
                                         type="number"
                                         saveInputValue={this.saveInputValue}
-                                        value={this.state.mealsPerDay}
+                                        value={localStorage.getItem('isDietCreated') === 'true'  ? this.props.selectedDiet.mealsPerDay : this.state.mealsPerDay}
                                     />
                                 </div>
-                                {!this.state.mealsGenerated ? <button onClick={this.generateMeals} className="gen-btn">Generate Meals</button> : null}
                             </div> : null}
-                        {this.state.mealsGenerated ? mealInputs : null}
-                    </div>
+                        {localStorage.getItem('isDietCreated') === 'true' ? mealInputs : null}
                     <div className="wp-btns">
                         <Button click={this.closeDiet}
                             label="close"
                             className="close-btn"
                         />
-                        <Button click={this.saveDataHandler}
-                            label="save"
+                        <Button click={!isDietCreated ? this.editDietHandler : this.saveDataHandler}
+                            label={!isDietCreated ? "edit" : "save"}
                             className="login-btn"
                         />
                     </div>
@@ -127,10 +133,17 @@ class Diet extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        loggedUser: state.loggedUser,
+        selectedDiet: state.selectedDiet
+    }
+}
+
 function mapDispatchToProps(dispatch) {
     return {
         openDietPlan: (bool) => dispatch(openDietPlan(bool))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Diet)
+export default connect(mapStateToProps, mapDispatchToProps)(Diet)

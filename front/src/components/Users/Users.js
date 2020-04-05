@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {Redirect} from 'react-router-dom'
 import './Users.css'
 import User from './User/User'
 import { connect } from 'react-redux'
@@ -9,49 +9,62 @@ class Users extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            users: []
+            users: [],
+            redirect: false
         }
     }
 
     componentDidMount() {
-            axios.get('http://localhost:8080/app/v1/users', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-                }
-            }).then((res) => {
-                this.props.getAllUsers(res.data)
-                this.setState({users: res.data})
-            })
-            .catch(err => console.log(err))
-        }
-    
+        axios.get('http://localhost:8082/app/v1/users/', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        }).then((res) => {
+            this.props.getAllUsers(res.data)
+            this.setState({ users: res.data })
+        })
+        .catch((error) =>{
+            if (error.response.status === 401) {
+                this.setState({redirect: true})
+            }
+          })
+    }
+
 
     getWorkoutPlan = (id) => {
-        axios.get(`http://localhost:8080/app/v1/register/workoutplans/${id}`, {
+        axios.get(`http://localhost:8081/app/v1/plans/workoutplans/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
-        .then(res => {
-            this.props.selectedWorkoutPlan(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                this.props.selectedWorkoutPlan(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     getDiet = (id) => {
-        axios.get(`http://localhost:8080/app/v1/register/diets/${id}`, {
+        console.log(id)
+        axios.get(`http://localhost:8081/app/v1/plans/diets/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
-        .then(res => {
-            this.props.selectedDiet(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                console.log(res)
+                this.props.selectedDiet(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    redirectToAuth = () => {
+        if(this.state.redirect) {
+            return <Redirect to='/' />     
+           }
     }
 
 
@@ -69,18 +82,19 @@ class Users extends Component {
     }
 
     render() {
-            var user = this.state.users.map((user,i) => {
-                return (
-                    <User key={user._id} click={() => this.userClicked(user._id)}
-                        fullname={user.first_name + ' ' + user.last_name}
-                        age={new Date().getFullYear() - new Date(user.birthday).getFullYear()}
-                        level={user.level}
-                        userClicked={this.props.userClicked}
-                    />)
-            })
+        var user = this.state.users.map((user, i) => {
+            return (
+                <User key={user._id} click={() => this.userClicked(user._id)}
+                    fullname={user.first_name + ' ' + user.last_name}
+                    age={new Date().getFullYear() - new Date(user.birthday).getFullYear()}
+                    level={user.level}
+                    userClicked={this.props.userClicked}
+                />)
+        })
 
         return (
             <div className='users' >
+            {this.redirectToAuth()}
                 <h1>Users</h1>
                 <div className="users-scroll">
                     {user}

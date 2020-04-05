@@ -1,8 +1,11 @@
-const workoutPlanModel = require('../models/workoutPlanModel')
+const planModel = require('../models/planModel')
+const usersModel = require('../models/usersModel')
 
 const saveWorkoutPlan = (req,res) => {
     const newPlan = req.body
-    workoutPlanModel.saveWorkoutPlan({...newPlan, userID: req.user.id})
+    const user = req.user;
+    usersModel.updateUser(user.id, {...user, isWorkoutPlanCreated: true})
+    planModel.saveWorkoutPlan({...newPlan, userID: user.id})
     .then(() => {
         res.status(201).send("Workout plan created!")
     })
@@ -13,7 +16,9 @@ const saveWorkoutPlan = (req,res) => {
 
 const saveDiet = (req, res) => {
     const newDiet = req.body
-    workoutPlanModel.saveDiet({...newDiet, userID: req.user.id})
+    const user = req.user;
+    usersModel.updateUser(user.id, {...user, isDietCreated: true})
+    planModel.saveDiet({...newDiet, userID: user.id})
     .then(() => {
         res.status(201).send("Diet created")
     })
@@ -23,7 +28,7 @@ const saveDiet = (req, res) => {
 }
 
 const getWorkoutPlan = (req, res) => {
-    workoutPlanModel.getWorkoutPlan(req.params.id)
+    planModel.getWorkoutPlan(req.params.id)
     .then((data) => {
         res.status(201).send(data)
     })
@@ -33,8 +38,20 @@ const getWorkoutPlan = (req, res) => {
 }
 
 const getDiet = (req, res) => {
-    workoutPlanModel.getDiet(req.params.id)
+    planModel.getDiet(req.params.id)
     .then((data) => {
+        console.log(data)
+        res.status(201).send(data)
+    })
+    .catch((err) => {
+        res.status(500).send(err)
+    })
+}
+
+const updateDiet = (req, res) => {
+    planModel.updateDiet(req.params.id)
+    .then((data) => {
+        console.log(data)
         res.status(201).send(data)
     })
     .catch((err) => {
@@ -46,5 +63,6 @@ module.exports = {
     saveWorkoutPlan,
     saveDiet,
     getWorkoutPlan,
-    getDiet
+    getDiet,
+    updateDiet
 }

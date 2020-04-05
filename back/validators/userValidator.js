@@ -6,6 +6,8 @@ const createUser = {
     "location": "required|String", 
     "email": "required|String", 
     "password": "required|String",
+    "isWorkoutPlanCreated": "required|Boolean",
+    "isDietCreated": "required|Boolean"
 }
 
 module.export = {

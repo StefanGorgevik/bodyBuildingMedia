@@ -9,7 +9,9 @@ const User = mongoose.model(
         level: String,
         location: String,
         email: String,
-        password: String
+        password: String,
+        isWorkoutPlanCreated: Boolean,
+        isDietCreated: Boolean
     })
 )
 
@@ -48,8 +50,20 @@ const login = (email) => {
     })
 }
 
+const updateUser =(id,data) => {
+    return new Promise((success, fail) => {
+        User.updateOne({_id: id}, data, err => {
+            if(err) {
+                return fail(err)
+            } 
+            return success(data)
+        })
+    })
+} 
+
 module.exports = {
     getAllUsers,
     register,
-    login
+    login,
+    updateUser
 }
