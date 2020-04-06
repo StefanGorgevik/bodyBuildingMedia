@@ -24,6 +24,7 @@ app.use(
 
 app.post('/app/v1/plans/workoutplans', planHandler.saveWorkoutPlan)
 app.get('/app/v1/plans/workoutplans/:id', planHandler.getWorkoutPlan)
+app.put('/app/v1/plans/workoutplans/:id', planHandler.updateWorkoutPlan)
 app.post('/app/v1/plans/diets', planHandler.saveDiet)
 app.get('/app/v1/plans/diets/:id', planHandler.getDiet)
 app.put('/app/v1/plans/diets/:id', planHandler.updateDiet)

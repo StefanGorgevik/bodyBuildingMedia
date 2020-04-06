@@ -3,3 +3,11 @@
     margin: 0;
     padding: 20px;
 }
+
+.no-info-p {
+    font-size: 24px;
+    margin: 0 auto;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+}

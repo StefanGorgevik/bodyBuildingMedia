@@ -10,7 +10,9 @@ class Users extends Component {
         super(props)
         this.state = {
             users: [],
-            redirect: false
+            redirect: false,
+            user: {},
+            activeUser: null
         }
     }
 
@@ -20,8 +22,16 @@ class Users extends Component {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         }).then((res) => {
-            this.props.getAllUsers(res.data)
-            this.setState({ users: res.data })
+            var loggedUserId = localStorage.getItem('user-id')
+            var users = res.data.filter((user) => {
+                if(user._id === loggedUserId) {
+                    this.setState({user: user})
+                }
+                return user._id !== loggedUserId
+            })
+            this.props.getAllUsers(users)
+            this.setState({ users: users })
+
         })
         .catch((error) =>{
             if (error.response.status === 401) {
@@ -29,7 +39,6 @@ class Users extends Component {
             }
           })
     }
-
 
     getWorkoutPlan = (id) => {
         axios.get(`http://localhost:8081/app/v1/plans/workoutplans/${id}`, {
@@ -69,9 +78,14 @@ class Users extends Component {
 
 
     userClicked = (id) => {
-        var user = this.state.users.filter((user) => {
-            return user._id === id
-        })
+        var user;
+        if(localStorage.getItem('user-id') === id) {
+            user = [this.state.user]
+        } else {
+            user = this.state.users.filter((user) => {
+                return user._id === id
+            })
+        }
         this.getWorkoutPlan(user[0]._id)
         this.getDiet(user[0]._id)
         this.props.userSelected(user[0])
@@ -79,6 +93,7 @@ class Users extends Component {
         this.props.workoutPlanClick(false)
         this.props.dietClick(false)
         this.props.userClicked(true)
+        this.setState({activeUser: id})
     }
 
     render() {
@@ -88,7 +103,7 @@ class Users extends Component {
                     fullname={user.first_name + ' ' + user.last_name}
                     age={new Date().getFullYear() - new Date(user.birthday).getFullYear()}
                     level={user.level}
-                    userClicked={this.props.userClicked}
+                    class={this.state.activeUser !== user._id ? 'logged-user' : 'user'}
                 />)
         })
 
@@ -96,6 +111,14 @@ class Users extends Component {
             <div className='users' >
             {this.redirectToAuth()}
                 <h1>Users</h1>
+                <div className="logged-user-div">
+                    <User fullname={this.state.user.first_name + ' ' + this.state.user.last_name} 
+                    age={new Date().getFullYear() - new Date( this.state.user.birthday).getFullYear()}
+                    level={this.state.user.level}
+                    click={() => this.userClicked(this.state.user._id)}
+                    class={'logged-user'}
+                    />
+                </div>
                 <div className="users-scroll">
                     {user}
                 </div>
@@ -107,7 +130,8 @@ function mapStateToProps(state) {
     return {
         users: state.users,
         userClicked: state.userClicked,
-        isUserLogged: state.userLoggedIn
+        isUserLogged: state.userLoggedIn,
+        loggedUser: state.loggedUser
     }
 }
 function mapDispatchToProps(dispatch) {

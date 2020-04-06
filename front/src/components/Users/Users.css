@@ -12,8 +12,9 @@
     overflow-y: auto;
     max-height: 35%;
     width: 100%;
-    border: 3px solid white;
+    border: 1px solid rgba(231, 221, 221, 0.89);
     border-radius: 10px;
+    padding: 5px;
 }
 
 .users h1 {
@@ -27,3 +28,6 @@
     background-color: black;
 }
 
+.logged-user-div {
+    margin-bottom: 10px;
+}

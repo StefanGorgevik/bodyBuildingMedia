@@ -21,13 +21,15 @@ class User extends Component {
 
     render() {
         return (
-            <div className='user' onClick={this.props.click} onMouseEnter={this.hoverHandler} onMouseLeave={this.hoverLeaveHandler}>
+            <div className={this.props.class} onClick={this.props.click}
+                onMouseEnter={this.hoverHandler}
+                onMouseLeave={this.hoverLeaveHandler}>
                 <div className="photo-name">
                     <img className="user-photo" src={Builder} alt="builder" />
                 </div>
                 <div className="details">
                     <p>{this.props.fullname}</p>
-                        {this.state.hovered ?
+                    {this.state.hovered ?
                         <> <p>Age: <span>{this.props.age}</span></p>
                             <p>Level: <span>{this.props.level}</span></p> </> : null}
                 </div>

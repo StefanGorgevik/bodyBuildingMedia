@@ -1,22 +1,29 @@
+.logged-user,
 .user{
     display: flex;
     flex-direction: row;
+    align-items: center;
     border: 2px solid wheat;
     border-radius: 12px;
     cursor: pointer;
     transition: 0.5s;
+    padding: 2px;
+    background-color: rgb(112, 107, 112);
 }
 
+
+.logged-user:hover,
 .user:hover {
-    background-color: rgba(113, 121, 121, 0.883);
+    background-color: rgba(229, 241, 241, 0.966);
     color: black;
     transition: 0.5s;
 }
 
 .user-photo {
-    width: 70px;
+    width: 75px;
     max-height: 75px;
     padding: 2px;
+    border-radius: 15px;
 }
 
 .photo-name {
@@ -43,6 +50,12 @@
     text-align: center;
     padding: 2px;
     font-size: 18px;
+    font-weight: bold;
     margin: 0 auto;
     width: 100%;
+}
+
+.logged-user {
+    background-color: rgba(16, 16, 17, 0.616);
+    border-color: rgba(0, 0, 0, 0.89);
 }

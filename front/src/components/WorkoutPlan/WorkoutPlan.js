@@ -1,7 +1,7 @@
 import React from 'react'
 import './WorkoutPlan.css'
 import Title from '../Title/Title'
-import { openWorkoutPlan } from '../../redux/actions/userActions'
+import { openWorkoutPlan, selectedWorkoutPlan } from '../../redux/actions/userActions'
 import Input from '../RegInput/RegInput'
 import DaysInput from './WPlanDays/WPlanDays'
 import Button from '../Button/Button'
@@ -22,8 +22,35 @@ class WorkoutPlan extends React.Component {
                 day5: '',
                 day6: '',
                 day7: ''
-            }
+            },
+        }
+    }
 
+
+
+    componentDidMount() {
+        var isCreated = localStorage.getItem('isWPCreated') === 'true'
+        if (isCreated) {
+            var userID = localStorage.getItem('user-id')
+            axios.get(`http://localhost:8081/app/v1/plans/workoutplans/${userID}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            })
+                .then(res => {
+                    var plan = res.data
+                    console.log(plan)
+                    this.props.selectedWorkoutPlan(res.data)
+                    this.setState({
+                        type: plan.type,
+                        goal: plan.goal,
+                        intensity: plan.intensity,
+                        days: plan.days
+                    })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
     }
 
@@ -54,9 +81,35 @@ class WorkoutPlan extends React.Component {
             }
         })
             .then(res => {
+                localStorage.setItem('isWPCreated', 'true')
                 this.props.openWorkoutPlan(false)
+                window.location.reload()
             })
             .catch(err => {
+                this.props.openWorkoutPlan(true)
+            })
+    }
+
+    editWPHandler = () => {
+        var wpID = this.props.workoutPlan._id
+        axios.put(`http://localhost:8081/app/v1/plans/workoutplans/${wpID}`, {
+            type: this.state.type,
+            goal: this.state.goal,
+            intensity: this.state.intensity,
+            days: this.state.days
+        },
+            {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            })
+            .then(res => {
+                console.log(res)
+                this.props.openWorkoutPlan(false)
+                // window.location.reload()
+            })
+            .catch(err => {
+                console.log(err)
                 this.props.openWorkoutPlan(true)
             })
     }
@@ -66,6 +119,11 @@ class WorkoutPlan extends React.Component {
     }
 
     render() {
+        var isWPCreated = localStorage.getItem('isWPCreated') === "true"
+        var days;
+        if (this.props.workoutPlan && isWPCreated) {
+            days = this.props.workoutPlan.days
+        }
         var ids = ['type', 'intensity', 'goal']
         var inputs = ids.map((id, i) => {
             return (
@@ -74,6 +132,7 @@ class WorkoutPlan extends React.Component {
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
                     class="register-inputs"
+                    value={this.state[id]}
                 />
             )
         })
@@ -95,8 +154,8 @@ class WorkoutPlan extends React.Component {
                             label="close"
                             className="close-btn"
                         />
-                        <Button click={this.saveDataHandler}
-                            label="save"
+                        <Button click={!isWPCreated ? this.saveDataHandler : this.editWPHandler}
+                            label={isWPCreated ? "edit" : "save"}
                             className="login-btn"
                         />
                     </div>
@@ -106,10 +165,17 @@ class WorkoutPlan extends React.Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
     return {
-        openWorkoutPlan: (bool) => dispatch(openWorkoutPlan(bool))
+        workoutPlan: state.workoutPlan
     }
 }
 
-export default connect(null, mapDispatchToProps)(WorkoutPlan)
+function mapDispatchToProps(dispatch) {
+    return {
+        openWorkoutPlan: (bool) => dispatch(openWorkoutPlan(bool)),
+        selectedWorkoutPlan: (data) => dispatch(selectedWorkoutPlan(data))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutPlan)

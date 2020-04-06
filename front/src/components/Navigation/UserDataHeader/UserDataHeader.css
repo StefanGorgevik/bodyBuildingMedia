@@ -5,6 +5,9 @@
     min-height:5%;
     width: 100%;
     text-align: center;
+    border: 1px solid white;
+    border-radius: 10px;
+
 }
 
 .user-data-navigation ul {
@@ -17,7 +20,6 @@
 }
 
 .user-data-li {
-    border: 1px solid white;
     color: gray;
     font-weight: bold;
     font-size: 22px;
@@ -44,6 +46,7 @@
 .active-li {
     color: white;
     background-color: rgb(105, 101, 101);;
+    border-radius: 10px;
     border: 2px solid white;
     font-size: 26px;
  }

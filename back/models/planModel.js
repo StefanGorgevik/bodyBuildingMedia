@@ -58,34 +58,46 @@ const getWorkoutPlan = (userID) => {
     })
 }
 
+const updateWorkoutPlan = (dietID, userID, data) => {
+    console.log(dietID, userID, data)
+    return new Promise((success, fail) => {
+        WorkoutPlan.updateOne({_id: dietID, userID: userID}, data, err =>{
+            if(err) {
+                return fail(err)
+            } 
+            return success(data)
+        })
+    })
+}
+
 const getDiet = (userID) => {
     return new Promise((success, fail) => {
         Diet.find({userID: userID}, (err, data) =>{
             if(err) {
                 return fail(err)
             } 
-            console.log(data)
             return success(data)
         })
     })
 }
 
-const updateDiet = (dietID) => {
+const updateDiet = (dietID, userID, data) => {
     return new Promise((success, fail) => {
-        Diet.updateOne({_id: dietID}, (err, data) =>{
+        Diet.updateOne({_id: dietID, userID: userID}, data, err =>{
             if(err) {
                 return fail(err)
             } 
-            console.log(data)
             return success(data)
         })
     })
 }
+
 
 module.exports = {
     saveWorkoutPlan,
     saveDiet,
     getWorkoutPlan,
     getDiet,
-    updateDiet
+    updateDiet,
+    updateWorkoutPlan
 }

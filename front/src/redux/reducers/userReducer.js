@@ -45,7 +45,6 @@ export function userReducer(state = initState, action) {
             }
         }
         case "SELECTED_DIET": {
-            console.log(action.payload)
             return {
                 ...state, selectedDiet: action.payload
             }

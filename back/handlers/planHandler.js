@@ -37,6 +37,16 @@ const getWorkoutPlan = (req, res) => {
     })
 }
 
+const updateWorkoutPlan = (req, res) => {
+    planModel.updateWorkoutPlan(req.params.id, req.user.id, req.body)
+    .then((data) => {
+        res.status(201).send(data)
+    })
+    .catch((err) => {
+        res.status(500).send(err)
+    })
+}
+
 const getDiet = (req, res) => {
     planModel.getDiet(req.params.id)
     .then((data) => {
@@ -49,9 +59,8 @@ const getDiet = (req, res) => {
 }
 
 const updateDiet = (req, res) => {
-    planModel.updateDiet(req.params.id)
+    planModel.updateDiet(req.params.id, req.user.id, req.body)
     .then((data) => {
-        console.log(data)
         res.status(201).send(data)
     })
     .catch((err) => {
@@ -64,5 +73,6 @@ module.exports = {
     saveDiet,
     getWorkoutPlan,
     getDiet,
-    updateDiet
+    updateDiet,
+    updateWorkoutPlan
 }

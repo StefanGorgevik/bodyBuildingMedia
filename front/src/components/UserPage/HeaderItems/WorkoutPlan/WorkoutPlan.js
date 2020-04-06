@@ -14,10 +14,13 @@ const WorkoutPlan = (props) => {
     }
     return (
         <div className="workout-plan-user">
-            <InfoDiv labelNameId="type-p" labelText="Type" info={props.workoutPlan.type} />
-            <InfoDiv labelNameId="goal-p" labelText="Goal" info={props.workoutPlan.goal} />
-            <InfoDiv labelNameId="location" labelText="Intensity" info={props.workoutPlan.intensity} />
-            {days}
+            {props.workoutPlan ?
+                <>
+                    <InfoDiv labelNameId="type-p" labelText="Type" info={props.workoutPlan.type} />
+                    <InfoDiv labelNameId="goal-p" labelText="Goal" info={props.workoutPlan.goal} />
+                    <InfoDiv labelNameId="location" labelText="Intensity" info={props.workoutPlan.intensity} />
+                    {days} </>
+                : <p className="no-info-p">This user doesn't have an active workout plan!</p>}
         </div>
     )
 }

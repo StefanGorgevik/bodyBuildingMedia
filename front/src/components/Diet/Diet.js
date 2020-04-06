@@ -2,7 +2,7 @@ import React from 'react'
 import './Diet.css'
 
 import Title from '../Title/Title'
-import { openDietPlan } from '../../redux/actions/userActions'
+import { openDietPlan, selectedDiet } from '../../redux/actions/userActions'
 import Input from '../RegInput/RegInput'
 import DietInput from './DietInput/DietInput'
 import NumberInput from './DietNumberInput/DietNumberInput'
@@ -16,9 +16,33 @@ class Diet extends React.Component {
         this.state = {
             dietGoals: '',
             dietDuration: '',
-            mealsPerDay: localStorage.getItem('isDietCreated') === 'true' ? this.props.selectedDiet.mealsPerDay : 0,
-            meals: {},
-            mealAdded: false
+            mealsPerDay: 0,
+            meals: {}
+        }
+    }
+
+    componentDidMount() {
+        var isCreated = localStorage.getItem('isDietCreated') === 'true'
+        if (isCreated) {
+            var userID = localStorage.getItem('user-id')
+            axios.get(`http://localhost:8081/app/v1/plans/diets/${userID}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            })
+                .then(res => {
+                    var diet = res.data[0]
+                    this.props.selectedDiet(diet)
+                    this.setState({
+                        dietGoals: diet.dietGoals,
+                        dietDuration: diet.dietDuration,
+                        mealsPerDay: diet.mealsPerDay,
+                        meals: diet.meals
+                    })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
     }
 
@@ -49,28 +73,43 @@ class Diet extends React.Component {
             }
         })
             .then(res => {
-                window.location.reload();
                 this.props.openDietPlan(false)
+                localStorage.setItem('isDietCreated', "true")
+                window.location.reload();
             })
             .catch(err => {
+                console.log(err)
                 this.props.openDietPlan(true)
             })
     }
 
     editDietHandler = () => {
-        console.log(this.props.loggedUser)
+        var dietID = this.props.userDiet._id
+        axios.put(`http://localhost:8081/app/v1/plans/diets/${dietID}`, {
+            dietGoals: this.state.dietGoals,
+            dietDuration: this.state.dietDuration,
+            mealsPerDay: this.state.mealsPerDay,
+            meals: this.state.meals
+        },
+            {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            })
+            .then((res) => {
+                this.props.openDietPlan(false)
+                window.location.reload();
+                
+            })
+            .catch((err) => { this.props.openDietPlan(true) })
     }
 
+
     render() {
+        var isDietCreated = localStorage.getItem('isDietCreated') === 'true'
         if (this.state.mealsPerDay || this.props.selectedDiet) {
             var mealInputs = [];
             var mealsPerDay = {};
-            // if (localStorage.getItem('isDietCreated') === 'true' ) {
-            //     mealsPerDay = this.props.selectedDiet.mealsPerDay
-            // } else {
-            //     mealsPerDay = this.state.mealsPerDay
-            // }
-            // console.log(mealsPerDay)
             for (let i = 1; i <= this.state.mealsPerDay; i++) {
                 mealInputs.push(
                     <DietInput
@@ -79,13 +118,12 @@ class Diet extends React.Component {
                         i={i}
                         saveMealsValue={this.saveMealsValue}
                         id={'meal' + i}
-                        value={localStorage.getItem('isDietCreated') === 'true'  ? this.props.selectedDiet.meals['meal' + i] : this.state.meals['meal' + i]}
+                        value={this.state.meals['meal' + i]}
                     />
                 )
             }
-        }  
+        }
 
-        console.log(this.props.selectedDiet)
         var ids = ['dietGoals', 'dietDuration']
         var inputs = ids.map((id, i) => {
             return (
@@ -94,36 +132,33 @@ class Diet extends React.Component {
                     saveInputValue={this.saveInputValue}
                     name={this.state[i]}
                     class='register-inputs'
-                    value={!localStorage.getItem('isDietCreated') ? '' : this.props.selectedDiet[id]}
+                    value={this.state[id]}
                 />
             )
         })
-
-        var isDietCreated = localStorage.getItem('isDietCreated')
-        console.log(isDietCreated)
+        console.log(this.state.mealsPerDay)
         return (
             <main className="diet-main">
                 <div className="diet">
                     <Title title="diet" />
-                        {inputs}
-                        {localStorage.getItem('isDietCreated') !== 'true' ?
-                            <div className='generate-meals'>
-                                <div className='select-meals-number'>
-                                    <NumberInput id='mealsPerDay'
-                                        type="number"
-                                        saveInputValue={this.saveInputValue}
-                                        value={localStorage.getItem('isDietCreated') === 'true'  ? this.props.selectedDiet.mealsPerDay : this.state.mealsPerDay}
-                                    />
-                                </div>
-                            </div> : null}
-                        {localStorage.getItem('isDietCreated') === 'true' ? mealInputs : null}
+                    {inputs}
+                    <div className='generate-meals'>
+                        <div className='select-meals-number'>
+                            <NumberInput id='mealsPerDay'
+                                type="number"
+                                saveInputValue={this.saveInputValue}
+                                value={this.state.mealsPerDay}
+                            />
+                        </div>
+                    </div>
+                    {mealInputs}
                     <div className="wp-btns">
                         <Button click={this.closeDiet}
                             label="close"
                             className="close-btn"
                         />
-                        <Button click={!isDietCreated ? this.editDietHandler : this.saveDataHandler}
-                            label={!isDietCreated ? "edit" : "save"}
+                        <Button click={!isDietCreated ? this.saveDataHandler : this.editDietHandler}
+                            label={isDietCreated ? "edit" : "save"}
                             className="login-btn"
                         />
                     </div>
@@ -135,14 +170,14 @@ class Diet extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        loggedUser: state.loggedUser,
-        selectedDiet: state.selectedDiet
+        userDiet: state.selectedDiet
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        openDietPlan: (bool) => dispatch(openDietPlan(bool))
+        openDietPlan: (bool) => dispatch(openDietPlan(bool)),
+        selectedDiet: (bool) => dispatch(selectedDiet(bool))
     }
 }
 

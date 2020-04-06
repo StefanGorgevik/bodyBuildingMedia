@@ -11,7 +11,7 @@ function DietNumberInput(props) {
                 onChange={props.saveInputValue} 
                 min="0"
                 max="4"
-                defaultValue={props.value}
+                value={props.value}
                 />
         </div>
     )
