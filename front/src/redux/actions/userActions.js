@@ -59,10 +59,16 @@ export const userClicked = (clicked) => {
 }
 
 //to open the option selected by user on header and write a plan
-export const openWorkoutPlan = (plan) => {
+export const openEditInfo = (bool) => {
+    return {
+        type: "OPEN_EDIT_INFO",
+        payload: bool
+    }
+}
+export const openWorkoutPlan = (bool) => {
     return {
         type: "OPEN_WORKOUT_PLAN",
-        payload: plan
+        payload: bool
     }
 }
 export const openDietPlan = (bool) => {

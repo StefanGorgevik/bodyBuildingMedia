@@ -106,7 +106,7 @@ class WorkoutPlan extends React.Component {
             .then(res => {
                 console.log(res)
                 this.props.openWorkoutPlan(false)
-                // window.location.reload()
+                window.location.reload()
             })
             .catch(err => {
                 console.log(err)
@@ -120,10 +120,6 @@ class WorkoutPlan extends React.Component {
 
     render() {
         var isWPCreated = localStorage.getItem('isWPCreated') === "true"
-        var days;
-        if (this.props.workoutPlan && isWPCreated) {
-            days = this.props.workoutPlan.days
-        }
         var ids = ['type', 'intensity', 'goal']
         var inputs = ids.map((id, i) => {
             return (

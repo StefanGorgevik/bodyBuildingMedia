@@ -11,7 +11,7 @@ function RegInput(props) {
                     id={props.id}
                     className={props.class}
                     onChange={props.saveInputValue} 
-                    defaultValue={props.value}
+                    defaultValue={props.id === 'birthday' ?  props.value.toString().slice(0, 10) : props.value}
                     />
             </div>
         </div>

@@ -23,6 +23,8 @@ app.use(
 )
 
 app.get('/app/v1/users/', usersHandler.getUsers)
+app.get('/app/v1/users/:id', usersHandler.getOneUser)
+app.put('/app/v1/users/:id', usersHandler.updateUser)
 
 app.listen(8082, (err) => {
     if (err) {

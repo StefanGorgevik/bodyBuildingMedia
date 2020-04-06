@@ -4,13 +4,13 @@
     width: 15%;
     margin: 0 auto; 
     padding: 10px;
-    min-height: 30%;
+    min-height: 20%;
 }
 
 .users-scroll {
     margin: 0 auto;
     overflow-y: auto;
-    max-height: 35%;
+    max-height: 50%;
     width: 100%;
     border: 1px solid rgba(231, 221, 221, 0.89);
     border-radius: 10px;
@@ -21,7 +21,6 @@
     margin: 5px auto;
     padding: 0;
 }
-
 
 .user-clicked {
     border: 10px solid black;

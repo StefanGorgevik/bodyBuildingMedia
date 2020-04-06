@@ -7,6 +7,7 @@ const initState = {
     userLoggedIn: false,
     userRegistered: false,
     loggedUser: {},
+    editInfoOpened: false,
     workoutPlanOpened: false,
     dietPlanOpened: false,
     personalInfoClicked: false,
@@ -64,6 +65,11 @@ export function userReducer(state = initState, action) {
 
 
         //to open the option selected by user on header and write a plan
+        case "OPEN_EDIT_INFO": {
+            return {
+                ...state, editInfoOpened: action.payload
+            }
+        }
         case "OPEN_WORKOUT_PLAN": {
             return {
                 ...state, workoutPlanOpened: action.payload

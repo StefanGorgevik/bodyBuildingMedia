@@ -13,6 +13,7 @@ function PersonalInfo(props) {
                     saveInputValue={props.saveInputValue}
                     name={props.user[i]}
                     class="register-inputs"
+                    value={props.user[id]}
                 />)
         })
         return (
@@ -27,7 +28,8 @@ function PersonalInfo(props) {
 
 function mapStateToProps(state) {
     return {
-        userRegistered: state.userRegistered
+        userRegistered: state.userRegistered,
+        loggedUser: state.loggedUser
     }
 }
 

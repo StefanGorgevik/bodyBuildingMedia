@@ -1,19 +1,25 @@
 import React from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
-import { isUserLogged, openWorkoutPlan, openDietPlan, selectedDiet, selectedWorkoutPlan } from '../../../redux/actions/userActions'
+import { isUserLogged, openWorkoutPlan, openDietPlan, selectedDiet, selectedWorkoutPlan, openEditInfo } from '../../../redux/actions/userActions'
 import { connect } from 'react-redux'
-import axios from 'axios'
 
 class Header extends React.Component {
     addWorkoutPlanClickedHandler = () => {
         this.props.openWorkoutPlan(true)
         this.props.openDietPlan(false)
+        this.props.openEditInfo(false)
     }
 
     addDietClickedHandler = () => {
         this.props.openWorkoutPlan(false)
         this.props.openDietPlan(true)
+        this.props.openEditInfo(false)
+    }
+    openInfoClickedHandler = () => {
+        this.props.openEditInfo(true)
+        this.props.openWorkoutPlan(false)
+        this.props.openDietPlan(false)
     }
 
     signOut = () => {
@@ -30,7 +36,7 @@ class Header extends React.Component {
                 <div className="right-side">
                     <ul>
                         <li>{localStorage.getItem('name')}</li>
-                        <li className="clickable-lis">Edit Info</li>
+                        <li onClick={this.openInfoClickedHandler} className="clickable-lis">Edit Info</li>
                         <li onClick={this.addWorkoutPlanClickedHandler} 
                         className="clickable-lis">{isWPCreated ?
                             "Edit Workout" : "Add workout"}</li>
@@ -56,6 +62,7 @@ function mapDispatchToProps(dispatch) {
         isUserLogged: (bool) => dispatch(isUserLogged(bool)),
         openWorkoutPlan: (bool) => dispatch(openWorkoutPlan(bool)),
         openDietPlan: (bool) => dispatch(openDietPlan(bool)),
+        openEditInfo: (bool) => dispatch(openEditInfo(bool)),
         selectedDiet: (data) => dispatch(selectedDiet(data)),
         selectedWorkoutPlan: (data) => dispatch(selectedWorkoutPlan(data))
     }

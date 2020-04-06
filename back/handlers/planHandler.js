@@ -50,7 +50,6 @@ const updateWorkoutPlan = (req, res) => {
 const getDiet = (req, res) => {
     planModel.getDiet(req.params.id)
     .then((data) => {
-        console.log(data)
         res.status(201).send(data)
     })
     .catch((err) => {

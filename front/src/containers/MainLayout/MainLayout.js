@@ -5,6 +5,7 @@ import Users from '../../components/Users/Users'
 import UserImages from '../../components/UserImages/UserImages'
 import Header from '../../components/Navigation/Header/Header'
 import WorkoutPlan from '../../components/WorkoutPlan/WorkoutPlan'
+import EditInfo from '../../components/EditInfo/EditInfo'
 import Diet from '../../components/Diet/Diet'
 import './MainLayout.css'
 import { connect } from 'react-redux'
@@ -16,6 +17,7 @@ class MainLayout extends React.Component {
     render() {
     return (
         <div className="main">
+        {this.props.editInfoOpened ? <EditInfo /> : null}
         {this.props.workoutPlanOpened ? <WorkoutPlan /> : null}
         {this.props.dietPlanOpened ? <Diet /> : null}
         <Header />
@@ -33,7 +35,8 @@ function mapStateToProps(state) {
     return {
         isUserLogged: state.userLoggedIn,
         workoutPlanOpened: state.workoutPlanOpened,
-        dietPlanOpened: state.dietPlanOpened
+        dietPlanOpened: state.dietPlanOpened,
+        editInfoOpened: state.editInfoOpened
     }
 }
 

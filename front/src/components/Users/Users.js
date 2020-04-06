@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import './Users.css'
 import User from './User/User'
 import { connect } from 'react-redux'
@@ -24,8 +24,8 @@ class Users extends Component {
         }).then((res) => {
             var loggedUserId = localStorage.getItem('user-id')
             var users = res.data.filter((user) => {
-                if(user._id === loggedUserId) {
-                    this.setState({user: user})
+                if (user._id === loggedUserId) {
+                    this.setState({ user: user })
                 }
                 return user._id !== loggedUserId
             })
@@ -33,11 +33,11 @@ class Users extends Component {
             this.setState({ users: users })
 
         })
-        .catch((error) =>{
-            if (error.response.status === 401) {
-                this.setState({redirect: true})
-            }
-          })
+            .catch((error) => {
+                if (error.response.status === 401) {
+                    this.setState({ redirect: true })
+                }
+            })
     }
 
     getWorkoutPlan = (id) => {
@@ -71,15 +71,15 @@ class Users extends Component {
     }
 
     redirectToAuth = () => {
-        if(this.state.redirect) {
-            return <Redirect to='/' />     
-           }
+        if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
     }
 
 
     userClicked = (id) => {
         var user;
-        if(localStorage.getItem('user-id') === id) {
+        if (localStorage.getItem('user-id') === id) {
             user = [this.state.user]
         } else {
             user = this.state.users.filter((user) => {
@@ -93,7 +93,7 @@ class Users extends Component {
         this.props.workoutPlanClick(false)
         this.props.dietClick(false)
         this.props.userClicked(true)
-        this.setState({activeUser: id})
+        this.setState({ activeUser: id })
     }
 
     render() {
@@ -109,14 +109,14 @@ class Users extends Component {
 
         return (
             <div className='users' >
-            {this.redirectToAuth()}
+                {this.redirectToAuth()}
                 <h1>Users</h1>
                 <div className="logged-user-div">
-                    <User fullname={this.state.user.first_name + ' ' + this.state.user.last_name} 
-                    age={new Date().getFullYear() - new Date( this.state.user.birthday).getFullYear()}
-                    level={this.state.user.level}
-                    click={() => this.userClicked(this.state.user._id)}
-                    class={'logged-user'}
+                    <User fullname={this.state.user.first_name + ' ' + this.state.user.last_name}
+                        age={new Date().getFullYear() - new Date(this.state.user.birthday).getFullYear()}
+                        level={this.state.user.level}
+                        click={() => this.userClicked(this.state.user._id)}
+                        class={'logged-user'}
                     />
                 </div>
                 <div className="users-scroll">

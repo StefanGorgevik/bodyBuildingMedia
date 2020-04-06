@@ -9,6 +9,7 @@ import NumberInput from './DietNumberInput/DietNumberInput'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import Button from '../Button/Button'
+import Error from '../WelcomePage/Error/Error'
 
 class Diet extends React.Component {
     constructor(props) {
@@ -17,7 +18,8 @@ class Diet extends React.Component {
             dietGoals: '',
             dietDuration: '',
             mealsPerDay: 0,
-            meals: {}
+            meals: {},
+            error: false
         }
     }
 
@@ -62,25 +64,33 @@ class Diet extends React.Component {
     }
 
     saveDataHandler = () => {
-        axios.post('http://localhost:8081/app/v1/plans/diets', {
-            dietGoals: this.state.dietGoals,
-            dietDuration: this.state.dietDuration,
-            mealsPerDay: this.state.mealsPerDay,
-            meals: this.state.meals
-        }, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-            }
-        })
-            .then(res => {
-                this.props.openDietPlan(false)
-                localStorage.setItem('isDietCreated', "true")
-                window.location.reload();
+        if (this.state.dietGoals !== '' && this.state.dietDuration !== '' && this.state.mealsPerDay !== 0 && this.state.meals) {
+            console.log('entered')
+            axios.post('http://localhost:8081/app/v1/plans/diets', {
+                dietGoals: this.state.dietGoals,
+                dietDuration: this.state.dietDuration,
+                mealsPerDay: this.state.mealsPerDay,
+                meals: this.state.meals
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
             })
-            .catch(err => {
-                console.log(err)
-                this.props.openDietPlan(true)
-            })
+                .then(res => {
+                    this.props.openDietPlan(false)
+                    localStorage.setItem('isDietCreated', "true")
+                    window.location.reload();
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.props.openDietPlan(true)
+                    this.setState({ error: true })
+                })
+        } else {
+            console.log('entered else')
+
+            this.setState({ error: true })
+        }
     }
 
     editDietHandler = () => {
@@ -99,11 +109,16 @@ class Diet extends React.Component {
             .then((res) => {
                 this.props.openDietPlan(false)
                 window.location.reload();
-                
+
             })
             .catch((err) => { this.props.openDietPlan(true) })
     }
 
+    closeErrorAlert = () => {
+        this.setState({
+            error: false
+        })
+    }
 
     render() {
         var isDietCreated = localStorage.getItem('isDietCreated') === 'true'
@@ -136,9 +151,10 @@ class Diet extends React.Component {
                 />
             )
         })
-        console.log(this.state.mealsPerDay)
+
         return (
             <main className="diet-main">
+                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert} /> : null}
                 <div className="diet">
                     <Title title="diet" />
                     {inputs}

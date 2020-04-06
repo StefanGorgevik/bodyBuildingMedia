@@ -60,10 +60,21 @@ const updateUser =(id,data) => {
         })
     })
 } 
+const getOneUser =(id) => {
+    return new Promise((success, fail) => {
+        User.find({_id: id}, (err,data) => {
+            if(err) {
+                return fail(err)
+            } 
+            return success(data)
+        })
+    })
+} 
 
 module.exports = {
     getAllUsers,
     register,
     login,
-    updateUser
+    updateUser,
+    getOneUser
 }

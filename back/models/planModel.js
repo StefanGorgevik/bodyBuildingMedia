@@ -59,7 +59,6 @@ const getWorkoutPlan = (userID) => {
 }
 
 const updateWorkoutPlan = (dietID, userID, data) => {
-    console.log(dietID, userID, data)
     return new Promise((success, fail) => {
         WorkoutPlan.updateOne({_id: dietID, userID: userID}, data, err =>{
             if(err) {

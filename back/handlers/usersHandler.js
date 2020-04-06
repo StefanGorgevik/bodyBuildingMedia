@@ -15,6 +15,26 @@ const getUsers = (req, res) => {
         })
 }
 
+const getOneUser = (req, res) => {
+    usersModel.getOneUser(req.params.id)
+        .then((data) => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        })
+}
+
+const updateUser = (req, res) => {
+    usersModel.updateUser(req.params.id, req.body)
+        .then((data) => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        })
+}
+
 const registerUser = (req, res) => {
     var newUser = req.body;
     var validate = new validator.Validator(newUser, userValidator.createUser);
@@ -77,5 +97,7 @@ const loginUser = (req, res) => {
 module.exports = {
     getUsers,
     registerUser,
-    loginUser
+    loginUser,
+    getOneUser,
+    updateUser
 }
