@@ -35,7 +35,6 @@ class Header extends React.Component {
                 <h2 className="title-h2">Body Building Media</h2>
                 <div className="right-side">
                     <ul>
-                        <li>{localStorage.getItem('name')}</li>
                         <li onClick={this.openInfoClickedHandler} className="clickable-lis">Edit Info</li>
                         <li onClick={this.addWorkoutPlanClickedHandler} 
                         className="clickable-lis">{isWPCreated ?

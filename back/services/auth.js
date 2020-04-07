@@ -35,5 +35,5 @@ app.listen(8080, (err) => {
         console.log("Error")
         return;
     }
-    return console.log("Server has started successfully on port 8080")
+    return console.log("Auth server has started successfully on port 8080")
 })

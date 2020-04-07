@@ -32,5 +32,5 @@ app.listen(8082, (err) => {
         console.log("Error")
         return;
     }
-    return console.log("Server has started successfully on port 8082")
+    return console.log("Users server has started successfully on port 8082")
 })

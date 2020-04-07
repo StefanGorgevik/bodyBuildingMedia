@@ -1,6 +1,6 @@
 .welcome-cover {
     background-image: url('../../assets/images/backgrounds/dark_geometric.png');
-    height: 100vh;  
+    height: 100vh; 
     background-position: center;
     display: flex;
     justify-content: center;
@@ -10,9 +10,10 @@
 .auth-content {
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
     flex-direction: column;
     height: 30%;
+    width: 50%;
     font-family: 'Roboto Slab', serif;
 }
 
@@ -21,9 +22,20 @@
 }
 
 .welcome-cover-h1 {
-    color: rgb(195, 184, 184);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(228, 218, 218);
     margin: auto;
-    height: 50px;
+    height: 70px;
+    min-width: 100%;
+    background-color: rgba(255, 255, 255, 0.062);
+    border-radius: 15px;
     font-size:40px;
     font-family: 'Diplomata SC', cursive;
+}
+
+.welcome-cover-h1:hover {
+    background-color: rgba(255, 255, 255, 0.144);
+
 }

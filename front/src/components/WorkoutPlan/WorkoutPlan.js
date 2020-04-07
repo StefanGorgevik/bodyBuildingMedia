@@ -7,6 +7,7 @@ import DaysInput from './WPlanDays/WPlanDays'
 import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import Error from '../WelcomePage/Error/Error'
 class WorkoutPlan extends React.Component {
     constructor(props) {
         super(props)
@@ -23,10 +24,9 @@ class WorkoutPlan extends React.Component {
                 day6: '',
                 day7: ''
             },
+            error: false
         }
     }
-
-
 
     componentDidMount() {
         var isCreated = localStorage.getItem('isWPCreated') === 'true'
@@ -39,7 +39,6 @@ class WorkoutPlan extends React.Component {
             })
                 .then(res => {
                     var plan = res.data
-                    console.log(plan)
                     this.props.selectedWorkoutPlan(res.data)
                     this.setState({
                         type: plan.type,
@@ -69,25 +68,33 @@ class WorkoutPlan extends React.Component {
     }
 
     saveDataHandler = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:8081/app/v1/plans/workoutplans', {
-            type: this.state.type,
-            goal: this.state.goal,
-            intensity: this.state.intensity,
-            days: this.state.days
-        }, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-            }
-        })
-            .then(res => {
-                localStorage.setItem('isWPCreated', 'true')
-                this.props.openWorkoutPlan(false)
-                window.location.reload()
+        var plan = this.state
+        console.log(plan)
+        if (plan.type !== '' && plan.goal !== '' && plan.intensity !== '' && Object.values(plan.days).length !== 0) {
+            e.preventDefault()
+            axios.post('http://localhost:8081/app/v1/plans/workoutplans', {
+                type: this.state.type,
+                goal: this.state.goal,
+                intensity: this.state.intensity,
+                days: this.state.days
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
             })
-            .catch(err => {
-                this.props.openWorkoutPlan(true)
-            })
+                .then(res => {
+                    localStorage.setItem('isWPCreated', 'true')
+                    this.setState({ error: false })
+                    this.props.openWorkoutPlan(false)
+                    window.location.reload()
+                })
+                .catch(err => {
+                    this.setState({ error: true })
+                    this.props.openWorkoutPlan(true)
+                })
+        } else {
+            this.setState({ error: true })
+        }
     }
 
     editWPHandler = () => {
@@ -118,6 +125,12 @@ class WorkoutPlan extends React.Component {
         this.props.openWorkoutPlan(false)
     }
 
+    closeErrorAlert = () => {
+        this.setState({
+            error: false
+        })
+    }
+
     render() {
         var isWPCreated = localStorage.getItem('isWPCreated') === "true"
         var ids = ['type', 'intensity', 'goal']
@@ -135,6 +148,7 @@ class WorkoutPlan extends React.Component {
 
         return (
             <main className="wp-main">
+                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert} /> : null}
                 <div className="workout-plan">
                     <div className="wp-inputs-div">
                         <Title title="workout plan" />

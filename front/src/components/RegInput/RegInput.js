@@ -12,6 +12,8 @@ function RegInput(props) {
                     className={props.class}
                     onChange={props.saveInputValue} 
                     defaultValue={props.id === 'birthday' ?  props.value.toString().slice(0, 10) : props.value}
+                    disabled={props.editInfoOpened && props.id === 'password' ? 'disabled' : null}
+                    style={{ cursor: props.editInfoOpened && props.id === 'password' ? 'not-allowed' : null}}
                     />
             </div>
         </div>

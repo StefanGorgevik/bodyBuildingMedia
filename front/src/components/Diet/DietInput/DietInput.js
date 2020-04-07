@@ -7,8 +7,7 @@ function DietInput(props) {
             <label htmlFor={props.id} className="login-label">{props.type} {props.i}</label>
             <textarea className="meals-snacks-textarea" onChange={props.saveMealsValue} 
             id={props.id} defaultValue={props.value}></textarea>
-            
-        </div>
+        </div> 
     )
 }
 

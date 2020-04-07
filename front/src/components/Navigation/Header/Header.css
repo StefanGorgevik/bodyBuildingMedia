@@ -1,12 +1,14 @@
 .navigation {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 10%;
     border-bottom: 2px solid white;
     border-top: 2px solid white;
     background-color: #212222e5;
     background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre-v2.png");
     align-items: flex-end;
+    font-family: 'Roboto Slab', serif;
 }
 
 .right-side {
@@ -29,6 +31,7 @@
     font-size: 24px;
     font-weight: bold;
     min-width: 10%;
+    font-family: 'Roboto Slab', serif;
 }
 
 .clickable-lis:hover {
@@ -36,7 +39,6 @@
     font-size: 25px;
     border-bottom: 1px solid white;
     cursor: pointer;
-
 }
 
 .right-side ul a {
@@ -51,10 +53,19 @@
 }
 
 .title-h2 {
-    margin: 10px 40px;
-    color: rgb(180, 174, 174);
-    border: 1px dashed #858a8ae5;
+    margin: 5px 40px;
+    color: rgb(12, 10, 10);
+    border: 4px solid #aaa0a0;
+    background-color: rgba(234, 241, 241, 0.123);
+    border-radius: 10px;
+    padding: 5px 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.header-name-li {
+    border-bottom: 1px solid white;
     border-radius: 10px;
     padding: 5px;
-    text-align: center;
 }

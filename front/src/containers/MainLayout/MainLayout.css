@@ -2,6 +2,7 @@
     height: 100%;
     background-color: rgba(17, 15, 15, 0.87);
     background-image: url('../../assets/images/backgrounds/content-background.png');
+    font-family: 'Roboto Slab', serif;
 }
 
 .main-layout {

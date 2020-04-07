@@ -14,6 +14,7 @@ function PersonalInfo(props) {
                     name={props.user[i]}
                     class="register-inputs"
                     value={props.user[id]}
+                    editInfoOpened={props.editInfoOpened}
                 />)
         })
         return (

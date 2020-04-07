@@ -35,5 +35,5 @@ app.listen(8081, (err) => {
         console.log("Error")
         return;
     }
-    return console.log("Server has started successfully on port 8081")
+    return console.log("Plans server has started successfully on port 8081")
 })

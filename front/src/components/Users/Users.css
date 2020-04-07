@@ -1,7 +1,7 @@
 .users {
     display: flex; 
     flex-direction: column;
-    width: 15%;
+    min-width: 15%;
     margin: 0 auto; 
     padding: 10px;
     min-height: 20%;
@@ -10,7 +10,7 @@
 .users-scroll {
     margin: 0 auto;
     overflow-y: auto;
-    max-height: 50%;
+    max-height: 35%;
     width: 100%;
     border: 1px solid rgba(231, 221, 221, 0.89);
     border-radius: 10px;

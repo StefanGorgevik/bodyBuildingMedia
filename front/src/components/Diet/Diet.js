@@ -64,7 +64,8 @@ class Diet extends React.Component {
     }
 
     saveDataHandler = () => {
-        if (this.state.dietGoals !== '' && this.state.dietDuration !== '' && this.state.mealsPerDay !== 0 && this.state.meals) {
+        if (this.state.dietGoals !== '' && this.state.dietDuration !== '' && this.state.mealsPerDay !== 0 
+        && Object.values(this.state.meals).length !== 0 ) {
             console.log('entered')
             axios.post('http://localhost:8081/app/v1/plans/diets', {
                 dietGoals: this.state.dietGoals,
@@ -77,18 +78,17 @@ class Diet extends React.Component {
                 }
             })
                 .then(res => {
-                    this.props.openDietPlan(false)
+                    this.setState({ error: false })
                     localStorage.setItem('isDietCreated', "true")
+                    this.props.openDietPlan(false)
                     window.location.reload();
                 })
                 .catch(err => {
-                    console.log(err)
-                    this.props.openDietPlan(true)
                     this.setState({ error: true })
+                    this.props.openDietPlan(true)
                 })
         } else {
             console.log('entered else')
-
             this.setState({ error: true })
         }
     }
