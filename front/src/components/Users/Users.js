@@ -5,6 +5,8 @@ import User from './User/User'
 import { connect } from 'react-redux'
 import { userSelected, userClicked, getAllUsers, selectedWorkoutPlan, personalInfoClick, workoutPlanClick, dietClick, selectedDiet } from '../../redux/actions/userActions'
 import axios from 'axios'
+const BASE_URL = 'http://localhost:8083/';
+
 class Users extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +14,8 @@ class Users extends Component {
             users: [],
             redirect: false,
             user: {},
-            activeUser: null
+            activeUser: null,
+            photos: []
         }
     }
 
@@ -31,6 +34,24 @@ class Users extends Component {
             })
             this.props.getAllUsers(users)
             this.setState({ users: users })
+
+
+            axios.get(`http://localhost:8083/getimages`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            })
+                .then((res) => {
+                    console.log(res.data)
+                    this.setState({
+                        photos: res.data
+                    })
+                    console.log(this.state.photos)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+
 
         })
             .catch((error) => {
@@ -101,12 +122,17 @@ class Users extends Component {
             return (
                 <User key={user._id} click={() => this.userClicked(user._id)}
                     fullname={user.first_name + ' ' + user.last_name}
+                    userID={user._id}
                     age={new Date().getFullYear() - new Date(user.birthday).getFullYear()}
                     level={user.level}
                     class={this.state.activeUser !== user._id ? 'logged-user' : 'user'}
                 />)
         })
-
+        if (this.state.photos.length !== 0) {
+            var loggedUser = this.state.photos[0]
+            var id = loggedUser.userID
+            var url = BASE_URL + loggedUser.url
+        }
         return (
             <div className='users' >
                 {this.redirectToAuth()}
@@ -117,6 +143,7 @@ class Users extends Component {
                         level={this.state.user.level}
                         click={() => this.userClicked(this.state.user._id)}
                         class={'logged-user'}
+                        photo={this.state.photos.length !== 0 && id === this.state.user._id ? url : null}
                     />
                 </div>
                 <div className="users-scroll">

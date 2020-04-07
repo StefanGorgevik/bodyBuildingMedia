@@ -14,6 +14,7 @@ const saveWorkoutPlan = (req,res) => {
     })
 }
 
+
 const saveDiet = (req, res) => {
     const newDiet = req.body
     const user = req.user;

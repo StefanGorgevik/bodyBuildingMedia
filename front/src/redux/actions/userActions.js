@@ -77,6 +77,12 @@ export const openDietPlan = (bool) => {
         payload: bool
     }
 }
+export const openUploadPhoto = (bool) => {
+    return {
+        type: "OPEN_UPLOAD_PHOTO",
+        payload: bool
+    }
+}
 
 //userpage header for active class on header
 

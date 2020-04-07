@@ -1,7 +1,7 @@
 import React from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
-import { isUserLogged, openWorkoutPlan, openDietPlan, selectedDiet, selectedWorkoutPlan, openEditInfo } from '../../../redux/actions/userActions'
+import { isUserLogged, openWorkoutPlan, openDietPlan, selectedDiet, selectedWorkoutPlan, openEditInfo, openUploadPhoto } from '../../../redux/actions/userActions'
 import { connect } from 'react-redux'
 
 class Header extends React.Component {
@@ -20,6 +20,9 @@ class Header extends React.Component {
         this.props.openEditInfo(true)
         this.props.openWorkoutPlan(false)
         this.props.openDietPlan(false)
+    }
+    openUploadPhotoClickedHandler = () => {
+        this.props.openUploadPhoto(true)
     }
 
     signOut = () => {
@@ -41,6 +44,8 @@ class Header extends React.Component {
                             "Edit Workout" : "Add workout"}</li>
                         <li onClick={this.addDietClickedHandler} className="clickable-lis">
                         {isDietCreated  ? "Edit diet" : "Add diet"}</li>
+                        <li onClick={this.openUploadPhotoClickedHandler} className="clickable-lis">
+                       Upload Photo</li>
                         <Link to="/"><li className="clickable-lis" onClick={this.signOut}>Sign Out</li></Link>
                     </ul>
                 </div>
@@ -62,6 +67,7 @@ function mapDispatchToProps(dispatch) {
         openWorkoutPlan: (bool) => dispatch(openWorkoutPlan(bool)),
         openDietPlan: (bool) => dispatch(openDietPlan(bool)),
         openEditInfo: (bool) => dispatch(openEditInfo(bool)),
+        openUploadPhoto: (bool) => dispatch(openUploadPhoto(bool)),
         selectedDiet: (data) => dispatch(selectedDiet(data)),
         selectedWorkoutPlan: (data) => dispatch(selectedWorkoutPlan(data))
     }
