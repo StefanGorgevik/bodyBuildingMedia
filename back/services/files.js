@@ -1,24 +1,17 @@
 const express = require('express');
-const multer = require('multer');
-const cors = require('cors');
-const filesHandler = require('../handlers/filesHandler')
 const app = express();
+const multer = require('multer');
+
+const cors = require('cors');
+app.use(cors());
+
+const filesHandler = require('../handlers/filesHandler')
 
 //making the connection with mongoose
 const config = require('../config/index')
 const DBConnection = require('../db/connection')
 var c = config.getConfig("db")
 DBConnection.initialize(c);
-
-var jwt = require('express-jwt');
-app.use(                                                      
-    jwt(
-        { secret: config.getConfig('jwt').key }
-    )
-    .unless(
-        { path: '/getimages' }
-    )
-);
 
 app.use(express.static('public'))
 
@@ -27,16 +20,30 @@ var storage = multer.diskStorage({
         cb(null, 'public/images/uploads')
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname)
+        cb(null, req.user.id + '-' + file.originalname)
     }
 });
 const upload = multer({ storage })
 
-app.use(cors());
+var jwt = require('express-jwt');
+app.use(
+    jwt(
+        { secret: config.getConfig('jwt').key }
+    )
+        .unless({
+            methods: ['GET', 'POST'],
+            path: [
+                { url: /^\/upload\/.*/, methods: ['GET','POST'] },
+                { url: /^\/uploads\/images\/.*/, methods: ['GET','POST'] },
+                { url: /^\/images\/.*/, methods: ['GET','POST'] },
+                { url: /^\/images\/uploads\/.*/, methods: ['GET','POST'] },
+            ]
+        })
+);
 
+app.post('/upload/', upload.single('image'), filesHandler.uploadPhoto);
+app.get('/images/:id', filesHandler.getOneImage);
 
-app.get('/getimages', filesHandler.getImages)
-app.post('/upload', upload.single('image'), filesHandler.uploadPhoto);
 
 app.listen(8083, err => {
     if (err) {
@@ -46,3 +53,5 @@ app.listen(8083, err => {
     }
     console.log('Files server successfully started on port 8083');
 });
+
+

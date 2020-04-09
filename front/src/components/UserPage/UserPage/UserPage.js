@@ -9,11 +9,6 @@ import { connect } from 'react-redux'
 import { personalInfoClick, workoutPlanClick, dietClick } from '../../../redux/actions/userActions'
 
 class UserPage extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {}
-    }
-
     personalInfoClickedHandler = () => {
         this.props.personalInfoClick(true)
         this.props.workoutPlanClick(false)

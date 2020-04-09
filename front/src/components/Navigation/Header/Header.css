@@ -32,6 +32,8 @@
     font-weight: bold;
     min-width: 10%;
     font-family: 'Roboto Slab', serif;
+    transition:1s;
+    text-align: center;
 }
 
 .clickable-lis:hover {
@@ -45,6 +47,7 @@
     text-decoration: none;
     color: white;
     font-size: 24px;
+    transition:1s;
     min-width: 10%;
 }
 
@@ -68,4 +71,9 @@
     border-bottom: 1px solid white;
     border-radius: 10px;
     padding: 5px;
+}
+
+.fa-cogs {
+    color: white;
+    font-size: 32px;
 }

@@ -31,7 +31,7 @@ const saveDiet = (req, res) => {
 const getWorkoutPlan = (req, res) => {
     planModel.getWorkoutPlan(req.params.id)
     .then((data) => {
-        res.status(201).send(data)
+        res.status(200).send(data)
     })
     .catch((err) => {
         res.status(500).send(err)
@@ -51,7 +51,7 @@ const updateWorkoutPlan = (req, res) => {
 const getDiet = (req, res) => {
     planModel.getDiet(req.params.id)
     .then((data) => {
-        res.status(201).send(data)
+        res.status(200).send(data)
     })
     .catch((err) => {
         res.status(500).send(err)

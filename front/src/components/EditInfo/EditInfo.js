@@ -15,7 +15,7 @@ class EditInfo extends Component {
             user: {
                 firstName: '',
                 lastName: '',
-                birthday: '',
+                age: 0,
                 level: '',
                 location: '',
                 email: '',
@@ -38,7 +38,7 @@ class EditInfo extends Component {
                     user: {
                         firstName: user.first_name,
                         lastName: user.last_name,
-                        birthday: user.birthday,
+                        age: user.age,
                         level: user.level,
                         location: user.location,
                         email: user.email,
@@ -62,12 +62,12 @@ class EditInfo extends Component {
         var userID = localStorage.getItem('user-id')
         var user = this.state.user
         console.log(this.state.user)
-        if (user.firstName !== '' && user.lastName !== '' && user.birthday !== '' && user.level !== ''
+        if (user.firstName !== '' && user.lastName !== '' && user.age !== 0 && user.level !== ''
             && user.location !== '' && user.email !== '' && user.password !== '') {
             axios.put(`http://localhost:8082/app/v1/users/${userID}`, {
                 first_name: this.state.user.firstName,
                 last_name: this.state.user.lastName,
-                birthday: this.state.user.birthday,
+                age: this.state.user.age,
                 level: this.state.user.level,
                 location: this.state.user.location,
                 email: this.state.user.email,

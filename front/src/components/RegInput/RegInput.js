@@ -7,7 +7,7 @@ function RegInput(props) {
         <div>
             <div className='input-div'>
                 <label htmlFor={props.id} className="login-label">{id.replace(/-/g, ' ')}</label>
-                <input type={props.id === "birthday" ? "date" : "text" && props.id === 'password' ? "password" : "text"}
+                <input type={props.id === "age" ? "number" : "text" && props.id === 'password' ? "password" : "text"}
                     id={props.id}
                     className={props.class}
                     onChange={props.saveInputValue} 

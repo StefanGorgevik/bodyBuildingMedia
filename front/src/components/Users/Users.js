@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import './Users.css'
 import User from './User/User'
+import LoggedUser from './LoggedUser/LoggedUser'
 import { connect } from 'react-redux'
-import { userSelected, userClicked, getAllUsers, selectedWorkoutPlan, personalInfoClick, workoutPlanClick, dietClick, selectedDiet } from '../../redux/actions/userActions'
+import { userSelected, userClicked, getAllUsers, selectedWorkoutPlan, personalInfoClick, workoutPlanClick, dietClick, selectedDiet, uploadPhotoUrl } from '../../redux/actions/userActions'
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8083/';
-
+const BASE_URL = 'http://localhost:8083/'
 class Users extends Component {
     constructor(props) {
         super(props)
@@ -14,8 +14,7 @@ class Users extends Component {
             users: [],
             redirect: false,
             user: {},
-            activeUser: null,
-            photos: []
+            activeUser: null
         }
     }
 
@@ -32,27 +31,9 @@ class Users extends Component {
                 }
                 return user._id !== loggedUserId
             })
+            console.log(users)
             this.props.getAllUsers(users)
             this.setState({ users: users })
-
-
-            axios.get(`http://localhost:8083/getimages`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-                }
-            })
-                .then((res) => {
-                    console.log(res.data)
-                    this.setState({
-                        photos: res.data
-                    })
-                    console.log(this.state.photos)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-
-
         })
             .catch((error) => {
                 if (error.response.status === 401) {
@@ -60,6 +41,7 @@ class Users extends Component {
                 }
             })
     }
+
 
     getWorkoutPlan = (id) => {
         axios.get(`http://localhost:8081/app/v1/plans/workoutplans/${id}`, {
@@ -76,7 +58,6 @@ class Users extends Component {
     }
 
     getDiet = (id) => {
-        console.log(id)
         axios.get(`http://localhost:8081/app/v1/plans/diets/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -107,6 +88,7 @@ class Users extends Component {
                 return user._id === id
             })
         }
+        this.getImage(user[0]._id)
         this.getWorkoutPlan(user[0]._id)
         this.getDiet(user[0]._id)
         this.props.userSelected(user[0])
@@ -117,35 +99,48 @@ class Users extends Component {
         this.setState({ activeUser: id })
     }
 
+    getImage = (id) => {
+        console.log(id)
+        
+        axios.get(`http://localhost:8083/images/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+            .then(res => {
+                console.log(res.data)
+                this.props.uploadPhotoUrl(BASE_URL + res.data.url)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     render() {
         var user = this.state.users.map((user, i) => {
             return (
                 <User key={user._id} click={() => this.userClicked(user._id)}
                     fullname={user.first_name + ' ' + user.last_name}
                     userID={user._id}
-                    age={new Date().getFullYear() - new Date(user.birthday).getFullYear()}
+                    age={user.age}
                     level={user.level}
-                    class={this.state.activeUser !== user._id ? 'logged-user' : 'user'}
+                    class={this.state.activeUser !== user._id ? 'selected-user' : 'user'}
                 />)
         })
-        if (this.state.photos.length !== 0) {
-            var loggedUser = this.state.photos[0]
-            var id = loggedUser.userID
-            var url = BASE_URL + loggedUser.url
-        }
+
         return (
             <div className='users' >
                 {this.redirectToAuth()}
-                <h1>Users</h1>
                 <div className="logged-user-div">
-                    <User fullname={this.state.user.first_name + ' ' + this.state.user.last_name}
-                        age={new Date().getFullYear() - new Date(this.state.user.birthday).getFullYear()}
+                    <LoggedUser fullname={this.state.user.first_name + ' ' + this.state.user.last_name}
+                        age={this.state.user.age}
+                        userID={this.state.user._id}
                         level={this.state.user.level}
                         click={() => this.userClicked(this.state.user._id)}
                         class={'logged-user'}
-                        photo={this.state.photos.length !== 0 && id === this.state.user._id ? url : null}
                     />
                 </div>
+                <h1>Users</h1>
                 <div className="users-scroll">
                     {user}
                 </div>
@@ -170,7 +165,8 @@ function mapDispatchToProps(dispatch) {
         personalInfoClick: (bool) => dispatch(personalInfoClick(bool)),
         workoutPlanClick: (bool) => dispatch(workoutPlanClick(bool)),
         dietClick: (bool) => dispatch(dietClick(bool)),
-        userClicked: (bool) => dispatch(userClicked(bool))
+        userClicked: (bool) => dispatch(userClicked(bool)),
+        uploadPhotoUrl: (url) => dispatch(uploadPhotoUrl(url))
     }
 }
 

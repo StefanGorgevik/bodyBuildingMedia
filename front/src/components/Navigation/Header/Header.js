@@ -5,6 +5,12 @@ import { isUserLogged, openWorkoutPlan, openDietPlan, selectedDiet, selectedWork
 import { connect } from 'react-redux'
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            liHovered: false
+        }
+    }
     addWorkoutPlanClickedHandler = () => {
         this.props.openWorkoutPlan(true)
         this.props.openDietPlan(false)
@@ -30,22 +36,34 @@ class Header extends React.Component {
         this.props.isUserLogged(false)
     }
 
+    hoverHandler = () => {
+        this.setState({ liHovered: true })
+    }
+
+    hoverLeaveHandler = () => {
+        this.setState({ liHovered: false })
+    }
+
     render() {
-        var isDietCreated=localStorage.getItem('isDietCreated') === 'true'
-        var isWPCreated=localStorage.getItem('isWPCreated') === 'true'
+        var isDietCreated = localStorage.getItem('isDietCreated') === 'true'
+        var isWPCreated = localStorage.getItem('isWPCreated') === 'true'
         return (
-            <nav className="navigation">
+            <nav className="navigation" onMouseLeave={this.hoverLeaveHandler}>
                 <h2 className="title-h2">Body Building Media</h2>
                 <div className="right-side">
                     <ul>
-                        <li onClick={this.openInfoClickedHandler} className="clickable-lis">Edit Info</li>
-                        <li onClick={this.addWorkoutPlanClickedHandler} 
-                        className="clickable-lis">{isWPCreated ?
-                            "Edit Workout" : "Add workout"}</li>
-                        <li onClick={this.addDietClickedHandler} className="clickable-lis">
-                        {isDietCreated  ? "Edit diet" : "Add diet"}</li>
-                        <li onClick={this.openUploadPhotoClickedHandler} className="clickable-lis">
-                       Upload Photo</li>
+                        {this.state.liHovered ?
+                            <>
+                                <li onClick={this.openInfoClickedHandler} className="clickable-lis popup-lis">Edit Info</li>
+                                <li onClick={this.addWorkoutPlanClickedHandler}
+                                    className="clickable-lis popup-lis">{isWPCreated ?
+                                        "Edit Workout" : "Add workout"}</li>
+                                <li onClick={this.addDietClickedHandler} className="clickable-lis popup-lis">
+                                    {isDietCreated ? "Edit diet" : "Add diet"}</li>
+                                <li onClick={this.openUploadPhotoClickedHandler} className="clickable-lis popup-lis">
+                                    Upload Photo</li>
+                            </> : null}
+                        <li className="clickable-lis" onMouseEnter={this.hoverHandler} ><i className="fas fa-cogs"></i></li>
                         <Link to="/"><li className="clickable-lis" onClick={this.signOut}>Sign Out</li></Link>
                     </ul>
                 </div>

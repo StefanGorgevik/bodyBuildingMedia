@@ -5,14 +5,14 @@ const User = mongoose.model(
     new mongoose.Schema({
         first_name: String,
         last_name: String,
-        birthday: Date,
+        age: Number,
         level: String,
         location: String,
         email: String,
         password: String,
         isWorkoutPlanCreated: Boolean,
         isDietCreated: Boolean,
-        photoUploaded: Boolean
+        isPhotoUploaded: Boolean
     })
 )
 

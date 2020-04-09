@@ -104,3 +104,13 @@ export const dietClick = (bool) => {
         payload: bool
     }
 }
+
+
+//photo url for logged user
+
+export const uploadPhotoUrl = (url) => {
+    return {
+        type:"UPLOAD_PHOTO_URL", 
+        payload: url
+    }
+}

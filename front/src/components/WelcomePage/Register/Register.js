@@ -18,7 +18,7 @@ class Register extends React.Component {
             user: {
                 firstName: '',
                 lastName: '',
-                birthday: '',
+                age: 0,
                 level: '',
                 location: '',
                 email: '',
@@ -33,15 +33,15 @@ class Register extends React.Component {
 
     registerUser = () => {
         var info = this.state.user
-        if (info.firstName === '' && info.lastName === '' && info.email === '' && info.password === '' &&
-            info.level === '' && info.location === '' && info.birthday === '') {
+        if (info.firstName.length === 0 && info.lastName.length === 0  && info.email.length === 0  && info.password.length === 0  &&
+            info.level.length === 0  && info.location.length === 0 && info.age !== 0) {
             this.setState({ error: true })
             this.props.isUserRegistered(false)
         } else {
             axios.post('http://localhost:8080/app/v1/auth/register', {
                 first_name: info.firstName,
                 last_name: info.lastName,
-                birthday: info.birthday,
+                age: info.age,
                 level: info.level,
                 location: info.location,
                 email: info.email,

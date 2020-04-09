@@ -27,10 +27,11 @@
     box-sizing: border-box;
 }
 
- #photo-input {
+
+ .photo-input {
     cursor: pointer;
     text-align: center;
-    height: 100px;
+    height: 200px;
     background-color: rgba(65, 64, 65, 0.109);
     width: 70%;
     font-size: 24px;

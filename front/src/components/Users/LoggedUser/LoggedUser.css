@@ -1,27 +1,27 @@
-.selected-user,
-.user{
+.logged-user-main {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 2px solid wheat;
+    border: 2px solid rgb(17, 17, 17);
     border-radius: 12px;
     cursor: pointer;
     transition: 0.5s;
     padding: 2px;
-    background-color: rgb(112, 107, 112);
+    background-color: rgb(18, 42, 42);
+    height: 125px;
+    width: 100%;
 }
 
 
-.selected-user:hover,
-.user:hover {
+.logged-user-main:hover{
     background-color: rgba(229, 241, 241, 0.966);
     color: black;
     transition: 0.5s;
 }
 
-.user-photo {
-    width: 75px;
-    max-height: 75px;
+.logged-user-photo {
+    width: 80px;
+    min-height: 80px;
     padding: 2px;
     border-radius: 15px;
 }
@@ -55,7 +55,7 @@
     width: 100%;
 }
 
-.selected-user {
+.logged-user {
     background-color: rgba(16, 16, 17, 0.616);
     border-color: rgba(0, 0, 0, 0.89);
 }

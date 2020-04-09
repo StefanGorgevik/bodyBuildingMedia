@@ -1,18 +1,22 @@
 import React from 'react'
 import './UserImages.css'
-import Cover from '../../assets/images/cover.jpg'
-import User from '../../assets/images/builder.jpg'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+// const BASE_URL = 'http://localhost:8083/'
 
 class UserImages extends React.Component {
-    render(){
+    render() {
+        var content;
+        if (this.props.uploadedPhotoUrl === 'http://localhost:8083/undefined') {
+            content = <p>No photo found for this user!</p>
+        } else {
+            content = <img className="cover-image" src={this.props.uploadedPhotoUrl} alt="user" />  
+        }
         return (
             <div className="user-images">
-                {this.props.userClicked ? 
-                <> 
-                <img className="cover-image" src={!this.props.userClicked ? Cover : User} alt='cover' />
-                <p>Image Description: I AM A STRONG DUDE !</p>
-                </> : null}
+                {this.props.userClicked ?
+                    <>
+                        {content}
+                    </> : null}
             </div>
         )
     }
@@ -20,7 +24,8 @@ class UserImages extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        userClicked: state.userClicked
+        userClicked: state.userClicked,
+        uploadedPhotoUrl: state.uploadedPhotoUrl
     }
 }
 

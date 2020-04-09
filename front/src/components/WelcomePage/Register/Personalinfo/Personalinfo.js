@@ -6,7 +6,7 @@ import Input from '../../../RegInput/RegInput'
 import { connect } from 'react-redux'
 
 function PersonalInfo(props) {
-        var ids = ['firstName', 'lastName', 'email', 'password', 'level', 'location', 'birthday']
+        var ids = ['firstName', 'lastName', 'email', 'password', 'level', 'location', 'age']
         var inputs = ids.map((id, i) => {
             return (
                 <Input key={id + i} id={id}

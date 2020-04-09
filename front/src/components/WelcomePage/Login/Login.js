@@ -37,6 +37,7 @@ class Login extends React.Component {
                     localStorage.setItem('user-id', res.data.id)
                     localStorage.setItem('isWPCreated', res.data.isWorkoutPlanCreated)
                     localStorage.setItem('isDietCreated', res.data.isDietCreated)
+                    localStorage.setItem('isPhotoUploaded', res.data.isPhotoUploaded)
                     this.setState({ error: false })
                     this.props.isUserLogged(true)
                     this.props.loggedUser(res.data)
