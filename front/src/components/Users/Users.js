@@ -14,7 +14,8 @@ class Users extends Component {
             users: [],
             redirect: false,
             user: {},
-            activeUser: null
+            activeUser: null,
+            images: []
         }
     }
 
@@ -23,18 +24,39 @@ class Users extends Component {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
-        }).then((res) => {
-            var loggedUserId = localStorage.getItem('user-id')
-            var users = res.data.filter((user) => {
-                if (user._id === loggedUserId) {
-                    this.setState({ user: user })
-                }
-                return user._id !== loggedUserId
-            })
-            console.log(users)
-            this.props.getAllUsers(users)
-            this.setState({ users: users })
         })
+            .then((res) => {
+                var loggedUserId = localStorage.getItem('user-id')
+                var users = res.data.filter((user) => {
+                    if (user._id === loggedUserId) {
+                        this.setState({ user: user })
+                    }
+                    return user._id !== loggedUserId
+                })
+                this.props.getAllUsers(users)
+                axios.get('http://localhost:8083/images', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                    }
+                })
+                    .then(res => {
+                        console.log(res.data)
+                        console.log(loggedUserId)
+                        var photos = res.data.filter((photo) => {
+                            if (photo.userID === res.loggedUserId) {
+                                this.setState({ loggedUserPhoto: photo })
+                            }
+                            return photo.userID !== loggedUserId
+                        })
+                        this.setState({
+                            images: photos
+                        })
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+                this.setState({ users: users })
+            })
             .catch((error) => {
                 if (error.response.status === 401) {
                     this.setState({ redirect: true })
@@ -100,8 +122,6 @@ class Users extends Component {
     }
 
     getImage = (id) => {
-        console.log(id)
-        
         axios.get(`http://localhost:8083/images/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -117,17 +137,31 @@ class Users extends Component {
     }
 
     render() {
-        var user = this.state.users.map((user, i) => {
-            return (
-                <User key={user._id} click={() => this.userClicked(user._id)}
-                    fullname={user.first_name + ' ' + user.last_name}
-                    userID={user._id}
-                    age={user.age}
-                    level={user.level}
-                    class={this.state.activeUser !== user._id ? 'selected-user' : 'user'}
-                />)
-        })
-
+        var images = this.state.images
+        var users = this.state.users
+        if (users && images) {
+            var user = users.map((user, i) => {
+                var urls = []
+                for (var j = 0; j < images.length; j++) {
+                    if (images[i]) {
+                        if (images[i].userID === user._id) {
+                            urls.push(images[j].url)
+                        }
+                    } else {
+                        urls.push(' ')
+                    }
+                }
+                return (
+                    <User key={user._id} click={() => this.userClicked(user._id)}
+                        fullname={user.first_name + ' ' + user.last_name}
+                        userID={user._id}
+                        age={user.age}
+                        level={user.level}
+                        class={this.state.activeUser !== user._id ? 'selected-user' : 'user'}
+                        photo={BASE_URL + urls[i]}
+                    />)
+            })
+        }
         return (
             <div className='users' >
                 {this.redirectToAuth()}

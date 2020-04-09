@@ -64,7 +64,9 @@ class Header extends React.Component {
                                 <li onClick={this.openUploadPhotoClickedHandler} className="clickable-lis popup-lis">
                                     {isPhotoUploaded ? "Change Photo" : "Upload Photo"}</li>
                             </> : null}
-                        <li className="clickable-lis" onMouseEnter={this.hoverHandler} ><i className="fas fa-cogs"></i></li>
+                        <li className="settings" onMouseEnter={this.hoverHandler} >
+                            <i className="fas fa-cogs"></i>
+                        </li>
                         <Link to="/"><li className="clickable-lis" onClick={this.signOut}>Sign Out</li></Link>
                     </ul>
                 </div>

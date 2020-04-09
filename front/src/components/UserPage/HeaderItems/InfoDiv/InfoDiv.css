@@ -17,6 +17,11 @@
     width: 100%;
     margin: 5px;
 }
+
+.info-div-p-disabled {
+    color: rgba(255, 255, 255, 0.178);
+    font-weight: 300;
+}
 .info-div span {
     font-size: 24px;
     height: 40px;

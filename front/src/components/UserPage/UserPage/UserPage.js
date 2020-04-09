@@ -43,12 +43,12 @@ class UserPage extends Component {
                             {this.props.personalInfoClicked ? <PersonalInfo /> : null}
                             {this.props.workoutPlanClicked ? <WorkoutPlan /> : null}
                             {this.props.dietClicked ? <Diet /> : null}
-                        </> : <h1 className="choose-user-h1">Choose a user!</h1>}
+                        </> : null}
                 </div>
             </div>)
     }
 }
-
+{/* <h1 className="choose-user-h1">Choose a user!</h1> */}
 function mapStateToProps(state) {
     return {
         userSelected: state.userSelected,

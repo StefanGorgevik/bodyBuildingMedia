@@ -35,7 +35,7 @@ class ImageUpload extends Component {
                 }
             })
                 .then(response => {
-                    console.log(response.data.imageUrl)
+                    localStorage.setItem('isPhotoUploaded', "true")
                     this.props.uploadPhotoUrl(BASE_URL + response.data.imageUrl)
                     this.setState({
                         imageUrl: response.data.imageUrl

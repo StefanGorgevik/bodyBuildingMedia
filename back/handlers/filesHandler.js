@@ -1,17 +1,17 @@
 const usersModel = require('../models/usersModel')
 const imageModel = require('../models/imageModel')
 
-// const getImages = (req,res) => {
-//     imageModel.getImages() 
-//     .then(data => {
-//         // console.log(data)
-//         res.status(200).send(data)
-//     }) 
-//     .catch(err => {
-//         // console.log(err)
-//         res.status(404).send(err)
-//     }) 
-// }
+const getImages = (req,res) => {
+    imageModel.getImages() 
+    .then(data => {
+        // console.log(data)
+        res.status(200).send(data)
+    }) 
+    .catch(err => {
+        // console.log(err)
+        res.status(404).send(err)
+    }) 
+}
 const getOneImage = (req, res) => {
         imageModel.getOneImage(req.params.id)
             .then(data => {
@@ -45,6 +45,6 @@ const uploadPhoto = (req, res) => {
 
 module.exports = {
     uploadPhoto,
-    getOneImage
-    // getImages
+    getOneImage,
+    getImages
 }

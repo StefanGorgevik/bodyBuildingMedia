@@ -1,7 +1,6 @@
 .main {
     height: 100%;
-    background-color: rgba(17, 15, 15, 0.87);
-    background-image: url('../../assets/images/backgrounds/content-background.png');
+    background-color: rgba(36, 35, 35, 0.87);
     font-family: 'Roboto Slab', serif;
 }
 
@@ -11,4 +10,7 @@
     min-height: 100vh;
     width: 100%;
     color: white;
+    background-image: url('../../assets/images/backgrounds/content-background.png');
+    background-color: rgba(17, 15, 15, 0.87);
+
 }

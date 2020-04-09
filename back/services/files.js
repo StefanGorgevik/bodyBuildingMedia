@@ -42,6 +42,7 @@ app.use(
 );
 
 app.post('/upload/', upload.single('image'), filesHandler.uploadPhoto);
+app.get('/images', filesHandler.getImages);
 app.get('/images/:id', filesHandler.getOneImage);
 
 

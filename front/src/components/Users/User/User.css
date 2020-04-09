@@ -11,7 +11,6 @@
     background-color: rgb(112, 107, 112);
 }
 
-
 .selected-user:hover,
 .user:hover {
     background-color: rgba(229, 241, 241, 0.966);
@@ -20,22 +19,13 @@
 }
 
 .user-photo {
-    width: 75px;
-    max-height: 75px;
+    max-width: 70px;
+    height: 75px;
     padding: 2px;
     border-radius: 15px;
+    background-color: rgba(194, 221, 221, 0.705);
 }
 
-.photo-name {
-    display: flex;
-    flex-direction: row;
-    font-size: 20px;
-}
-
-.photo-name p {
-    margin: auto;
-    font-weight: bold;
-}
 
 .details {
     display: flex;

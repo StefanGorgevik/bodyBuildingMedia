@@ -27,7 +27,7 @@
 .right-side ul li {
     display: inline-block;
     margin: 25px;
-    color: rgb(165, 153, 153);
+    color: rgb(146, 135, 135);
     font-size: 24px;
     font-weight: bold;
     min-width: 10%;
@@ -40,6 +40,7 @@
     color: white;
     font-size: 25px;
     border-bottom: 1px solid white;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -58,7 +59,7 @@
 .title-h2 {
     margin: 5px 40px;
     color: rgb(12, 10, 10);
-    border: 4px solid #aaa0a0;
+    border: 0.5px solid #dad4d4;
     background-color: rgba(234, 241, 241, 0.123);
     border-radius: 10px;
     padding: 5px 15px;
@@ -74,6 +75,14 @@
 }
 
 .fa-cogs {
-    color: white;
-    font-size: 32px;
+    color: rgb(250, 217, 217);
+    font-size: 42px;
 }
+
+.settings:hover .fa-cogs {
+    font-size: 44px;
+    cursor: pointer;
+    transition: 1s;
+    color: rgb(255, 255, 255);
+}
+

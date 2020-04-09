@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Builder from '../../../assets/images/builder.jpg'
+import Profile from '../../../assets/images/profile.png'
 import './User.css'
 import { connect } from 'react-redux'
 class User extends Component {
@@ -19,20 +19,12 @@ class User extends Component {
     }
 
     render() {
-        var url;
-        console.log(this.props.uploadedPhotoUrl)
-        if(this.props.uploadedPhotoUrl === '') {
-            url = Builder;
-            console.log('user url' + url)
-        } else {
-            url = this.props.uploadedPhotoUrl
-        }
         return (
             <div className={this.props.class} onClick={this.props.click}
                 onMouseEnter={this.hoverHandler}
                 onMouseLeave={this.hoverLeaveHandler}>
                 <div className="photo-name">
-                    <img className="user-photo" src={url} alt="users-pic" />
+                    <img className="user-photo" src={this.props.photo.length < 33  ? Profile : this.props.photo} alt="users-pic" />
                 </div>
                 <div className="details">
                     <p>{this.props.fullname}</p>
