@@ -47,6 +47,7 @@ class Header extends React.Component {
     render() {
         var isDietCreated = localStorage.getItem('isDietCreated') === 'true'
         var isWPCreated = localStorage.getItem('isWPCreated') === 'true'
+        var isPhotoUploaded = localStorage.getItem('isPhotoUploaded') === 'true'
         return (
             <nav className="navigation" onMouseLeave={this.hoverLeaveHandler}>
                 <h2 className="title-h2">Body Building Media</h2>
@@ -61,7 +62,7 @@ class Header extends React.Component {
                                 <li onClick={this.addDietClickedHandler} className="clickable-lis popup-lis">
                                     {isDietCreated ? "Edit diet" : "Add diet"}</li>
                                 <li onClick={this.openUploadPhotoClickedHandler} className="clickable-lis popup-lis">
-                                    Upload Photo</li>
+                                    {isPhotoUploaded ? "Change Photo" : "Upload Photo"}</li>
                             </> : null}
                         <li className="clickable-lis" onMouseEnter={this.hoverHandler} ><i className="fas fa-cogs"></i></li>
                         <Link to="/"><li className="clickable-lis" onClick={this.signOut}>Sign Out</li></Link>
