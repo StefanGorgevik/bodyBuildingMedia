@@ -10,6 +10,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import Button from '../Button/Button'
 import Error from '../WelcomePage/Error/Error'
+import ChangedAlert from '../ChangedAlert/ChangedAlert'
 
 class Diet extends React.Component {
     constructor(props) {
@@ -19,7 +20,8 @@ class Diet extends React.Component {
             dietDuration: '',
             mealsPerDay: 0,
             meals: {},
-            error: false
+            error: false,
+            alert: false
         }
     }
 
@@ -107,11 +109,17 @@ class Diet extends React.Component {
                 }
             })
             .then((res) => {
-                this.props.openDietPlan(false)
-                window.location.reload();
-
+                this.setState({error: false, alert: true})
             })
             .catch((err) => { this.props.openDietPlan(true) })
+    }
+
+    closeChangedAlert = () => {
+        this.props.openDietPlan(false)
+        this.setState({
+            alert: false
+        })
+        window.location.reload();
     }
 
     closeErrorAlert = () => {
@@ -154,6 +162,7 @@ class Diet extends React.Component {
 
         return (
             <main className="diet-main">
+                {this.state.alert ? <ChangedAlert content="Info successfully changed!" closeChangedAlert={this.closeChangedAlert} /> : null}
                 {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
                     title="Error"
                     content='Fill up every field or check if your credentials are correct' /> : null}

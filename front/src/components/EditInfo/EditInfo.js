@@ -81,8 +81,6 @@ class EditInfo extends Component {
             })
                 .then(res => {
                     this.setState({ error: false, alert: true })
-                    this.props.openEditInfo(false)
-                    // window.location.reload();
                 })
                 .catch(err => {
                     this.setState({ error: true })
@@ -93,9 +91,11 @@ class EditInfo extends Component {
     }
 
     closeChangedAlert = () => {
-        this.setState( {
+        this.props.openEditInfo(false)
+        this.setState({
             alert: false
         })
+        window.location.reload();
     }
 
     closeErrorAlert = () => {
@@ -107,7 +107,7 @@ class EditInfo extends Component {
     render() {
         return (
             <main className="ei-main">
-                {this.state.alert ? <ChangedAlert content="Info successfully changed!" /> : null}
+                {this.state.alert ? <ChangedAlert content="Info successfully changed!" closeChangedAlert={this.closeChangedAlert} /> : null}
                 {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
                     title="Error"
                     content='Fill up every field or check if your credentials are correct'

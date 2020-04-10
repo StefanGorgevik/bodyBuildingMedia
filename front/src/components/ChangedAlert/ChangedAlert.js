@@ -7,7 +7,7 @@ function ChangedAlert(props) {
         <main className="ca-main">
             <div className="ca-div">
                 <p>{props.content}</p>
-                <Button click={props.closeErrorAlert}
+                <Button click={props.closeChangedAlert}
                             label="ok"
                             className="login-btn"
                         />                

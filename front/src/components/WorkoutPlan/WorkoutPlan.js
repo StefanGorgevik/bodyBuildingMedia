@@ -8,6 +8,7 @@ import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import Error from '../WelcomePage/Error/Error'
+import ChangedAlert from '../ChangedAlert/ChangedAlert'
 class WorkoutPlan extends React.Component {
     constructor(props) {
         super(props)
@@ -111,14 +112,20 @@ class WorkoutPlan extends React.Component {
                 }
             })
             .then(res => {
-                console.log(res)
-                this.props.openWorkoutPlan(false)
-                window.location.reload()
+                this.setState({error: false, alert: true})
             })
             .catch(err => {
                 console.log(err)
                 this.props.openWorkoutPlan(true)
             })
+    }
+
+    closeChangedAlert = () => {
+        this.props.openWorkoutPlan(false)
+        this.setState({
+            alert: false
+        })
+        window.location.reload();
     }
 
     closeAddWorkoutPlan = () => {
@@ -148,6 +155,7 @@ class WorkoutPlan extends React.Component {
 
         return (
             <main className="wp-main">
+                {this.state.alert ? <ChangedAlert content="Info successfully changed!" closeChangedAlert={this.closeChangedAlert} /> : null}
                 {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
                     title="Error"
                     content='Fill up every field or check if your credentials are correct'
