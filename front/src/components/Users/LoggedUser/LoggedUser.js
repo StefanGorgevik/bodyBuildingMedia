@@ -20,7 +20,6 @@ class User extends Component {
             }
         })
             .then(res => {
-                console.log(res.data.url)
                 if (res.data.url !== undefined) {
                     this.setState({ userURL: BASE_URL + res.data.url })
                 } else {

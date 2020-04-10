@@ -6,12 +6,18 @@ function Error(props) {
     return (
         <main className="error-main">
             <div className="error-div">
-                <h1>Error</h1>
-                <p>Fill up every field or check if your credentials are correct</p>
+                <h1>{props.title}</h1>
+                <p>{props.content}</p>
                 <Button click={props.closeErrorAlert}
                             label="close"
                             className="close-btn"
                         />
+                {props.type === 'alert' ? 
+                <Button click={props.acceptSignOut}
+                            label="Sign out"
+                            className="login-btn"
+                        /> : null}
+                
             </div>
         </main>
     )

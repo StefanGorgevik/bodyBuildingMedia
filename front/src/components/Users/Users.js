@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import './Users.css'
 import User from './User/User'
 import LoggedUser from './LoggedUser/LoggedUser'
+import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import { userSelected, userClicked, getAllUsers, selectedWorkoutPlan, personalInfoClick, workoutPlanClick, dietClick, selectedDiet, uploadPhotoUrl } from '../../redux/actions/userActions'
 import axios from 'axios'
@@ -15,12 +16,17 @@ class Users extends Component {
             redirect: false,
             user: {},
             activeUser: null,
-            images: []
+            images: [],
+            search: ''
         }
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8082/app/v1/users/', {
+        this.getUsers()
+    }
+
+    getUsers = () => {
+        axios.get('http://localhost:8082/app/v1/users/all/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
@@ -61,6 +67,7 @@ class Users extends Component {
                 }
             })
     }
+
 
 
     getWorkoutPlan = (id) => {
@@ -132,6 +139,34 @@ class Users extends Component {
             })
     }
 
+    saveSearchValue = (event) => {
+        this.setState({ search: event.target.value })
+    }
+
+    searchUser = () => {
+        if (this.state.search !== '') {
+            axios.get(`http://localhost:8082/app/v1/users/name/${this.state.search}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            })
+                .then(res => {
+                    console.log(res)
+                    if (res.data) {
+                        this.setState({ users: res.data })
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        } 
+    }
+
+    cancelSearch = () => {
+        this.getUsers()
+        this.setState({ search: ''})
+    }
+
     render() {
         var images = this.state.images
         var users = this.state.users
@@ -163,6 +198,17 @@ class Users extends Component {
                 <h1>Users</h1>
                 <div className="users-scroll">
                     {user}
+                </div>
+                <div className='search-input-div'>
+                    <input type='search' placeholder="Search for a user" onChange={this.saveSearchValue} value={this.state.search} />
+                    <Button click={this.searchUser}
+                        label={<i className="fas fa-search"></i>}
+                        className="search-btn"
+                    />
+                    <Button click={this.cancelSearch}
+                        label="X"
+                        className="search-btn"
+                    />
                 </div>
             </div>)
     }

@@ -64,8 +64,8 @@ class Diet extends React.Component {
     }
 
     saveDataHandler = () => {
-        if (this.state.dietGoals !== '' && this.state.dietDuration !== '' && this.state.mealsPerDay !== 0 
-        && Object.values(this.state.meals).length !== 0 ) {
+        if (this.state.dietGoals !== '' && this.state.dietDuration !== '' && this.state.mealsPerDay !== 0
+            && Object.values(this.state.meals).length !== 0) {
             console.log('entered')
             axios.post('http://localhost:8081/app/v1/plans/diets', {
                 dietGoals: this.state.dietGoals,
@@ -154,7 +154,9 @@ class Diet extends React.Component {
 
         return (
             <main className="diet-main">
-                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert} /> : null}
+                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
+                    title="Error"
+                    content='Fill up every field or check if your credentials are correct' /> : null}
                 <div className="diet">
                     <Title title="diet" />
                     {inputs}

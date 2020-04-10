@@ -12,7 +12,7 @@ class UserImages extends React.Component {
             content = <img className="cover-image" src={this.props.uploadedPhotoUrl} alt="user" />  
         }
         return (
-            <div className="user-images">
+            <div className="user-images">      
                 {this.props.userClicked ?
                     <>
                         {content}

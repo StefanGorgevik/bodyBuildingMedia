@@ -1,23 +1,25 @@
 const usersModel = require('../models/usersModel')
 const imageModel = require('../models/imageModel')
+const fs = require('fs')
 
-const getImages = (req,res) => {
-    imageModel.getImages() 
-    .then(data => {
-        res.status(200).send(data)
-    }) 
-    .catch(err => {
-        res.status(404).send(err)
-    }) 
+const getImages = (req, res) => {
+    imageModel.getImages()
+        .then(data => {
+            res.status(200).send(data)
+        })
+        .catch(err => {
+            res.status(404).send(err)
+        })
 }
+
 const getOneImage = (req, res) => {
-        imageModel.getOneImage(req.params.id)
-            .then(data => {
-                res.status(200).send(data)
-            })
-            .catch(err => {
-                res.status(404).send(err)
-            })
+    imageModel.getOneImage(req.params.id)
+        .then(data => {
+            res.status(200).send(data)
+        })
+        .catch(err => {
+            res.status(404).send(err)
+        })
 }
 
 const uploadPhoto = (req, res) => {
@@ -39,10 +41,26 @@ const uploadPhoto = (req, res) => {
     }
 }
 
+const deleteImage = (req, res) => {
+    imageModel.getOneImage(req.params.id)
+        .then(data => {
+            var url = './public/' + data.url
+            fs.unlinkSync(url)
+        })
+   
+    imageModel.deleteImage(req.params.id)
+        .then(() => {
+            res.status(204).send("Item deleted");
+        })
+        .catch((err) => {
+            res.status(500).send(err);
+        })
+}
 
 
 module.exports = {
     uploadPhoto,
     getOneImage,
-    getImages
+    getImages,
+    deleteImage
 }

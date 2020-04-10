@@ -148,7 +148,10 @@ class WorkoutPlan extends React.Component {
 
         return (
             <main className="wp-main">
-                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert} /> : null}
+                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
+                    title="Error"
+                    content='Fill up every field or check if your credentials are correct'
+                /> : null}
                 <div className="workout-plan">
                     <div className="wp-inputs-div">
                         <Title title="workout plan" />

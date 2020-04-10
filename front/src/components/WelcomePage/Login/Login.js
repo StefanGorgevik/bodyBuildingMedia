@@ -74,7 +74,10 @@ class Login extends React.Component {
         })
         return (
             <div className='login'>
-                    {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}/> : null}
+                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
+                    title="Error"
+                    content='Fill up every field or check if your credentials are correct'
+                /> : null}
 
                 {this.redirectToMain()}
                 <form onSubmit={this.loginClickedHandler}>

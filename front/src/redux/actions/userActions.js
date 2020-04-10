@@ -83,6 +83,12 @@ export const openUploadPhoto = (bool) => {
         payload: bool
     }
 }
+export const openSignOut = (bool) => {
+    return {
+        type: "OPEN_SIGN_OUT",
+        payload: bool
+    }
+}
 
 //userpage header for active class on header
 

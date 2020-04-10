@@ -24,6 +24,15 @@ const getOneUser = (req, res) => {
             res.status(500).send(err);
         })
 }
+const getUserByName = (req, res) => {
+    usersModel.getUserByName(req.params.first_name)
+        .then((data) => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        })
+}
 
 const updateUser = (req, res) => {
     usersModel.updateUser(req.params.id, req.body)
@@ -101,5 +110,6 @@ module.exports = {
     registerUser,
     loginUser,
     getOneUser,
-    updateUser
+    updateUser,
+    getUserByName
 }

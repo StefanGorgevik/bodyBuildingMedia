@@ -11,6 +11,7 @@ const initState = {
     workoutPlanOpened: false,
     dietPlanOpened: false,
     uploadPhotoOpened: false,
+    signOutOpened: false,
     personalInfoClicked: false,
     workoutPlanClicked: false,
     dietClicked: false,
@@ -85,6 +86,11 @@ export function userReducer(state = initState, action) {
         case "OPEN_UPLOAD_PHOTO": {
             return {
                 ...state, uploadPhotoOpened: action.payload
+            }
+        }
+        case "OPEN_SIGN_OUT": {
+            return {
+                ...state, signOutOpened: action.payload
             }
         }
 

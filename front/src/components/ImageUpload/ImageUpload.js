@@ -35,6 +35,7 @@ class ImageUpload extends Component {
                 }
             })
                 .then(response => {
+                    console.log(response)
                     localStorage.setItem('isPhotoUploaded', "true")
                     this.props.uploadPhotoUrl(BASE_URL + response.data.imageUrl)
                     this.setState({
@@ -55,25 +56,48 @@ class ImageUpload extends Component {
         }).catch(err => alert(err.message));
     }
 
+    changePhoto = () => {
+        var id = localStorage.getItem('user-id')
+        axios.delete(BASE_URL + `images/delete/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+        .then(res => {
+            console.log(res)
+            this.uploadImages()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     closeUploadPhotoHandler = () => {
         this.props.openUploadPhoto(false)
     }
 
     render() {
+        var isPhotoUploaded = localStorage.getItem("isPhotoUploaded") === 'true'
         return (
             <main className="iu-main">
                 <div className="iu-div">
-                    <Title title="photo upload" />                  
-                        <input className="photo-input " type="file" onChange={this.selectImages} single="true" />
+                    <Title title="photo upload" />
+                    {isPhotoUploaded ? <p className="iu-info-p"><i className="fas fa-exclamation-triangle"></i>Your current photo will be removed!</p> : null}
+                    <input className="photo-input " type="file" onChange={this.selectImages} single="true" />
                     <div className="wp-btns">
                         <Button click={this.closeUploadPhotoHandler}
                             label="close"
                             className="close-btn"
                         />
-                        <Button click={this.uploadImages}
-                            label="upload"
+                        {isPhotoUploaded ?
+                        <Button click={this.changePhoto }
+                            label={"change"}
                             className="login-btn"
-                        />
+                        /> :
+                        <Button click={this.uploadImages}
+                            label={"upload"}
+                            className="login-btn"
+                        /> }
                     </div>
                 </div>
             </main>

@@ -67,3 +67,23 @@
 .btn-disabled {
     cursor: not-allowed;
 }
+
+.search-btn {
+    border-radius: 12px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin-left: 2px;
+    outline: none;
+    border: none;
+    font-size: 22px;
+    color:rgb(207, 198, 198);
+    padding: 2px;
+    background-color: rgba(126, 115, 115, 0);;
+
+}
+
+.search-btn:hover {
+    background: rgba(245, 245, 245, 0.185);
+    font-size: 25px;
+}

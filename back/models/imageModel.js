@@ -44,8 +44,20 @@ const getOneImage = (id) => {
     })
 }
 
+const deleteImage = (id) => {
+    return new Promise((success,fail) => {
+        Image.deleteOne({userID: id}, err => {
+            if(err) {
+                return fail(err);
+            }
+            return success();
+        })
+    })
+}
+
 module.exports = { 
     saveImage,
     getOneImage,
-    getImages
+    getImages,
+    deleteImage
 }

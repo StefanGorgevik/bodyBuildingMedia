@@ -71,11 +71,23 @@ const getOneUser =(id) => {
         })
     })
 } 
+const getUserByName =(name) => {
+    return new Promise((success, fail) => {
+        User.find({first_name: name}, (err,data) => {
+            if(err) {
+                return fail(err)
+            } 
+            console.log(data)
+            return success(data)
+        })
+    })
+} 
 
 module.exports = {
     getAllUsers,
     register,
     login,
     updateUser,
-    getOneUser
+    getOneUser,
+    getUserByName
 }

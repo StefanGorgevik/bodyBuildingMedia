@@ -1,7 +1,6 @@
 import React from 'react'
 import './Header.css'
-import { Link } from 'react-router-dom'
-import { isUserLogged, openWorkoutPlan, openDietPlan, selectedDiet, selectedWorkoutPlan, openEditInfo, openUploadPhoto } from '../../../redux/actions/userActions'
+import { isUserLogged, openWorkoutPlan, openDietPlan, selectedDiet, selectedWorkoutPlan, openEditInfo, openUploadPhoto, openSignOut } from '../../../redux/actions/userActions'
 import { connect } from 'react-redux'
 
 class Header extends React.Component {
@@ -31,9 +30,8 @@ class Header extends React.Component {
         this.props.openUploadPhoto(true)
     }
 
-    signOut = () => {
-        localStorage.clear()
-        this.props.isUserLogged(false)
+    signOutClickedHandler = () => {
+        this.props.openSignOut(true)
     }
 
     hoverHandler = () => {
@@ -67,7 +65,7 @@ class Header extends React.Component {
                         <li className="settings" onMouseEnter={this.hoverHandler} >
                             <i className="fas fa-cogs"></i>
                         </li>
-                        <Link to="/"><li className="clickable-lis" onClick={this.signOut}>Sign Out</li></Link>
+                       <li className="clickable-lis" onClick={this.signOutClickedHandler}>Sign Out</li>
                     </ul>
                 </div>
             </nav>
@@ -89,6 +87,7 @@ function mapDispatchToProps(dispatch) {
         openDietPlan: (bool) => dispatch(openDietPlan(bool)),
         openEditInfo: (bool) => dispatch(openEditInfo(bool)),
         openUploadPhoto: (bool) => dispatch(openUploadPhoto(bool)),
+        openSignOut: (bool) => dispatch(openSignOut(bool)),
         selectedDiet: (data) => dispatch(selectedDiet(data)),
         selectedWorkoutPlan: (data) => dispatch(selectedWorkoutPlan(data))
     }

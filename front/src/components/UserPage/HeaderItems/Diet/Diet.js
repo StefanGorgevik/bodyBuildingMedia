@@ -24,7 +24,6 @@ const Diet = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.selectedDiet)
     return {
         selectedDiet: state.selectedDiet
     }

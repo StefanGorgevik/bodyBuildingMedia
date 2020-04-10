@@ -31,10 +31,12 @@ class Register extends React.Component {
         this.setState({ ...this.state, user: { ...this.state.user, [event.target.id]: event.target.value } })
     }
 
-    registerUser = () => {
+    registerUser = (e) => {
+        localStorage.clear()
+        e.preventDefault()
         var info = this.state.user
-        if (info.firstName.length === 0 && info.lastName.length === 0  && info.email.length === 0  && info.password.length === 0  &&
-            info.level.length === 0  && info.location.length === 0 && info.age !== 0) {
+        if (info.firstName.length === 0 && info.lastName.length === 0 && info.email.length === 0 && info.password.length === 0 &&
+            info.level.length === 0 && info.location.length === 0 && info.age !== 0) {
             this.setState({ error: true })
             this.props.isUserRegistered(false)
         } else {
@@ -91,7 +93,11 @@ class Register extends React.Component {
             <div className="main-register">
                 {this.redirectToMain()}
                 <div className="register">
-                    {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert} /> : null}
+                    {this.state.error ?
+                        <Error closeErrorAlert={this.closeErrorAlert}
+                            title="Error"
+                            content='Fill up every field or check if your credentials are correct' />
+                        : null}
                     <PersonalInfo saveInputValue={this.saveInputValue}
                         user={this.state.user} />
                     <div className="reg-btns-div">

@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 10%;
+    height: 11%;
     border-bottom: 2px solid white;
     border-top: 2px solid white;
     background-color: #212222e5;
@@ -32,14 +32,16 @@
     font-weight: bold;
     min-width: 10%;
     font-family: 'Roboto Slab', serif;
-    transition:1s;
+    transition:0.5s;
     text-align: center;
+    padding: 0 10px;
 }
 
 .clickable-lis:hover {
     color: white;
     font-size: 25px;
-    border-bottom: 1px solid white;
+    border-bottom: 1.5px solid white;
+    border-top: 1.5px solid white;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -80,9 +82,8 @@
 }
 
 .settings:hover .fa-cogs {
-    font-size: 44px;
+    font-size: 46px;
     cursor: pointer;
-    transition: 1s;
     color: rgb(255, 255, 255);
 }
 

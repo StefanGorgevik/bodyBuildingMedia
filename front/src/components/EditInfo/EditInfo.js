@@ -26,7 +26,7 @@ class EditInfo extends Component {
 
     componentDidMount() {
         var userID = localStorage.getItem('user-id')
-        axios.get(`http://localhost:8082/app/v1/users/${userID}`, {
+        axios.get(`http://localhost:8082/app/v1/users/id/${userID}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
@@ -99,12 +99,15 @@ class EditInfo extends Component {
     render() {
         return (
             <main className="ei-main">
-            {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}/> : null}
+                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
+                    title="Error"
+                    content='Fill up every field or check if your credentials are correct'
+                /> : null}
                 <div className="ei-div">
                     <PersonalInfo saveInputValue={this.saveInputValue}
-                        user={this.state.user} 
+                        user={this.state.user}
                         editInfoOpened={this.props.editInfoOpened}
-                        />
+                    />
                     <div className="reg-btns-div">
                         <Button click={this.closePopUp}
                             label="close"
