@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PersonalInfo from './PersonalInfo/PersonalInfo'
+import PersonalInfo from './PersonalInfo/Personalinfo'
 import Button from '../../Button/Button'
 import Error from '../Error/Error'
 import './Register.css'
