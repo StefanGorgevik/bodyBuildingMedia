@@ -44,6 +44,7 @@ app.use(
 app.post('/upload/', upload.single('image'), filesHandler.uploadPhoto);
 app.get('/images', filesHandler.getImages);
 app.get('/images/:id', filesHandler.getOneImage);
+// app.put('/images/:id', filesHandler.updateImage);
 
 
 app.listen(8083, err => {

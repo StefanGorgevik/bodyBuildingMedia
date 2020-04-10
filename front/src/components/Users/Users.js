@@ -40,8 +40,6 @@ class Users extends Component {
                     }
                 })
                     .then(res => {
-                        console.log(res.data)
-                        console.log(loggedUserId)
                         var photos = res.data.filter((photo) => {
                             if (photo.userID === res.loggedUserId) {
                                 this.setState({ loggedUserPhoto: photo })
@@ -86,7 +84,6 @@ class Users extends Component {
             }
         })
             .then(res => {
-                console.log(res)
                 this.props.selectedDiet(res.data)
             })
             .catch(err => {
@@ -128,7 +125,6 @@ class Users extends Component {
             }
         })
             .then(res => {
-                console.log(res.data)
                 this.props.uploadPhotoUrl(BASE_URL + res.data.url)
             })
             .catch(err => {
@@ -141,16 +137,6 @@ class Users extends Component {
         var users = this.state.users
         if (users && images) {
             var user = users.map((user, i) => {
-                var urls = []
-                for (var j = 0; j < images.length; j++) {
-                    if (images[i]) {
-                        if (images[i].userID === user._id) {
-                            urls.push(images[j].url)
-                        }
-                    } else {
-                        urls.push(' ')
-                    }
-                }
                 return (
                     <User key={user._id} click={() => this.userClicked(user._id)}
                         fullname={user.first_name + ' ' + user.last_name}
@@ -158,7 +144,7 @@ class Users extends Component {
                         age={user.age}
                         level={user.level}
                         class={this.state.activeUser !== user._id ? 'selected-user' : 'user'}
-                        photo={BASE_URL + urls[i]}
+                        photo={images.find(img => img.userID === user._id)}
                     />)
             })
         }

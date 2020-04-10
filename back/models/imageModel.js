@@ -14,7 +14,6 @@ const saveImage = (data) => {
             if (err) {
                 return fail;
             } else {
-                // console.log(data)
                 return success(data)
             }
         })
@@ -25,10 +24,8 @@ const getImages = () => {
     return new Promise((success, fail) => {
         Image.find({}, (err, data) => {
             if (err) {
-                // console.log(err)
                 return fail(err)
             } else {
-                // console.log(data)
                 return success(data)
             }
         })
@@ -39,10 +36,8 @@ const getOneImage = (id) => {
     return new Promise((success, fail) => {
         Image.find({userID: id}, (err, data) => {
             if (err) {
-                console.log(err)
                 return fail(err)
             } else {
-                console.log(data[0])
                 return success(data[0])
             }
         })
