@@ -200,7 +200,7 @@ class Users extends Component {
                     {user}
                 </div>
                 <div className='search-input-div'>
-                    <input type='search' placeholder="Search for a user" onChange={this.saveSearchValue} value={this.state.search} />
+                    <input type='search' placeholder="Search for a user by first name" onChange={this.saveSearchValue} value={this.state.search} />
                     <Button click={this.searchUser}
                         label={<i className="fas fa-search"></i>}
                         className="search-btn"
