@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import './EditInfo.css'
-import PersonalInfo from '../WelcomePage/Register/PersonalInfo/PersonalInfo'
+import PersonalInfo from '../WelcomePage/Register/PersonalInfo/Personalinfo'
 import axios from 'axios'
 import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import { openEditInfo } from '../../redux/actions/userActions'
 import Error from '../WelcomePage/Error/Error'
+import ChangedAlert from '../ChangedAlert/ChangedAlert'
 class EditInfo extends Component {
     constructor(props) {
         super(props)
         this.state = {
             loaded: false,
             error: false,
+            alert: false,
             user: {
                 firstName: '',
                 lastName: '',
@@ -78,9 +80,9 @@ class EditInfo extends Component {
                 }
             })
                 .then(res => {
-                    this.setState({ error: false })
+                    this.setState({ error: false, alert: true })
                     this.props.openEditInfo(false)
-                    window.location.reload();
+                    // window.location.reload();
                 })
                 .catch(err => {
                     this.setState({ error: true })
@@ -88,6 +90,12 @@ class EditInfo extends Component {
         } else {
             this.setState({ error: true })
         }
+    }
+
+    closeChangedAlert = () => {
+        this.setState( {
+            alert: false
+        })
     }
 
     closeErrorAlert = () => {
@@ -99,6 +107,7 @@ class EditInfo extends Component {
     render() {
         return (
             <main className="ei-main">
+                {this.state.alert ? <ChangedAlert content="Info successfully changed!" /> : null}
                 {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
                     title="Error"
                     content='Fill up every field or check if your credentials are correct'
