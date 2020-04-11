@@ -5,7 +5,7 @@ import { openUploadPhoto, uploadPhotoUrl } from '../../redux/actions/userActions
 import { connect } from 'react-redux'
 import Title from '../Title/Title'
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8083/app/v1/files/'
+const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 class ImageUpload extends Component {
     constructor(props) {
         super(props);
@@ -29,7 +29,7 @@ class ImageUpload extends Component {
         const uploaders = this.state.images.map(image => {
             const data = new FormData();
             data.append("image", image, image.name);
-            return axios.post(BASE_URL + 'upload', data, {
+            return axios.post(HEROKU_URL + 'upload', data, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
                 }
@@ -37,7 +37,7 @@ class ImageUpload extends Component {
                 .then(response => {
                     console.log(response)
                     localStorage.setItem('isPhotoUploaded', "true")
-                    this.props.uploadPhotoUrl(BASE_URL + response.data.imageUrl)
+                    this.props.uploadPhotoUrl(HEROKU_URL + response.data.imageUrl)
                     this.setState({
                         imageUrl: response.data.imageUrl
                     });
@@ -58,7 +58,7 @@ class ImageUpload extends Component {
 
     changePhoto = () => {
         var id = localStorage.getItem('user-id')
-        axios.delete(BASE_URL + `images/delete/${id}`, {
+        axios.delete(HEROKU_URL + `images/delete/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
