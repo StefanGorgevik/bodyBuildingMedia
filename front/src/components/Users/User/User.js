@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Profile from '../../../assets/images/profile.png'
 import './User.css'
 import { connect } from 'react-redux'
-const BASE_URL = 'http://localhost:8083/'
+const HEROKU_URL = "https://raw.githubusercontent.com/StefanGorgevik/bodyBuildingMedia/master/public/"
 
 class User extends Component {
     constructor(props) {
@@ -22,8 +22,9 @@ class User extends Component {
 
     render() {
         var url;
+        console.log(this.props.photo)
         if(this.props.photo !== undefined) {
-        url = BASE_URL + this.props.photo.url
+        url = HEROKU_URL + this.props.photo.url
     } else {
         url = Profile
     }
