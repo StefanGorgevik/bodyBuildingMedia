@@ -42,7 +42,7 @@ app.use(
 );
 
 app.post('/app/v1/files/upload/', upload.single('image'), filesHandler.uploadPhoto);
-app.get('/app/v1/files/images', filesHandler.getImages);
+app.get('/app/v1/files/images/', filesHandler.getImages);
 app.get('/app/v1/files/images/:id', filesHandler.getOneImage);
 app.delete('/app/v1/files/images/delete/:id', filesHandler.deleteImage);
 
