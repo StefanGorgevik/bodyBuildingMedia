@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { isUserLogged, loggedUser } from '../../../redux/actions/userActions'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
+
 class Login extends React.Component {
     constructor(props) {
         super(props)
@@ -27,7 +29,7 @@ class Login extends React.Component {
             this.setState({ error: true })
             this.props.isUserLogged(false)
         } else {
-            axios.post('http://localhost:8080/app/v1/auth/login', {
+            axios.post(HEROKU_URL + 'app/v1/auth/login', {
                 email: this.state.email,
                 password: this.state.password
             })

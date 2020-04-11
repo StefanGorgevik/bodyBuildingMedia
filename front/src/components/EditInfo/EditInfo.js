@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { openEditInfo } from '../../redux/actions/userActions'
 import Error from '../WelcomePage/Error/Error'
 import ChangedAlert from '../ChangedAlert/ChangedAlert'
+const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 class EditInfo extends Component {
     constructor(props) {
         super(props)
@@ -28,7 +29,7 @@ class EditInfo extends Component {
 
     componentDidMount() {
         var userID = localStorage.getItem('user-id')
-        axios.get(`http://localhost:8082/app/v1/users/id/${userID}`, {
+        axios.get(`${HEROKU_URL}app/v1/users/id/${userID}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
@@ -66,7 +67,7 @@ class EditInfo extends Component {
         console.log(this.state.user)
         if (user.firstName !== '' && user.lastName !== '' && user.age !== 0 && user.level !== ''
             && user.location !== '' && user.email !== '' && user.password !== '') {
-            axios.put(`http://localhost:8082/app/v1/users/${userID}`, {
+            axios.put(`${HEROKU_URL}app/v1/users/${userID}`, {
                 first_name: this.state.user.firstName,
                 last_name: this.state.user.lastName,
                 age: this.state.user.age,

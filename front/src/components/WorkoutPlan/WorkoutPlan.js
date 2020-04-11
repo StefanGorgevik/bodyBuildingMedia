@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import Error from '../WelcomePage/Error/Error'
 import ChangedAlert from '../ChangedAlert/ChangedAlert'
+const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 class WorkoutPlan extends React.Component {
     constructor(props) {
         super(props)
@@ -33,7 +34,7 @@ class WorkoutPlan extends React.Component {
         var isCreated = localStorage.getItem('isWPCreated') === 'true'
         if (isCreated) {
             var userID = localStorage.getItem('user-id')
-            axios.get(`http://localhost:8081/app/v1/plans/workoutplans/${userID}`, {
+            axios.get(`${HEROKU_URL}app/v1/plans/workoutplans/${userID}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
                 }
@@ -73,7 +74,7 @@ class WorkoutPlan extends React.Component {
         console.log(plan)
         if (plan.type !== '' && plan.goal !== '' && plan.intensity !== '' && Object.values(plan.days).length !== 0) {
             e.preventDefault()
-            axios.post('http://localhost:8081/app/v1/plans/workoutplans', {
+            axios.post(HEROKU_URL + 'app/v1/plans/workoutplans', {
                 type: this.state.type,
                 goal: this.state.goal,
                 intensity: this.state.intensity,
@@ -100,7 +101,7 @@ class WorkoutPlan extends React.Component {
 
     editWPHandler = () => {
         var wpID = this.props.workoutPlan._id
-        axios.put(`http://localhost:8081/app/v1/plans/workoutplans/${wpID}`, {
+        axios.put(`${HEROKU_URL}app/v1/plans/workoutplans/${wpID}`, {
             type: this.state.type,
             goal: this.state.goal,
             intensity: this.state.intensity,

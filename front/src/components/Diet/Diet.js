@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import Button from '../Button/Button'
 import Error from '../WelcomePage/Error/Error'
 import ChangedAlert from '../ChangedAlert/ChangedAlert'
-
+const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 class Diet extends React.Component {
     constructor(props) {
         super(props)
@@ -29,7 +29,7 @@ class Diet extends React.Component {
         var isCreated = localStorage.getItem('isDietCreated') === 'true'
         if (isCreated) {
             var userID = localStorage.getItem('user-id')
-            axios.get(`http://localhost:8081/app/v1/plans/diets/${userID}`, {
+            axios.get(`${HEROKU_URL}app/v1/plans/diets/${userID}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
                 }
@@ -69,7 +69,7 @@ class Diet extends React.Component {
         if (this.state.dietGoals !== '' && this.state.dietDuration !== '' && this.state.mealsPerDay !== 0
             && Object.values(this.state.meals).length !== 0) {
             console.log('entered')
-            axios.post('http://localhost:8081/app/v1/plans/diets', {
+            axios.post(HEROKU_URL + 'app/v1/plans/diets', {
                 dietGoals: this.state.dietGoals,
                 dietDuration: this.state.dietDuration,
                 mealsPerDay: this.state.mealsPerDay,
@@ -97,7 +97,7 @@ class Diet extends React.Component {
 
     editDietHandler = () => {
         var dietID = this.props.userDiet._id
-        axios.put(`http://localhost:8081/app/v1/plans/diets/${dietID}`, {
+        axios.put(`${HEROKU_URL}app/v1/plans/diets/${dietID}`, {
             dietGoals: this.state.dietGoals,
             dietDuration: this.state.dietDuration,
             mealsPerDay: this.state.mealsPerDay,

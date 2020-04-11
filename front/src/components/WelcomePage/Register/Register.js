@@ -9,6 +9,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loggedUser, isUserRegistered, isUserLogged } from '../../../redux/actions/userActions'
 import axios from 'axios'
+const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 
 class Register extends React.Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class Register extends React.Component {
             this.props.isUserRegistered(false)
         } else {
             console.log('register else')
-            axios.post('http://localhost:8080/app/v1/auth/register', {
+            axios.post(HEROKU_URL + 'app/v1/auth/register', {
                 first_name: info.firstName,
                 last_name: info.lastName,
                 age: info.age,
@@ -54,7 +55,7 @@ class Register extends React.Component {
                 .then(res => {
                     this.props.isUserRegistered(true)
                     this.setState({ error: false })
-                    axios.post('http://localhost:8080/app/v1/auth/login', {
+                    axios.post(HEROKU_URL + 'app/v1/auth/login', {
                         email: info.email,
                         password: info.password
                     })
