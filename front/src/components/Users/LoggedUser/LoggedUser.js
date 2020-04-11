@@ -3,7 +3,7 @@ import './LoggedUser.css'
 import UserPhoto from '../../../assets/images/profile.png'
 import { connect } from 'react-redux'
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8083/'
+const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 
 class User extends Component {
     constructor(props) {
@@ -14,14 +14,14 @@ class User extends Component {
     }
     componentDidMount() {
         var id = localStorage.getItem('user-id')
-        axios.get(`http://localhost:8083/app/v1/files/images/${id}`, {
+        axios.get(`${HEROKU_URL}app/v1/files/images/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
             .then(res => {
                 if (res.data.url !== undefined) {
-                    this.setState({ userURL: BASE_URL + res.data.url })
+                    this.setState({ userURL: HEROKU_URL + res.data.url })
                 } else {
                     this.setState({userURL: UserPhoto})
                 }

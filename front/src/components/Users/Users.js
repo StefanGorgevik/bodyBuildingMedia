@@ -7,6 +7,7 @@ import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import { userSelected, userClicked, getAllUsers, selectedWorkoutPlan, personalInfoClick, workoutPlanClick, dietClick, selectedDiet, uploadPhotoUrl } from '../../redux/actions/userActions'
 import axios from 'axios'
+const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 
 class Users extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class Users extends Component {
     }
 
     getUsers = () => {
-        axios.get('http://localhost:8082/app/v1/users/all/', {
+        axios.get(HEROKU_URL + 'app/v1/users/all/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
@@ -40,7 +41,7 @@ class Users extends Component {
                     return user._id !== loggedUserId
                 })
                 this.props.getAllUsers(users)
-                axios.get('http://localhost:8083/app/v1/files/images/', {
+                axios.get(HEROKU_URL + 'app/v1/files/images/', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
                     }
@@ -71,7 +72,7 @@ class Users extends Component {
 
 
     getWorkoutPlan = (id) => {
-        axios.get(`http://localhost:8081/app/v1/plans/workoutplans/${id}`, {
+        axios.get(`${HEROKU_URL}app/v1/plans/workoutplans/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
@@ -85,7 +86,7 @@ class Users extends Component {
     }
 
     getDiet = (id) => {
-        axios.get(`http://localhost:8081/app/v1/plans/diets/${id}`, {
+        axios.get(`${HEROKU_URL}app/v1/plans/diets/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
@@ -126,13 +127,13 @@ class Users extends Component {
     }
 
     getImage = (id) => {
-        axios.get(`http://localhost:8083/app/v1/files/images/${id}`, {
+        axios.get(`${HEROKU_URL}app/v1/files/images/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
             .then(res => {
-                this.props.uploadPhotoUrl('http://localhost:8083/' + res.data.url)
+                this.props.uploadPhotoUrl(HEROKU_URL + res.data.url)
             })
             .catch(err => {
                 console.log(err)
@@ -145,7 +146,7 @@ class Users extends Component {
 
     searchUser = () => {
         if (this.state.search !== '') {
-            axios.get(`http://localhost:8082/app/v1/users/name/${this.state.search}`, {
+            axios.get(`${HEROKU_URL}app/v1/users/name/${this.state.search}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
                 }
