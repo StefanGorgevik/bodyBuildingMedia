@@ -1,1 +1,1 @@
-web: node services/proxy.js & node services/client.js & node services/auth.js & node services/files.js & node services/users.js & node services/plans.js
+web: node services/proxy.js & node services/front.js & node services/auth.js & node services/files.js & node services/users.js & node services/plans.js

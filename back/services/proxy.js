@@ -20,11 +20,8 @@ app.all('/app/v1/files/*', (req, res) => {
     appProxy.web(req, res, {target: 'http://localhost:8083'});
 });
 
-
-
-
 app.all('/*', (req, res) => {
-    appProxy.web(req, res, {target: 'http://localhost:8086'});
+    appProxy.web(req, res, {target: 'http://localhost:8084'});
 });
 
 app.listen(process.env.PORT, err => {
