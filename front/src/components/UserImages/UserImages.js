@@ -1,7 +1,6 @@
 import React from 'react'
 import './UserImages.css'
 import { connect } from 'react-redux'
-// const BASE_URL = 'http://localhost:8083/'
 
 class UserImages extends React.Component {
     render() {

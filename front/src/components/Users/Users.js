@@ -7,7 +7,7 @@ import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import { userSelected, userClicked, getAllUsers, selectedWorkoutPlan, personalInfoClick, workoutPlanClick, dietClick, selectedDiet, uploadPhotoUrl } from '../../redux/actions/userActions'
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8083/'
+
 class Users extends Component {
     constructor(props) {
         super(props)
@@ -40,7 +40,7 @@ class Users extends Component {
                     return user._id !== loggedUserId
                 })
                 this.props.getAllUsers(users)
-                axios.get('http://localhost:8083/images', {
+                axios.get('http://localhost:8083/app/v1/files/images/', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
                     }
@@ -126,13 +126,13 @@ class Users extends Component {
     }
 
     getImage = (id) => {
-        axios.get(`http://localhost:8083/images/${id}`, {
+        axios.get(`http://localhost:8083/app/v1/files/images/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
             .then(res => {
-                this.props.uploadPhotoUrl(BASE_URL + res.data.url)
+                this.props.uploadPhotoUrl('http://localhost:8083/' + res.data.url)
             })
             .catch(err => {
                 console.log(err)

@@ -5,7 +5,7 @@ import { openUploadPhoto, uploadPhotoUrl } from '../../redux/actions/userActions
 import { connect } from 'react-redux'
 import Title from '../Title/Title'
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8083/'
+const BASE_URL = 'http://localhost:8083/app/v1/files/'
 class ImageUpload extends Component {
     constructor(props) {
         super(props);

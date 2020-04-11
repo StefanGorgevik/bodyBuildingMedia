@@ -14,7 +14,7 @@ class User extends Component {
     }
     componentDidMount() {
         var id = localStorage.getItem('user-id')
-        axios.get(`http://localhost:8083/images/${id}`, {
+        axios.get(`http://localhost:8083/app/v1/files/images/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }

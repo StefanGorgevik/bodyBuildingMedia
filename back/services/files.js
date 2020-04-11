@@ -33,18 +33,18 @@ app.use(
         .unless({
             methods: ['GET', 'POST'],
             path: [
-                { url: /^\/upload\/.*/, methods: ['GET','POST'] },
-                { url: /^\/uploads\/images\/.*/, methods: ['GET','POST'] },
-                { url: /^\/images\/.*/, methods: ['GET','POST'] },
-                { url: /^\/images\/uploads\/.*/, methods: ['GET','POST'] },
+                { url: /^\/app\/v1\/files\/upload\/.*/, methods: ['GET','POST'] },
+                { url: /^\/app\/v1\/files\/uploads\/images\/.*/, methods: ['GET','POST'] },
+                { url: /^\/app\/v1\/files\/images\/.*/, methods: ['GET','POST'] },
+                { url: /^\/app\/v1\/files\/images\/uploads\/.*/, methods: ['GET','POST'] },
             ]
         })
 );
 
-app.post('/upload/', upload.single('image'), filesHandler.uploadPhoto);
-app.get('/images', filesHandler.getImages);
-app.get('/images/:id', filesHandler.getOneImage);
-app.delete('/images/delete/:id', filesHandler.deleteImage);
+app.post('/app/v1/files/upload/', upload.single('image'), filesHandler.uploadPhoto);
+app.get('/app/v1/files/images', filesHandler.getImages);
+app.get('/app/v1/files/images/:id', filesHandler.getOneImage);
+app.delete('/app/v1/files/images/delete/:id', filesHandler.deleteImage);
 
 
 app.listen(8083, err => {
