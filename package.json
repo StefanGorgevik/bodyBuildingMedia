@@ -24,8 +24,11 @@
     "randomstring": "^1.1.5"
   },
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "nodemon": "^2.0.2"
   },
-  "engines": { 
-    "node": "6.11.1" }
+  "engines": {
+    "node": "6.11.1"
+  },
+  "plugins": ["transform-object-rest-spread"]
 }
