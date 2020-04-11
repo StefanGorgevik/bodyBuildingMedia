@@ -151,7 +151,6 @@ class Users extends Component {
                 }
             })
                 .then(res => {
-                    console.log(res)
                     if (res.data) {
                         this.setState({ users: res.data })
                     }
