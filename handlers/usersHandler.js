@@ -1,9 +1,9 @@
 const usersModel = require('../models/usersModel');
-var validator = require('node-input-validator');
+var validator = require('../node_modules/node-input-validator');
 var userValidator = require('../validators/userValidator');
-var bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
-const config = require('../config/index');
+var bcrypt = require('../node_modules/bcryptjs');
+var jwt = require('../node_modules/jsonwebtoken');
+const config = require('../index');
 
 const getUsers = (req, res) => {
     usersModel.getAllUsers()

@@ -1,21 +1,21 @@
-var express = require('express')
+var express = require('../node_modules/express')
 var app = express();
 
 //making the connection with mongoose
-const config = require('../config/index')
+const config = require('../index')
 const DBConnection = require('../db/connection')
 var c = config.getConfig("db")
 DBConnection.initialize(c);
 
-var bodyParser = require('body-parser')
+var bodyParser = require('../node_modules/body-parser')
 app.use(bodyParser.json())
 
 const usersHandler = require('../handlers/usersHandler')
 
-const cors = require('cors')
+const cors = require('../node_modules/cors/lib')
 app.use(cors())
 
-var jwt = require('express-jwt');
+var jwt = require('../node_modules/express-jwt/lib');
 app.use(                                                       //sekoj req ke pomine niz ova i ke vrati req.user
     jwt(
         { secret: config.getConfig('jwt').key }
