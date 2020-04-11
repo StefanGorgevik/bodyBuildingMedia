@@ -2,7 +2,7 @@ var express = require('express')
 var app = express();
 
 //making the connection with mongoose
-const config = require('../config/index')
+const config = require('../config/index.js')
 const DBConnection = require('../db/connection')
 var c = config.getConfig("db")
 DBConnection.initialize(c);
