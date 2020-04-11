@@ -7,10 +7,10 @@ const cors = require('cors');
 app.use(cors());
 
 
-app.use(express.static(path.join(__dirname, '../../front/build')));
+app.use(express.static(path.join(__dirname, '../front/build')));
 
 app.get("/*", function (req, res) {
-  res.sendFile(path.resolve(__dirname, '../../front/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
 })
 
 app.listen(8084, err => {
