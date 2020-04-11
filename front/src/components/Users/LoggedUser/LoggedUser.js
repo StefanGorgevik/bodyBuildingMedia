@@ -4,6 +4,7 @@ import UserPhoto from '../../../assets/images/profile.png'
 import { connect } from 'react-redux'
 import axios from 'axios'
 const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
+const GIT_URL = "https://raw.githubusercontent.com/StefanGorgevik/bodyBuildingMedia/master/public/"
 
 class User extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class User extends Component {
         })
             .then(res => {
                 if (res.data.url !== undefined) {
-                    this.setState({ userURL: HEROKU_URL + res.data.url })
+                    this.setState({ userURL: GIT_URL + res.data.url })
                 } else {
                     this.setState({userURL: UserPhoto})
                 }

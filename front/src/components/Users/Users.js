@@ -47,7 +47,7 @@ class Users extends Component {
                     }
                 })
                     .then(res => {
-                        console.log(res)
+    
                         var photos = res.data.filter((photo) => {
                             if (photo.userID === res.loggedUserId) {
                                 this.setState({ loggedUserPhoto: photo })
@@ -134,7 +134,6 @@ class Users extends Component {
             }
         })
             .then(res => {
-                console.log(res)
                 var gitUrl = "https://raw.githubusercontent.com/StefanGorgevik/bodyBuildingMedia/master/public/"
                 this.props.uploadPhotoUrl(gitUrl + res.data.url)
             })

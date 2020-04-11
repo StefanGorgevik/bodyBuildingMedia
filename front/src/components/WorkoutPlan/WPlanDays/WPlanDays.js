@@ -3,10 +3,8 @@ import './WPlanDays.css'
 
 function DaysInput(props) {
     if (props.days) {
-        console.log(props.days)
         var daysToMap = ["day1", "day2", "day3", "day4", "day5", "day6", "day7"]
         var days = daysToMap.map((day, index) => {
-            console.log(props.days[day])
             return (
                 <div className="days-input-main" key={day + index}>
                     {props.days[day] !== "true" ?

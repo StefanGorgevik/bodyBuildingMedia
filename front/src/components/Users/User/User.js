@@ -22,7 +22,6 @@ class User extends Component {
 
     render() {
         var url;
-        console.log(this.props.photo)
         if(this.props.photo !== undefined) {
         url = HEROKU_URL + this.props.photo.url
     } else {

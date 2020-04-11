@@ -5,7 +5,6 @@ const HEROKU_URL = "https://raw.githubusercontent.com/StefanGorgevik/bodyBuildin
 
 class UserImages extends React.Component {
     render() {
-        console.log(this.props.uploadedPhotoUrl)
         var content;
         if (this.props.uploadedPhotoUrl === HEROKU_URL + 'undefined') {
             content = <p>No photo found for this user!</p>
