@@ -3,7 +3,7 @@ var validator = require('../node_modules/node-input-validator');
 var userValidator = require('../validators/userValidator');
 var bcrypt = require('../node_modules/bcryptjs');
 var jwt = require('../node_modules/jsonwebtoken');
-const config = require('../index');
+const config = require('../config/index.js');
 
 const getUsers = (req, res) => {
     usersModel.getAllUsers()
