@@ -11,16 +11,18 @@
 
 .auth-content {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     height: 30%;
-    width: 50%;
+    width: 70%;
     font-family: 'Roboto Slab', serif;
 }
 
 .auth-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 0 auto;
+    width: 70%;
 }
 
 .welcome-cover-h1 {
@@ -32,13 +34,37 @@
     margin: auto;
     height: 60%;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.062);
     border-radius: 15px;
     font-size:40px;
     font-family: 'Diplomata SC', cursive;
 }
 
-.welcome-cover-h1:hover {
-    background-color: rgba(255, 255, 255, 0.144);
+@media screen and (max-width: 1200px) {
+    .auth-btns {
+        width: 80%;
+    }
+}
 
+@media screen and (max-width: 1100px) {
+    
+    .auth-btns {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .auth-content {
+        width: 100%;
+        height: 80%;
+    }
+    .auth-btns {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+        height: 50%;
+    }
+    .welcome-cover-h1 {
+        font-size: 28px;
+    }
 }
