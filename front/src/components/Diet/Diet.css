@@ -57,6 +57,9 @@
 }
 
 @media screen and (max-width: 700px) {
+    .diet {
+        width: 100%;
+    }
     .diet-inputs-div {
         width: 100%;
         overflow-y: scroll;

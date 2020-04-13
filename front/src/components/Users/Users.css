@@ -80,14 +80,14 @@
 
   @media screen and (max-width: 700px) {
     .users {
-      height: 50%;
+      height: 45%;
     }
     .users-scroll { 
       display: flex;
       flex-direction: row;
         overflow-y: hidden;
         overflow-x: scroll;
-        height: 60%;
+        height: 18vh;
         width: 100vw;
     }
   }

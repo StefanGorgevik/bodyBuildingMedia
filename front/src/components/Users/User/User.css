@@ -55,7 +55,7 @@
         flex:1 1 150px   
     }
     .user:hover {
-        width: 70%;
+        width: 100%;
     }
 
     .selected-user {
