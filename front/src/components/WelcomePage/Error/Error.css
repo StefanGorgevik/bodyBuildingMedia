@@ -35,7 +35,12 @@
 
 
 @media screen and (max-width: 700px) {
-    .error-div p {
-        width: 100%;
+    .error-div {
+        min-height: 50%;
+        min-width: 100%;
+    }
+
+    .error-div h1 {
+        font-size: 25px;
     }
 }

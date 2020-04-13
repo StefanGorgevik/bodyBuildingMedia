@@ -109,7 +109,7 @@ class Diet extends React.Component {
                 }
             })
             .then((res) => {
-                this.setState({error: false, alert: true})
+                this.setState({ error: false, alert: true })
             })
             .catch((err) => { this.props.openDietPlan(true) })
     }
@@ -168,18 +168,20 @@ class Diet extends React.Component {
                     content='Fill up every field or check if your credentials are correct' /> : null}
                 <div className="diet">
                     <Title title="diet" />
-                    {inputs}
-                    <div className='generate-meals'>
-                        <div className='select-meals-number'>
-                            <NumberInput id='mealsPerDay'
-                                type="number"
-                                saveInputValue={this.saveInputValue}
-                                value={this.state.mealsPerDay}
-                            />
+                    <div className="diet-inputs-div">
+                        {inputs}
+                        <div className='generate-meals'>
+                            <div className='select-meals-number'>
+                                <NumberInput id='mealsPerDay'
+                                    type="number"
+                                    saveInputValue={this.saveInputValue}
+                                    value={this.state.mealsPerDay}
+                                />
+                            </div>
                         </div>
+                        {mealInputs}
                     </div>
-                    {mealInputs}
-                    <div className="wp-btns">
+                    <div className="diet-btns">
                         <Button click={this.closeDiet}
                             label="close"
                             className="close-btn"

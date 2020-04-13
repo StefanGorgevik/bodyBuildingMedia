@@ -64,13 +64,13 @@ class ImageUpload extends Component {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
-        .then(res => {
-            console.log(res)
-            this.uploadImages()
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                console.log(res)
+                this.uploadImages()
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     closeUploadPhotoHandler = () => {
@@ -83,7 +83,8 @@ class ImageUpload extends Component {
             <main className="iu-main">
                 <div className="iu-div">
                     <Title title="photo upload" />
-                    {isPhotoUploaded ? <p className="iu-info-p"><i className="fas fa-exclamation-triangle"></i>Your current photo will be removed!</p> : null}
+                    {isPhotoUploaded ? <p className="iu-info-p"><i className="fas fa-exclamation-triangle"></i>
+                    Your current photo will be removed!</p> : null}
                     <input className="photo-input " type="file" onChange={this.selectImages} single="true" />
                     <div className="wp-btns">
                         <Button click={this.closeUploadPhotoHandler}
@@ -91,14 +92,14 @@ class ImageUpload extends Component {
                             className="close-btn"
                         />
                         {isPhotoUploaded ?
-                        <Button click={this.changePhoto }
-                            label={"change"}
-                            className="login-btn"
-                        /> :
-                        <Button click={this.uploadImages}
-                            label={"upload"}
-                            className="login-btn"
-                        /> }
+                            <Button click={this.changePhoto}
+                                label={"change"}
+                                className="login-btn"
+                            /> :
+                            <Button click={this.uploadImages}
+                                label={"upload"}
+                                className="login-btn"
+                            />}
                     </div>
                 </div>
             </main>

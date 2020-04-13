@@ -43,6 +43,7 @@
 }
 
 .active-li {
+    height: 100%;
     color: white;
     background-color: rgb(105, 101, 101);;
     border-radius: 10px;
@@ -63,5 +64,10 @@
     .user-data-li {
         font-size: 16px;
         font-weight: 400;
+    
+    }
+    .user-data-li,
+    .active-li {
+        max-height: 100%;
     }
 }

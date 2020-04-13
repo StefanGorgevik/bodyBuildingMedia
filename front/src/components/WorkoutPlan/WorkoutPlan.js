@@ -162,8 +162,8 @@ class WorkoutPlan extends React.Component {
                     content='Fill up every field or check if your credentials are correct'
                 /> : null}
                 <div className="workout-plan">
-                    <div className="wp-inputs-div">
                         <Title title="workout plan" />
+                    <div className="wp-inputs-div">
                         {inputs}
                         <DaysInput saveInputValue={this.saveDaysValue}
                             days={this.state.days}

@@ -20,21 +20,22 @@
     justify-content: space-between;
     margin: auto;
     width: 40%;
-    min-height: 95%;
+    min-height: 100%;
     background-color:rgba(0, 0, 0, 0.897);
     border-radius: 55px;
     border: 2px solid white;
     box-sizing: border-box;
 }
-.diet div {
-    height: 30%;
-}
+
 
 .generate-meals {
     display: flex;
     flex-direction: column;
 }
-
+.diet-inputs-div {
+    height: 100%;
+    overflow-y: scroll;
+}
 
 .select-meals-number {
     display: flex;
@@ -42,27 +43,22 @@
     margin: 10px;
 }
 
-
 .input-button-diet {
     display: flex;
     flex-direction: row;
 }
 
-.gen-btn {
-    font-family: 'Work Sans', sans-serif;
-    height: 35px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 5px;
+.diet-btns {
+    display: flex;
     margin: 0 auto;
-    background-color: rgba(243, 243, 237, 0.877);
-    border:none;
-    width: 200px;
-    cursor: pointer;
+    width: 70%;
+    margin-bottom:10px;
+    justify-content: space-around;
 }
 
 @media screen and (max-width: 700px) {
-    .diet {
+    .diet-inputs-div {
         width: 100%;
+        overflow-y: scroll;
     }
 }

@@ -42,13 +42,13 @@ class Header extends React.Component {
             <nav className="navigation">
                 <h2 className="title-h2">Body Building Media</h2>
                 <ul>
-                    <li onClick={this.openInfoClickedHandler} className="clickable-lis popup-lis">Edit Info</li>
+                    <li onClick={this.openInfoClickedHandler} >Edit Info</li>
                     <li onClick={this.addWorkoutPlanClickedHandler}
-                        className="clickable-lis popup-lis">{isWPCreated ?
+                        >{isWPCreated ?
                             "Edit Workout" : "Add workout"}</li>
-                    <li onClick={this.addDietClickedHandler} className="clickable-lis popup-lis">
+                    <li onClick={this.addDietClickedHandler} >
                         {isDietCreated ? "Edit diet" : "Add diet"}</li>
-                    <li onClick={this.openUploadPhotoClickedHandler} className="clickable-lis popup-lis">
+                    <li onClick={this.openUploadPhotoClickedHandler} >
                         {isPhotoUploaded ? "Change Photo" : "Upload Photo"}</li>
                     <li className="clickable-lis" onClick={this.signOutClickedHandler}>Sign Out</li>
                 </ul>

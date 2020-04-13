@@ -31,6 +31,6 @@
     .ei-div {
         min-width: 100%;
         margin: 0;
-
+        max-height: 90%;
     }
 }
