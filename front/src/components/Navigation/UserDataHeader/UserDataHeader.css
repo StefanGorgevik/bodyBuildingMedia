@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: row;
     background-color: #292a29;
-    min-height:5%;
     width: 100%;
     text-align: center;
     border: 1px solid white;
     border-radius: 10px;
-
+    max-height: 60%;
 }
 
 .user-data-navigation ul {
@@ -29,11 +28,11 @@
     margin: 0 auto;
 }
 
-
 .user-data-li:hover {
     color: rgb(68, 67, 67);
     border-color: rgb(223, 210, 210);
     background-color: rgb(184, 173, 173);
+    border-radius: 10px;
 }
 
 #user-data-ul {
@@ -50,3 +49,19 @@
     border: 2px solid white;
     font-size: 26px;
  }
+
+ @media screen and (max-width: 700px) {
+    .user-data-navigation {
+        width: 100%;
+        min-height: 20%;
+    }
+
+    .user-data-ul {
+        width: 100%;
+    }
+
+    .user-data-li {
+        font-size: 16px;
+        font-weight: 400;
+    }
+}

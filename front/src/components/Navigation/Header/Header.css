@@ -87,3 +87,38 @@
     color: rgb(255, 255, 255);
 }
 
+@media screen and (max-width: 700px) {
+   .navigation {
+       flex-direction: column;
+   }
+   .title-h2 {
+       font-size: 24px;
+       width: 100%;
+       margin: 0 auto;
+   }
+   .right-side {
+       display: flex;
+       flex-direction: row;
+   }
+
+   .right-side ul li {
+       font-size: 14px;
+   }
+
+   .right-side ul li:hover{ 
+       font-size: 15px;
+   }
+
+   .fa-cogs {
+       font-size: 20px;
+   }
+
+   .settings {display: none;}
+
+   .settings:hover  {
+       display: none;
+   }
+   .clickable-lis:hover {
+       flex: 1;
+   }
+  }

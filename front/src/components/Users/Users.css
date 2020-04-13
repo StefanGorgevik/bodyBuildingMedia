@@ -10,9 +10,8 @@
 .users-scroll {
     margin: 0 auto;
     overflow-y: auto;
-    height: 450px;
+    max-height: 40vh;
     width: 100%;
-    /* border: 1px solid rgba(231, 221, 221, 0.89); */
     border-radius: 10px;
     padding: 5px;
 }
@@ -75,4 +74,18 @@
   ::-webkit-resizer {
     cursor: pointer;
 
+  }
+
+  @media screen and (max-width: 700px) {
+    .users {
+      height: 50%;
+    }
+    .users-scroll { 
+      display: flex;
+      flex-direction: row;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        height: 60%;
+        width: 100vw;
+    }
   }

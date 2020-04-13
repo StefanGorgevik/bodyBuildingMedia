@@ -30,22 +30,22 @@ class UserPage extends Component {
         return (
             <div className="user-page">
                 {this.props.userClicked ?
-                    <UserDataHeader perInfoClickedHandler={this.personalInfoClickedHandler}
-                        workoutPlanClickedHandler={this.workoutPlanClickedHandler}
-                        dietClickedHandler={this.dietClickedHandler}
-                        personalInfoClicked={this.props.personalInfoClicked}
-                        workoutPlanClicked={this.props.workoutPlanClicked}
-                        dietClicked={this.props.dietClicked}
-                    /> : null}
-                <div>
-                    {this.props.userClicked ?
-                        <>
-                            {this.props.personalInfoClicked ? <PersonalInfo /> : null}
-                            {this.props.workoutPlanClicked ? <WorkoutPlan /> : null}
-                            {this.props.dietClicked ? <Diet /> : null}
-                        </> : null}
-                </div>
-            </div>)
+                    <>
+
+                        <UserDataHeader perInfoClickedHandler={this.personalInfoClickedHandler}
+                            workoutPlanClickedHandler={this.workoutPlanClickedHandler}
+                            dietClickedHandler={this.dietClickedHandler}
+                            personalInfoClicked={this.props.personalInfoClicked}
+                            workoutPlanClicked={this.props.workoutPlanClicked}
+                            dietClicked={this.props.dietClicked}
+                        />
+
+                        {this.props.personalInfoClicked ? <PersonalInfo /> : null}
+                        {this.props.workoutPlanClicked ? <WorkoutPlan /> : null}
+                        {this.props.dietClicked ? <Diet /> : null}
+                    </> : null}
+            </div>
+            )
     }
 }
 

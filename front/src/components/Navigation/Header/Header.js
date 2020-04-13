@@ -61,11 +61,12 @@ class Header extends React.Component {
                                     {isDietCreated ? "Edit diet" : "Add diet"}</li>
                                 <li onClick={this.openUploadPhotoClickedHandler} className="clickable-lis popup-lis">
                                     {isPhotoUploaded ? "Change Photo" : "Upload Photo"}</li>
+                                <li className="clickable-lis" onClick={this.signOutClickedHandler}>Sign Out</li>
                             </> : null}
                         <li className="settings" onMouseEnter={this.hoverHandler} >
                             <i className="fas fa-cogs"></i>
                         </li>
-                       <li className="clickable-lis" onClick={this.signOutClickedHandler}>Sign Out</li>
+
                     </ul>
                 </div>
             </nav>

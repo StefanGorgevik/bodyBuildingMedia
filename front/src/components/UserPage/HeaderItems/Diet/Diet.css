@@ -1,7 +1,10 @@
 .diet-user { 
     max-width: 100%;
+    max-height: 70vh;
     margin: 0;
     padding: 20px;
+    overflow-y: scroll;
+
 }
 
 .no-info-p {
@@ -10,4 +13,10 @@
     width: 100%;
     font-weight: bold;
     text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+    .diet-user {
+        min-height: 25vh;
+    }
 }
