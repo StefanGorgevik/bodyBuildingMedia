@@ -41,3 +41,8 @@
     margin-bottom:10px;
     justify-content: space-around;
 }
+@media screen and (max-width: 700px) {
+    .workout-plan {
+        width: 100%;
+    }
+}

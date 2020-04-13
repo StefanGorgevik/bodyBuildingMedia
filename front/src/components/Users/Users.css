@@ -8,6 +8,8 @@
 }
 
 .users-scroll {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     overflow-y: auto;
     max-height: 40vh;

@@ -15,23 +15,16 @@
     border: 1px solid whitesmoke;
     border-radius: 10px;
     background-color: rgba(48, 54, 54, 0.452);
-
-}
-
-.user-images p {
-    font-size: 22px;
 }
 
 @media screen and (max-width: 700px) {
     .user-images {
         width: 100%;
-        min-height: 20%;
+        height: 80%;
+        margin: 5px; 
     }
     .cover-image {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: baseline;
+        margin: 0 auto;
         width: 90%;
         height: 50%;
         margin:0; 

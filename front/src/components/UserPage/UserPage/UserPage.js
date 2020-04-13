@@ -31,7 +31,6 @@ class UserPage extends Component {
             <div className="user-page">
                 {this.props.userClicked ?
                     <>
-
                         <UserDataHeader perInfoClickedHandler={this.personalInfoClickedHandler}
                             workoutPlanClickedHandler={this.workoutPlanClickedHandler}
                             dietClickedHandler={this.dietClickedHandler}
@@ -39,10 +38,11 @@ class UserPage extends Component {
                             workoutPlanClicked={this.props.workoutPlanClicked}
                             dietClicked={this.props.dietClicked}
                         />
-
+                        <div className="content-div">
                         {this.props.personalInfoClicked ? <PersonalInfo /> : null}
                         {this.props.workoutPlanClicked ? <WorkoutPlan /> : null}
                         {this.props.dietClicked ? <Diet /> : null}
+                        </div>
                     </> : null}
             </div>
             )
