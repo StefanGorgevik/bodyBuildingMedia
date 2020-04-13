@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    max-height: 100%;
     width: 100%;
     border-radius: 19px;
     padding: 0 10px;
@@ -32,5 +32,16 @@
     }
     .pi-inputs-div {
         width: 90%;
+    }
+}
+
+@media screen and (max-height: 860px) {
+    .pi-inputs-div {
+        width: 90%;
+        height: 70%;
+        overflow-y: scroll;
+    }
+    .personal-info {
+        height: 90%;
     }
 }

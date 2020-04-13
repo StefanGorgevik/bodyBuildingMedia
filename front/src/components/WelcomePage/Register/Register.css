@@ -44,8 +44,14 @@
     justify-content: space-around;
 }
 
-@media screen and (max-width: 730px) {
-    .reg-btns-div {
-        width: 90%;
+@media screen and (max-width: 1230px) {
+    .register {
+        width: 40%;
     }
-}
+} 
+@media screen and (max-width: 860px) {
+    .register {
+        width: 100%;
+    }
+    
+} 

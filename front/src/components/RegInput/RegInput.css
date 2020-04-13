@@ -6,6 +6,7 @@
     font-family: 'Roboto Slab', serif;
     width: 100%;
     position: relative;
+    height: 100%;
  }
 
  .login-inputs,
@@ -37,6 +38,12 @@
     .register-inputs,
     #birthday{
         width: 100%;
+    }
+}
+
+@media screen and (max-height: 860px) {
+    .input-div label {
+        font-size: 18px;
     }
 }
 
