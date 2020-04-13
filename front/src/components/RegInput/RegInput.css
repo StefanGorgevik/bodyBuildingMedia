@@ -1,9 +1,11 @@
 .input-div {
-    margin: 5px auto;
+    margin: 5px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: 'Roboto Slab', serif;
+    width: 100%;
+    position: relative;
  }
 
  .login-inputs,
@@ -14,11 +16,13 @@
     height: 35px;
     border-radius: 5px;
     border:none;
-    width: 350px;
+    max-width: 150%;
     font-size: 24px;
     font-weight: 600;
     background-color: rgba(243, 243, 237, 0.877);
     text-align: center;
+    padding: 5px 0;
+    margin: 0;
 }
 
 .input-div label{
@@ -27,4 +31,13 @@
     margin: 5px;
     letter-spacing: 0.1px;
 }
+
+@media screen and (max-width: 700px) {
+    .login-inputs,
+    .register-inputs,
+    #birthday{
+        width: 100%;
+    }
+}
+
 

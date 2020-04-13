@@ -20,7 +20,7 @@ function PersonalInfo(props) {
         return (
             <div className="personal-info ">
                 <Title title="personal info" />
-                <div>
+                <div className="pi-inputs-div">
                     {inputs}
                 </div>
             </div>

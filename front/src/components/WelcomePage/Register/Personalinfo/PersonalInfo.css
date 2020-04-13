@@ -3,8 +3,34 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    min-width: 20%;
+    width: 100%;
     border-radius: 19px;
     padding: 0 10px;
 }
 
+.pi-inputs-div {
+    width: 100%;
+    min-height: 50%;
+    margin: 0;
+}
+
+@media screen and (max-width: 1200px) {
+    .personal-info {
+        min-width: 100%;
+        margin: 0;
+    }
+    .pi-inputs-div {
+        width: 70%;
+        height: 40%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .personal-info {
+        min-width: 100%;
+        margin: 0;
+    }
+    .pi-inputs-div {
+        width: 90%;
+    }
+}

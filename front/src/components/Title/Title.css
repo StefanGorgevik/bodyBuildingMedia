@@ -14,3 +14,8 @@
     text-transform: capitalize;
     font-family: 'Roboto Slab', serif;
 }
+@media screen and (max-width: 700px) {
+    .title-h1 {
+        font-size: 30px;
+    }
+}

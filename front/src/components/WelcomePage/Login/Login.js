@@ -82,7 +82,8 @@ class Login extends React.Component {
                 /> : null}
 
                 {this.redirectToMain()}
-                <form onSubmit={this.loginClickedHandler}>
+
+                <form className="login-form" onSubmit={this.loginClickedHandler}>
                     {inputs}
                     <Button click={this.loginClickedHandler}
                         active={this.state.active}
