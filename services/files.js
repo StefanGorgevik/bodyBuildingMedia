@@ -32,6 +32,9 @@ var storage = multer.diskStorage({
         cb(null, req.user.id + '-' + file.originalname)
     }
 });
+
+cloudinary.v2.uploader.upload(storage,
+  function (error, result) { console.log(result, error) });
 const upload = multer({ storage })
 
 var jwt = require('express-jwt');
@@ -50,11 +53,10 @@ app.use(
         })
 );
 
-app.post('/app/v1/files/upload/', upload.single('image'), filesHandler.uploadPhoto);
-app.get('/app/v1/files/images/', filesHandler.getImages);
-app.get('/app/v1/files/images/:id', filesHandler.getOneImage);
-app.delete('/app/v1/files/images/delete/:id', filesHandler.deleteImage);
-
+app.post('/app/v1/files/upload/', filesHandler.uploadPhoto);
+// app.get('/app/v1/files/images/', filesHandler.getImages);
+// app.get('/app/v1/files/images/:id', filesHandler.getOneImage);
+// app.delete('/app/v1/files/images/delete/:id', filesHandler.deleteImage);
 
 app.listen(8083, err => {
     if (err) {

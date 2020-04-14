@@ -12,7 +12,8 @@ const User = mongoose.model(
         password: String,
         isWorkoutPlanCreated: Boolean,
         isDietCreated: Boolean,
-        isPhotoUploaded: Boolean
+        isPhotoUploaded: Boolean,
+        photoURL: String
     })
 )
 
