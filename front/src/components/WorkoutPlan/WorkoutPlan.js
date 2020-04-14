@@ -7,8 +7,6 @@ import DaysInput from './WPlanDays/WPlanDays'
 import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import Error from '../WelcomePage/Error/Error'
-import ChangedAlert from '../ChangedAlert/ChangedAlert'
 const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 class WorkoutPlan extends React.Component {
     constructor(props) {
@@ -156,11 +154,8 @@ class WorkoutPlan extends React.Component {
 
         return (
             <main className="wp-main">
-                {this.state.alert ? <ChangedAlert content="Info successfully changed!" closeChangedAlert={this.closeChangedAlert} /> : null}
-                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
-                    title="Error"
-                    content='Fill up every field or check if your credentials are correct'
-                /> : null}
+               
+
                 <div className="workout-plan">
                         <Title title="workout plan" />
                     <div className="wp-inputs-div">
@@ -171,6 +166,8 @@ class WorkoutPlan extends React.Component {
                             undoButtonHandler={this.undoButtonHandler}
                         />
                     </div>
+                    {this.state.alert ? <p className="check-p">Info successfully changed!</p> : null}
+                {this.state.error ? <p className="check-p">Check your credentials!</p> : null}
                     <div className="wp-btns">
                         <Button click={this.closeAddWorkoutPlan}
                             label="close"

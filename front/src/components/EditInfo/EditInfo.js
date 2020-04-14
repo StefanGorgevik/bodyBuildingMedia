@@ -5,8 +5,7 @@ import axios from 'axios'
 import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import { openEditInfo } from '../../redux/actions/userActions'
-import Error from '../WelcomePage/Error/Error'
-import ChangedAlert from '../ChangedAlert/ChangedAlert'
+
 const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 class EditInfo extends Component {
     constructor(props) {
@@ -108,16 +107,14 @@ class EditInfo extends Component {
     render() {
         return (
             <main className="ei-main">
-                {this.state.alert ? <ChangedAlert content="Info successfully changed!" closeChangedAlert={this.closeChangedAlert} /> : null}
-                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
-                    title="Error"
-                    content='Fill up every field or check if your credentials are correct'
-                /> : null}
+               
                 <div className="ei-div">
                     <PersonalInfo saveInputValue={this.saveInputValue}
                         user={this.state.user}
                         editInfoOpened={this.props.editInfoOpened}
                     />
+                    {this.state.alert ? <p className="check-p">Info successfully changed!</p> : null}
+                {this.state.error ? <p className="check-p">Check your credentials!</p> : null}
                     <div className="reg-btns-div">
                         <Button click={this.closePopUp}
                             label="close"

@@ -2,7 +2,6 @@ import React from 'react'
 import './Login.css'
 import Input from '../../RegInput/RegInput'
 import Button from '../../Button/Button'
-import Error from '../Error/Error'
 import { connect } from 'react-redux'
 import { isUserLogged, loggedUser } from '../../../redux/actions/userActions'
 import { Redirect } from 'react-router-dom'
@@ -76,15 +75,13 @@ class Login extends React.Component {
         })
         return (
             <div className='login'>
-                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
-                    title="Error"
-                    content='Fill up every field or check if your credentials are correct'
-                /> : null}
 
                 {this.redirectToMain()}
 
                 <form className="login-form" onSubmit={this.loginClickedHandler}>
                     {inputs}
+                    {this.state.error ? <p className="check-p">Check your credentials!</p> : null}
+
                     <Button click={this.loginClickedHandler}
                         active={this.state.active}
                         label="login"

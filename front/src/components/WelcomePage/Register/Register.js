@@ -2,7 +2,6 @@ import React from 'react'
 
 import PersonalInfo from './PersonalInfo/Personalinfo'
 import Button from '../../Button/Button'
-import Error from '../Error/Error'
 import './Register.css'
 
 import { Redirect } from 'react-router-dom'
@@ -36,9 +35,9 @@ class Register extends React.Component {
         localStorage.clear()
         e.preventDefault()
         var info = this.state.user
-        if (info.firstName.length === 0 && info.lastName.length === 0 && info.email.length === 0 && info.password.length === 0 &&
-            info.level.length === 0 && info.location.length === 0 && info.age !== 0) {
-                console.log('register error')
+        if (this.state.user.firstName === '' || this.state.user.lastName === '' || this.state.user.email === '' || this.state.user.password === '' ||
+            this.state.user.level === '' || this.state.user.location === '' || this.state.user.age === 0) {
+            console.log('register error')
             this.setState({ error: true })
             this.props.isUserRegistered(false)
         } else {
@@ -96,13 +95,9 @@ class Register extends React.Component {
             <div className="main-register">
                 {this.redirectToMain()}
                 <div className="register">
-                    {this.state.error ?
-                        <Error closeErrorAlert={this.closeErrorAlert}
-                            title="Error"
-                            content='Fill up every field or check if your credentials are correct' />
-                        : null}
                     <PersonalInfo saveInputValue={this.saveInputValue}
                         user={this.state.user} />
+                        {this.state.error ? <p className="check-p">Check your credentials!</p> : null}
                     <div className="reg-btns-div">
                         <Button click={this.props.closePopUp}
                             label="close"

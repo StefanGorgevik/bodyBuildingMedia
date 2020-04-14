@@ -44,10 +44,12 @@ function ImageUpload(props) {
     }, [])
 
     const uploadToUser = () => {
-
         const userID = localStorage.getItem('user-id')
         axios.put(`${HEROKU_URL}app/v1/users/${userID}`,
-            { photosURL: 'hahaha' },
+            {
+                photosURL: props.uploadedPhotoUrl,
+                isPhotoUploaded: true
+            },
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -82,11 +84,11 @@ function ImageUpload(props) {
                                 quality="auto"
                             />)}
                         </section>
-                        {images ?
-                            <Button click={uploadToUser}
+                        {props.uploadedPhotoUrl === '' ? null
+
+                            : <Button click={uploadToUser}
                                 label="Upload"
-                                className="login-btn" />
-                            : null}
+                                className="login-btn" />}
                     </div>
                 </CloudinaryContext>
 

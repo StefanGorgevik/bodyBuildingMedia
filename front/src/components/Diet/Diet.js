@@ -9,8 +9,6 @@ import NumberInput from './DietNumberInput/DietNumberInput'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import Button from '../Button/Button'
-import Error from '../WelcomePage/Error/Error'
-import ChangedAlert from '../ChangedAlert/ChangedAlert'
 const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 class Diet extends React.Component {
     constructor(props) {
@@ -162,12 +160,9 @@ class Diet extends React.Component {
 
         return (
             <main className="diet-main">
-                {this.state.alert ? <ChangedAlert content="Info successfully changed!" closeChangedAlert={this.closeChangedAlert} /> : null}
-                {this.state.error ? <Error closeErrorAlert={this.closeErrorAlert}
-                    title="Error"
-                    content='Fill up every field or check if your credentials are correct' /> : null}
                 <div className="diet">
                     <Title title="diet" />
+                    
                     <div className="diet-inputs-div">
                         {inputs}
                         <div className='generate-meals'>
@@ -181,6 +176,8 @@ class Diet extends React.Component {
                         </div>
                         {mealInputs}
                     </div>
+                    {this.state.alert ? <p className="check-p">Info successfully changed!</p> : null}
+                    {this.state.error ? <p className="check-p">Check your credentials!</p> : null}
                     <div className="diet-btns">
                         <Button click={this.closeDiet}
                             label="close"
