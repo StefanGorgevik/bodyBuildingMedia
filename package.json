@@ -16,10 +16,13 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.2",
     "express-jwt": "^5.3.1",
+    "gridfs-stream": "^1.1.1",
     "http-proxy": "^1.18.0",
     "json-web-token": "^3.2.0",
+    "method-override": "^3.0.0",
     "mongoose": "^5.9.7",
     "multer": "^1.4.2",
+    "multer-gridfs-storage": "^4.0.3",
     "node-input-validator": "^4.2.0",
     "randomstring": "^1.1.5"
   },
@@ -29,6 +32,6 @@
   },
   "engines": {
     "node": "v12.14.0",
-    "npm" : "6.13.4"
+    "npm": "6.13.4"
   }
 }

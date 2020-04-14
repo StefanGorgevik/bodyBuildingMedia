@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import MainLayout from './containers/MainLayout/MainLayout'
 import Authentication from './containers/Authentication/Authentication'
-import Register from './components/WelcomePage/Register/Register'
 
 function App() {
   return (
@@ -11,7 +10,6 @@ function App() {
       <Switch>
           <Route exact path='/' component={Authentication} />
           <Route exact path='/main' component={MainLayout} />
-          <Route exact path='/edit-info' component={Register} />
       </Switch>
     </BrowserRouter>
   );

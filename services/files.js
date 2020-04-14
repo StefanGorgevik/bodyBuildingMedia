@@ -1,51 +1,59 @@
 const express = require('express');
 const app = express();
+const crypto = require('crypto');
 const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const methodOverride = require('method-override');
+const path = require('path');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+// Middleware
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 const cors = require('cors');
 app.use(cors());
 
-const filesHandler = require('../handlers/filesHandler')
+// const filesHandler = require('../handlers/filesHandler')
 
 //making the connection with mongoose
-const config = require('../config/index.js')
-const DBConnection = require('../db/connection')
-var c = config.getConfig("db")
-DBConnection.initialize(c);
+const mongoURI = 'mongodb+srv://stefan_gg:furious7@cluster0-ptuut.mongodb.net/bodybuildingmedia'
 
-app.use(express.static('public'))
+const conn = mongoose.createConnection(mongoURI, {useUnifiedTopology: true, useNewUrlParser: true});
+let gfs;
 
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/images/uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, req.user.id + '-' + file.originalname)
+conn.once('open', () => {
+    gfs = Grid(conn.db, mongoose.mongo);
+    gfs.collection('uploads');
+  });
+
+//Create storage engine
+const storage = new GridFsStorage({
+    url: mongoURI,
+    file: (req, file) => {
+        console.log(req)
+      return new Promise((resolve, reject) => {
+        crypto.randomBytes(16, (err, buf) => {
+          if (err) {
+            return reject(err);
+          }
+          const filename = buf.toString('hex') + path.extname(file.originalname);
+          const fileInfo = {
+            filename: filename,
+            bucketName: 'uploads'
+          };
+          resolve(fileInfo);
+        });
+      });
     }
-});
-const upload = multer({ storage })
+  });
+  const upload = multer({ storage });
 
-var jwt = require('express-jwt');
-app.use(
-    jwt(
-        { secret: config.getConfig('jwt').key }
-    )
-        .unless({
-            methods: ['GET', 'POST'],
-            path: [
-                { url: /^\/app\/v1\/files\/upload\/.*/, methods: ['GET','POST'] },
-                { url: /^\/app\/v1\/files\/uploads\/images\/.*/, methods: ['GET','POST'] },
-                { url: /^\/app\/v1\/files\/images\/.*/, methods: ['GET','POST'] },
-                { url: /^\/app\/v1\/files\/images\/uploads\/.*/, methods: ['GET','POST'] },
-            ]
-        })
-);
-
-app.post('/app/v1/files/upload/', upload.single('image'), filesHandler.uploadPhoto);
-app.get('/app/v1/files/images/', filesHandler.getImages);
-app.get('/app/v1/files/images/:id', filesHandler.getOneImage);
-app.delete('/app/v1/files/images/delete/:id', filesHandler.deleteImage);
-
+  app.post('/upload', upload.single('file'), (req,res) => {
+      res.send( req.file);
+  })
 
 app.listen(8083, err => {
     if (err) {
