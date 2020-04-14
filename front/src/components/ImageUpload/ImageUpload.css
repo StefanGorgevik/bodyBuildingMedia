@@ -13,7 +13,7 @@
     font-family: 'Roboto Slab', serif;
 }
 
-.iu-div {
+/* .iu-div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,6 +21,19 @@
     margin: auto;
     width: 40%;
     min-height: 75%;
+    background-color:rgba(0, 0, 0, 0.897);
+    border-radius: 55px;
+    border: 2px solid white;
+    box-sizing: border-box;
+} */
+.iu-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 40%;
+    min-height: 45%;
     background-color:rgba(0, 0, 0, 0.897);
     border-radius: 55px;
     border: 2px solid white;
@@ -41,6 +54,19 @@
 .iu-info-p {
     font-size: 20px;
     font-weight: bold;
+}
+
+.iu-p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px auto;
+    height: 40%;
+}
+
+.fa-wrench {
+    font-size: 70px;
+    height: 60%;
 }
 
 
