@@ -2,6 +2,14 @@ const express = require('express');
 const app = express();
 const multer = require('multer');
 
+
+var cloudinary = require('cloudinary').v2;
+cloudinary.config({ 
+  cloud_name: 'stefangg', 
+  api_key: '829499454567796', 
+  api_secret: 'ul9N_3Sz6MF1PsHwk5GcyUUBu4M' 
+});
+
 const cors = require('cors');
 app.use(cors());
 
@@ -20,6 +28,7 @@ var storage = multer.diskStorage({
         cb(null, 'public/images/uploads')
     },
     filename: (req, file, cb) => {
+      console.log(file)
         cb(null, req.user.id + '-' + file.originalname)
     }
 });
