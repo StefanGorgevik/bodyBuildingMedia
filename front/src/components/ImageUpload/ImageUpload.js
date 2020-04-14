@@ -57,6 +57,7 @@ class ImageUpload extends Component {
         }).catch(err => alert(err.message));
     }
 
+
     changePhoto = () => {
         var id = localStorage.getItem('user-id')
         axios.delete(HEROKU_URL + `app/v1/files/images/delete/${id}`, {
