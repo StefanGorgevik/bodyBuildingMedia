@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-height: 75%;
+    max-height:75%;
     width: 100%;
     border-radius: 19px;
     padding: 0 10px;
@@ -11,7 +11,7 @@
 
 .pi-inputs-div {
     width: 100%;
-    min-height: 30%;
+    height: 100%;
     margin: 0;
 }
 
