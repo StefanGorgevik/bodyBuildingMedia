@@ -83,17 +83,6 @@ const getUserByName =(name) => {
         })
     })
 } 
-const getUserPhoto =(name) => {
-    return new Promise((success, fail) => {
-        User.find({_id: name}, (err,data) => {
-            if(err) {
-                return fail(err)
-            } 
-            console.log(data)
-            return success(data)
-        })
-    })
-} 
 
 module.exports = {
     getAllUsers,
