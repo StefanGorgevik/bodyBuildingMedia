@@ -16,10 +16,6 @@ app.all('/app/v1/users/*', (req, res) => {
     appProxy.web(req, res, {target: 'http://localhost:8082'});
 });
 
-app.all('/app/v1/files/*', (req, res) => {
-    appProxy.web(req, res, {target: 'http://localhost:8083'});
-});
-
 app.all('/*', (req, res) => {
     appProxy.web(req, res, {target: 'http://localhost:8084'});
 });
