@@ -21,8 +21,7 @@ class User extends Component {
 
     render() {
         var url;
-        console.log(this.props.photo)
-        if(this.props.photo !== undefined) {
+        if(this.props.photo !== undefined && this.props.photo !== '') {
         url = this.props.photo
     } else {
         url = Profile

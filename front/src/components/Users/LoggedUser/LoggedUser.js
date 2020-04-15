@@ -5,9 +5,8 @@ import { connect } from 'react-redux'
 
 
 function LoggedUser(props) {
-    console.log(props.image)
     var url;
-    if (props.image !== "") {
+    if (props.image !== "" && props.image !== undefined) {
         url = props.image
     } else {
         url = UserPhoto

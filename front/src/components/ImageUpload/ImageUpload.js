@@ -21,13 +21,8 @@ function ImageUpload(props) {
         };
         openUploadWidget(uploadOptions, (error, photos) => {
             if (!error) {
-                if (photos.info.url !== undefined) {
-                    console.log(photos.info.url);
-                    props.uploadPhotoUrl(photos.info.url)
-                }
                 if (photos.event === 'success') {
                     if (photos.info.url !== undefined) {
-                        console.log(photos.info.url);
                         props.uploadPhotoUrl(photos.info.url)
                     }
                     setImages([...images, photos.info.public_id])
@@ -57,10 +52,9 @@ function ImageUpload(props) {
             .then(res => {
                 localStorage.setItem('isPhotoUploaded', 'true')
                 props.openUploadPhoto(false)
-                console.log(res)
                 window.location.reload();
             })
-            .catch(err => console.log(err))
+            .catch(err => {})
     }
 
 
@@ -68,12 +62,13 @@ function ImageUpload(props) {
         props.openUploadPhoto(false)
         props.uploadPhotoUrl('')
     }
-
+    const isPhotoUploaded = localStorage.getItem('isPhotoUploaded') === 'true'
     return (
         <main className="iu-main">
             <div className="iu-div">
                 <Title title="photo upload" />
                 <CloudinaryContext cloudName="stefangg">
+                {isPhotoUploaded ? <p>Current photo will be deleted!</p> : null}
                         {props.url !== '' ? <img className="iu-photo" src={props.url} alt='upload' /> : null}
                     <div className="iu-btns-div">
                             <Button click={closeUploadPhotoHandler}

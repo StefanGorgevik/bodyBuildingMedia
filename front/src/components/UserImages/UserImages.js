@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 
 class UserImages extends React.Component {
     render() {
-        console.log(this.props.userSelected.photoURL)
         var content;
-        if (this.props.userSelected.photoURL === undefined) {
-            content = <p>No photo found for this user!</p>
-        } else {
+        console.log(this.props.userSelected.photoURL)
+        if (this.props.userSelected.photoURL !== undefined && this.props.userSelected.photoURL !== '') {
             content = <img className="cover-image" src={this.props.userSelected.photoURL} alt="user" />
+        } else {
+            content = <p>No photo found for this user!</p>
         }
         return (
             <div className="user-images">
