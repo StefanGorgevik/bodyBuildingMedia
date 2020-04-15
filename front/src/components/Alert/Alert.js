@@ -1,14 +1,14 @@
 import React from 'react'
-import './Error.css'
-import Button from '../../Button/Button'
+import './Alert.css'
+import Button from '../Button/Button'
 
-function Error(props) {
+function Alert(props) {
     return (
-        <main className="error-main">
-            <div className="error-div">
+        <main className="alert-main">
+            <div className="alert-div">
                 <h1>{props.title}</h1>
                 <p>{props.content}</p>
-                <Button click={props.closeErrorAlert}
+                <Button click={props.closeAlert}
                             label="close"
                             className="close-btn"
                         />
@@ -23,4 +23,4 @@ function Error(props) {
     )
 }
 
-export default Error
+export default Alert

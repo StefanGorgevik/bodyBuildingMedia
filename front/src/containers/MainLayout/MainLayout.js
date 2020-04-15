@@ -8,7 +8,7 @@ import WorkoutPlan from '../../components/WorkoutPlan/WorkoutPlan'
 import EditInfo from '../../components/EditInfo/EditInfo'
 import Diet from '../../components/Diet/Diet'
 import ImageUpload from '../../components/ImageUpload/ImageUpload'
-import Alert from '../../components/WelcomePage/Error/Error'
+import Alert from '../../components/Alert/Alert'
 import './MainLayout.css'
 import { connect } from 'react-redux'
 import {openSignOut, isUserLogged} from '../../redux/actions/userActions'
@@ -49,7 +49,7 @@ class MainLayout extends React.Component {
                 {this.props.dietPlanOpened ? <Diet /> : null}
                 {this.props.uploadPhotoOpened ? <ImageUpload /> : null}
                 {this.props.signOutOpened ?
-                    <Alert closeErrorAlert={this.rejectSignOut}
+                    <Alert closeAlert={this.rejectSignOut}
                         title="You are signing out!"
                         content='Are you sure?'
                         type="alert"

@@ -13,19 +13,6 @@
     font-family: 'Roboto Slab', serif;
 }
 
-/* .iu-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin: auto;
-    width: 40%;
-    min-height: 75%;
-    background-color:rgba(0, 0, 0, 0.897);
-    border-radius: 55px;
-    border: 2px solid white;
-    box-sizing: border-box;
-} */
 .iu-div {
     display: flex;
     flex-direction: column;
@@ -33,45 +20,37 @@
     justify-content: space-between;
     margin: auto;
     width: 40%;
-    min-height: 45%;
+    max-height:90%;
     background-color:rgba(0, 0, 0, 0.897);
     border-radius: 55px;
     border: 2px solid white;
     box-sizing: border-box;
-}
-
-
- .photo-input {
-    cursor: pointer;
+    padding: 0;
     text-align: center;
-    height: 200px;
-    background-color: rgba(65, 64, 65, 0.109);
-    width: 70%;
-    font-size: 24px;
-    border-radius: 10px;
 }
 
-.iu-info-p {
-    font-size: 20px;
-    font-weight: bold;
+.iu-btns-div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.iu-p {
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    margin: 20px auto;
-    height: 40%;
+.iu-photo {
+    max-width: 90%;
+    max-height:400px;
+    margin: 0 ;
+    padding: 0 auto;
 }
-
-.fa-wrench {
-    font-size: 70px;
-    height: 60%;
-}
-
 
 @media screen and (max-width: 700px) {
     .iu-div {
         width: 100%;
+    }
+    .iu-photo { 
+        max-height:200px;
+    }
+    .iu-btns-div {
+        flex-direction: column;
     }
 }

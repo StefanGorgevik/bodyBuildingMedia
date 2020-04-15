@@ -41,26 +41,6 @@ class Users extends Component {
                     return user._id !== loggedUserId
                 })
                 this.props.getAllUsers(users)
-                axios.get(HEROKU_URL + 'app/v1/files/images/', {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-                    }
-                })
-                    .then(res => {
-    
-                        var photos = res.data.filter((photo) => {
-                            if (photo.userID === res.loggedUserId) {
-                                this.setState({ loggedUserPhoto: photo })
-                            }
-                            return photo.userID !== loggedUserId
-                        })
-                        this.setState({
-                            images: photos
-                        })
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
                 this.setState({ users: users })
             })
             .catch((error) => {
@@ -69,8 +49,6 @@ class Users extends Component {
                 }
             })
     }
-
-
 
     getWorkoutPlan = (id) => {
         axios.get(`${HEROKU_URL}app/v1/plans/workoutplans/${id}`, {
@@ -116,7 +94,6 @@ class Users extends Component {
                 return user._id === id
             })
         }
-        this.getImage(user[0]._id)
         this.getWorkoutPlan(user[0]._id)
         this.getDiet(user[0]._id)
         this.props.userSelected(user[0])
@@ -125,21 +102,6 @@ class Users extends Component {
         this.props.dietClick(false)
         this.props.userClicked(true)
         this.setState({ activeUser: id })
-    }
-
-    getImage = (id) => {
-        axios.get(`${HEROKU_URL}app/v1/files/images/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-            }
-        })
-            .then(res => {
-                var gitUrl = "https://raw.githubusercontent.com/StefanGorgevik/bodyBuildingMedia/master/public/"
-                this.props.uploadPhotoUrl(gitUrl + res.data.url)
-            })
-            .catch(err => {
-                console.log(err)
-            })
     }
 
     saveSearchValue = (event) => {
@@ -181,7 +143,7 @@ class Users extends Component {
                         age={user.age}
                         level={user.level}
                         class={this.state.activeUser !== user._id ? 'selected-user' : 'user'}
-                        photo={images.find(img => img.userID === user._id)}
+                        photo={user.photoURL}
                     />)
             })
         }
@@ -195,6 +157,7 @@ class Users extends Component {
                         level={this.state.user.level}
                         click={() => this.userClicked(this.state.user._id)}
                         class={'logged-user'}
+                        image={this.state.user.photoURL}
                     />
                 </div>
                 <h1>Users</h1>

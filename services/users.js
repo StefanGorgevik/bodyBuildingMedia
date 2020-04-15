@@ -26,6 +26,7 @@ app.get('/app/v1/users/all', usersHandler.getUsers)
 app.get('/app/v1/users/name/:first_name', usersHandler.getUserByName)
 app.get('/app/v1/users/id/:id', usersHandler.getOneUser)
 app.put('/app/v1/users/:id', usersHandler.updateUser)
+app.get('/app/v1/users/getImage/:id', usersHandler.getUserPhoto)
 
 app.listen(8082, (err) => {
     if (err) {
