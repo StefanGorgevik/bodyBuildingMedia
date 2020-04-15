@@ -47,7 +47,7 @@ function ImageUpload(props) {
         const userID = localStorage.getItem('user-id')
         axios.put(`${HEROKU_URL}app/v1/users/${userID}`,
             {
-                photosURL: props.uploadedPhotoUrl,
+                photoURL: props.url,
                 isPhotoUploaded: true
             },
             {
@@ -84,7 +84,7 @@ function ImageUpload(props) {
                                 quality="auto"
                             />)}
                         </section>
-                        {props.uploadedPhotoUrl === '' ? null
+                        {props.url === '' ? null
 
                             : <Button click={uploadToUser}
                                 label="Upload"
