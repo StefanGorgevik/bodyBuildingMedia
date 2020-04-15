@@ -23,7 +23,6 @@ class Login extends React.Component {
     }
 
     loginClickedHandler = (e) => {
-        console.log('login')
         e.preventDefault()
         if (this.state.email === '' || this.state.password === '') {
             this.setState({ error: true })
@@ -45,7 +44,6 @@ class Login extends React.Component {
                     this.props.loggedUser(res.data)
                 })
                 .catch(err => {
-                    console.log(err)
                     this.props.isUserLogged(false)
                     this.setState({ error: true })
                 })

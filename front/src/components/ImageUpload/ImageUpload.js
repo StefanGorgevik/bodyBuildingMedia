@@ -9,7 +9,6 @@ import Title from '../Title/Title'
 import axios from 'axios'
 const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 
-
 function ImageUpload(props) {
     const [images, setImages] = useState([])
 
@@ -17,7 +16,8 @@ function ImageUpload(props) {
         const uploadOptions = {
             cloudName: "stefangg",
             tags: [tag, 'anImage'],
-            uploadPreset: "rn0z3bty"
+            uploadPreset: "rn0z3bty",
+            folder: 'bodybuildingmedia'
         };
         openUploadWidget(uploadOptions, (error, photos) => {
             if (!error) {
