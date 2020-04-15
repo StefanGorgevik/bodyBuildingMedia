@@ -5,6 +5,7 @@ import axios from 'axios'
 import Button from '../Button/Button'
 import { connect } from 'react-redux'
 import { openEditInfo } from '../../redux/actions/userActions'
+import Title from '../Title/Title'
 
 const HEROKU_URL = "https://bodybuildingmedia.herokuapp.com/"
 class EditInfo extends Component {
@@ -109,6 +110,7 @@ class EditInfo extends Component {
             <main className="ei-main">
                
                 <div className="ei-div">
+                <Title title="Edit info" />
                     <PersonalInfo saveInputValue={this.saveInputValue}
                         user={this.state.user}
                         editInfoOpened={this.props.editInfoOpened}

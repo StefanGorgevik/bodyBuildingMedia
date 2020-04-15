@@ -3,7 +3,7 @@ import React from 'react'
 import PersonalInfo from './PersonalInfo/Personalinfo'
 import Button from '../../Button/Button'
 import './Register.css'
-
+import Title from '../../Title/Title'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loggedUser, isUserRegistered, isUserLogged } from '../../../redux/actions/userActions'
@@ -95,6 +95,7 @@ class Register extends React.Component {
             <div className="main-register">
                 {this.redirectToMain()}
                 <div className="register">
+                <Title title="personal info" />
                     <PersonalInfo saveInputValue={this.saveInputValue}
                         user={this.state.user} />
                         {this.state.error ? <p className="check-p">Check your credentials!</p> : null}

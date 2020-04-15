@@ -1,7 +1,6 @@
 import React from 'react'
 
 import './PersonalInfo.css'
-import Title from '../../../Title/Title'
 import Input from '../../../RegInput/RegInput'
 import { connect } from 'react-redux'
 
@@ -19,7 +18,6 @@ function PersonalInfo(props) {
         })
         return (
             <div className="personal-info ">
-                <Title title="personal info" />
                 <div className="pi-inputs-div">
                     {inputs}
                 </div>
