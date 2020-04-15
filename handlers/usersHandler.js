@@ -59,7 +59,7 @@ const registerUser = (req, res) => {
                     if(err) {
                         throw new Error(err);
                         return;
-                    } return usersModel.register({...newUser, password: hash, isWorkoutPlanCreated: false, isDietCreated: false, isPhotoUploaded: false, photoURL:'dada'})
+                    } return usersModel.register({...newUser, password: hash, isWorkoutPlanCreated: false, isDietCreated: false, isPhotoUploaded: false, photoURL:''})
                 })
             })
         } else {
